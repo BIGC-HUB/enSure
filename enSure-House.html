@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>enSure-House</title>
+        <link rel="stylesheet" href="ku/pure-0.6.0/pure.css">
+        <link rel="stylesheet" href="ku/Pure-mobile.css">
         <style>
-            a:link   { color: white; text-decoration: none; } /*去下划线*/
-            a:visited{ color: black; }
-            a:hover  { color: red; cursor: pointer; } /*鼠标样式*/
-            a:active { color: lightblue; }
             body {
-                background: lightblue;          /* 背景色       */
-                margin:0px;                     /* 外边距       */
-                border:0px;                     /* 边框         */
-                border-style: solid;            /* 边框样式     */
-                padding:0px;                    /* 内边距       */
-                font-family: Microsoft YaHei;   /* 字体         */
-                font-size: 22px;                /* 字体大小     */
-                text-align: center;             /* 对齐         */
+                margin-top: 80px;
+                text-align: center;
+                font-size: 22px;
+                background: white;
             }
-            .top {
-                border:120px;
-                padding:0px;
-                border-style: solid;
+            html, button, input, select, textarea,.pure-g [class *= "pure-u"] {
+                font-family: Microsoft YaHei, Georgia, Times, "Times New Roman", serif;
             }
         </style>
-        <link rel="stylesheet" href="ku/pure-release-0.5.0/pure-min.css">
+
     </head>
     <body>
-        <div class="top">
-            <h1><a href="#" >(●'◡'●)</a></h1>
+
+        <div class="pure-g">
+            <div class="pure-u-0 pure-u-md-1-5"> 左侧边栏 </div>
+            <div class="pure-u-1 pure-u-md-3-5"> 主体内容 </div>
+            <div class="pure-u-0 pure-u-md-1-5"> 右侧边栏 </div>
         </div>
+
         <script>
             var log = function() {
                 console.log.apply(console, arguments)
@@ -41,10 +38,9 @@
                     log('def    = "'+def+'"\nresult = "'+result+'"')
                     }
                 }
-            ensure('daxiao123','快叫爸爸 可恶 ','function 错误')
         </script>
         <!-- 定制 log -->
-		<script src="ku/jquery.js" charset="utf-8"></script>
+		<script src="ku/jquery-3.1.1.js" charset="utf-8"></script>
         <script src="debug.js"  charset="utf-8"></script>
         <!-- 代码 debug -->
     </body>
