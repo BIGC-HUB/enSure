@@ -1,160 +1,242 @@
-// 2016/10/19
-//
-// ============
-// 作业 15
-//
-//
-// 本次作业没有提示的地方需要自行搜索
-// 别忘了用 github 管理作业的进度
-// ============
-//
-
-
-
-// 作业 1
-// options 是一个包含 string 的数组
-// 本函数对每个 string 生成一个复选框和文本
-// append 到 body 中
-// 示意图如下
-//
-// +-+
-// | | string
-// +-+
-//
-// 实现函数 GuaOptions1, 功能见注释描述
-
-var str = ['卡卡罗特','李青','放逐之刃','疾风剑豪','诺克萨斯之手']
-
-var GuaOptions1 = function(options) {
-    $(options).each( function(i, e) {
-        var temp = `
-            <div><label><input type="checkbox">${e}</label></div>`
-        $('.hero-fuxuan').append(temp)
-    })
-}
-// GuaOptions1(str)
-
-// 作业 2
-// options 是一个包含 string 的数组
-// 本题和作业 1 一样的功能 只是多了 2 个按钮
-// 全选 和 反选
-//
-var GuaOptions2 = function(options) {
-    $(options).each( function(i, e) {
-        var temp = `
-            <div><label><input class="fuxuan" type="checkbox">${e}</label></div>`
-        $('.hero-fuxuan').append(temp)
-    })
-    allOptions()
-}
-// GuaOptions2(str)
-
-
-// 作业 3
-// options 是一个包含如下 object 的数组
-// text 是文本描述
-// checked 是布尔值, 表示是否打勾
-// {
-// 	'text': 'string',
-//     'checked': true,
-// }
-// 本题和作业 2 一样的功能, 但是参数变了
-// 并且要求在初始化的时候要按照相应的值对相应的复选框打勾
-//
-var str2 = [
-    {text:'卡卡罗特', checked: true},
-    {text:'李青', checked: false},
-    {text:'放逐之刃', checked: false},
-    {text:'疾风剑豪', checked: false},
-    {text:'诺克萨斯之手', checked: false},
-    {text:'面对疾风吧', checked: true},
-]
-
-var GuaOptions3 = function(options) {
-    $(options).each( function(i, e) {
-        var xuan = ""
-        if (e.checked) {
-            xuan = "checked"
+var tanChuang = function(title, mima) {
+    var style = `
+        <style>
+            /* 弹窗 */
+            .tanChuang {
+                z-index: 1;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                background: black;
+                opacity: 0.96;
+                color: white;
+                text-align: center;
+            }
+            /* 背景 */
+            .img-background {
+                position:relative;
+                top: 50%;
+                transform: translateY(-88%);
+                z-index: -1;
+            }
+            #img-background { display: inline-block; }
+            /* 居中 */
+            .tan-center {
+                position:relative;
+                top: 50%;
+                transform: translateY(-61.8%);
+                }
+            /* 标题 */
+            .tan-title {
+                font-size: 1.81em;
+                padding: 10px;
+            }
+            /* 内容框 */
+            .tan-message {
+                padding: 10px;
+            }
+            /* 输入框 */
+            #id-tan-input {
+                font-size: 1.61em;
+                color: black;
+                text-align: center;
+                border-radius: 20px;
+            }
+            #id-tan-input:focus { outline-style: none; }
+            /* 按钮 */
+            .pure-button {
+                color: white;
+                border-radius: 20px;
+                background: rgb(51, 103, 214);
+                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                font-size: 100%;
+            }
+        </style>
+        `
+    var temp = `
+        <div class="tanChuang">
+            <div class="tan-center">
+                <div class="tan-title">${title}</div>
+                <div class="tan-message">
+                    <input id="id-tan-input" type="text" value="">
+                </div>
+                <div class="tan-button">
+                    <button id="id-tan-OK"     class="pure-button" type="button">知道</button>
+                    <button id="id-tan-Cancel" class="pure-button" type="button">母鸡</button>
+                </div>
+            </div>
+            <div class="img-background">
+                <img id="img-background pure-img" width="70%" src="imgs/105.Earth.png" alt="background">
+            </div>
+        </div> `
+    $('body').append(style)
+    $('body').append(temp)
+    $('#id-tan-OK').on('click', function() {
+        let value = $('#id-tan-input')[0].value
+        if (value === mima) {
+            $('.tanChuang').remove()
         }
-        var temp = `
-            <div><label><input ${xuan} class="fuxuan" type="checkbox" data-str='${e.text}' >${e.text}</label></div>`
-        $('.hero-fuxuan').append(temp)
     })
-    allOptions()
-}
-// GuaOptions3(str2)
-
-// 作业 4
-// 本题和作业 3 一样的功能
-// 但是多了 2 个按钮 save 和 load
-// save 按钮点击的时候会保存当前的 options 状态到 localStorage(用 JSON)
-// load 按钮点击的时候会从 localStorage 中读取保存的信息并更新界面
-//
-var allOptions = function() {
-    var quanxuan = `
-    <style>
-    .button-small { font-size: 85%; }
-    </style>
-    <button class="quanxuan button-small pure-button pure-button-primary">全选</button>
-    <button class="fanxuan  button-small pure-button pure-button-primary">反选</button>
-    <button class="save-xuan button-small pure-button pure-button-primary">保存</button>
-    <button class="load-xuan button-small pure-button pure-button-primary">读取</button>`
-    $('.Cont').append(quanxuan)
-    $('.quanxuan').on('click',function() {
-        $('.fuxuan').each( function(i, e) {
-            e.checked = true
-            str3[i].checked = true
-
-        })
-    })
-    $('.fanxuan' ).on('click',function() {
-        $('.fuxuan').each( function(i, e) {
-            if (e.checked) {
-                e.checked = false
-                str3[i].checked = false
-                }else {
-                e.checked = true
-                str3[i].checked = true
-            }
-        })
+    $('#id-tan-Cancel').on('click', function() {
+        $('.tanChuang').remove()
     })
 }
-//全选按钮
+// tanChuang('你好，是否知道个人档案密钥','123')
 
-var str3 = [
-    {text:'卡卡罗特', checked: false},
-    {text:'李青', checked: false},
-    {text:'放逐之刃', checked: false},
-    {text:'疾风剑豪', checked: false},
-    {text:'诺克萨斯之手', checked: false},
-    {text:'面对疾风吧', checked: false},
+
+var GuaSlide = function(element, images) {
+    var style = `
+            <style>
+                .GuaSlide {
+                    margin: auto;
+                    /* 边框 */
+                    width: 730px;
+                    height: 454px;
+                    /* 大小 */
+                    border-radius: 4px;
+                }
+                .img {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    /* 定位 */
+                }
+                .img:hover { cursor: pointer; }
+                .img-button {
+                    display: none;
+                    width: 25px;
+                    height: 70px;
+                    background: black;
+                    color: white;
+                    border: 0;
+                    padding: 0;
+                    outline: 0;
+                    opacity: 0.418;
+                    font-family: Microsoft YaHei;
+                    font-size: 26px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-61.8%);
+                }
+                .img-button:hover { opacity: 0.5; cursor: pointer; }
+                .img-button-left  { left: 0;  text-align: left;}
+                .img-button-right { right: 0; text-align: right;}
+                .img-bottom {
+                    position: relative;
+                    bottom: 35px;
+                    /* 定位 */
+                }
+                .imgs-button {
+                    border: 0;
+                    padding: 0;
+                    outline: 0;
+                    width: 18px;
+                    height: 18px;
+                    font-family: Microsoft YaHei;
+                    font-size: 12px;
+                    border-radius: 50%;
+                    background: black;
+                    color: white;
+                    opacity: 0.618;
+                }
+                .imgs-button:hover {
+                    opacity: 0.8;
+                    background: #b61b1f;
+                    cursor: pointer;
+                }
+                .imgs {
+                    position: absolute;
+                    display: block;
+                }
+                .imgs-kai {
+                    display: block;
+                }
+                .imgs-button-kai {
+                    background: #b61b1f;
+                }
+            </style>`
+    var html = `
+            <div class="GuaSlide">
+                <div class="img">
+                    <img class="imgs" src=${images[0]} >
+                    <img class="imgs" src=${images[1]} >
+                    <img class="imgs" src=${images[2]} >
+                    <img class="imgs" src=${images[3]} >
+                    <img class="imgs" src=${images[4]} >
+                    <img class="imgs" src=${images[5]} >
+                    <button class="img-button img-button-left"  type="button"> < </button>
+                    <button class="img-button img-button-right" type="button"> > </button>
+                </div>
+                <div class="img-bottom">
+                    <button class="imgs-button" type="button" data-id='1'> 1 </button>
+                    <button class="imgs-button" type="button" data-id='2'> 2 </button>
+                    <button class="imgs-button" type="button" data-id='3'> 3 </button>
+                    <button class="imgs-button" type="button" data-id='4'> 4 </button>
+                    <button class="imgs-button" type="button" data-id='5'> 5 </button>
+                    <button class="imgs-button" type="button" data-id='6'> 6 </button>
+                </div>
+            </div>`
+    $(element).append(style)
+    $(element).append(html)
+    $( '.img' ).on( 'mouseover', function() {
+        $('.img-button').css('display','block')
+    })
+    $( '.img' ).on( 'mouseout' , function() {
+        $('.img-button').css('display','none')
+    })
+    var i = 0 % images.length
+    $('.imgs').each( function(index) {
+        var jiu = $($('.imgs')[index])
+        jiu.fadeOut(0)
+        jiu.removeClass('imgs-kai')
+        index =  ( index + 1 ) % images.length
+        var xin = $($('.imgs')[index])
+        xin.addClass('imgs-kai')
+        xin.fadeIn(0)
+    })
+    $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
+    $( '.img-button-right' ).on( 'click', function() {
+        var jiu = $($('.imgs')[Math.abs(i)])
+        jiu.fadeOut()
+        jiu.removeClass('imgs-kai')
+        $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
+        i =  ( i + 1 ) % images.length
+        var xin = $($('.imgs')[Math.abs(i)])
+        xin.addClass('imgs-kai')
+        xin.fadeIn()
+        $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
+    })
+    $( '.img-button-left'  ).on( 'click', function() {
+        var jiu = $($('.imgs')[Math.abs(i)])
+        jiu.fadeOut()
+        jiu.removeClass('imgs-kai')
+        $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
+        i =  ( (i - 1) + images.length ) % images.length
+        var xin = $($('.imgs')[Math.abs(i)])
+        xin.addClass('imgs-kai')
+        xin.fadeIn()
+        $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
+    })
+    $( '.img-bottom'       ).on( 'mouseover', '.imgs-button', function(event) {
+        var jiu = $($('.imgs')[Math.abs(i)])
+        jiu.fadeOut()
+        jiu.removeClass('imgs-kai')
+        $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
+        i = $(event.target).data('id') - 1
+        var xin = $($('.imgs')[Math.abs(i)])
+        xin.addClass('imgs-kai')
+        xin.fadeIn()
+        $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
+    })
+}
+var images = [
+    "imgs/GuaSlide/1.jpg",
+    "imgs/GuaSlide/2.jpg",
+    "imgs/GuaSlide/3.jpg",
+    "imgs/GuaSlide/4.jpg",
+    "imgs/GuaSlide/5.jpg",
+    "imgs/GuaSlide/6.jpg",
 ]
-
-var GuaOptions4 = function(options) {
-    GuaOptions3(options)
-    $('.hero-fuxuan').on('click', '.fuxuan', function( event ) {
-        var str  = $($(event.target)[0]).data('str')
-        var bool = event.target.checked
-        $(str3).each( function(i, e) {
-            if (e.text === str) {
-                e.checked = bool
-            }
-        })
-    })
-    $('.load-xuan').on('click', function() {
-        str3 = JSON.parse( localStorage[ 'fuXuan' ] )
-        $('.fuxuan').each( function(i, e) {
-            e.checked = str3[i].checked
-        })
-    })
-    $('.save-xuan').on('click', function() {
-         localStorage[ 'fuXuan' ] = JSON.stringify( str3 )
-         log(str3)
-    })
-
-}
-
-if ( localStorage[ 'fuXuan' ] !== "undefined") {
-    str3 = JSON.parse( localStorage[ 'fuXuan' ] )
-}
-GuaOptions4(str3)
+GuaSlide('body',images)
