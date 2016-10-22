@@ -135,6 +135,7 @@ var comment = function() {
 }
 
 //－－－－－－－－－－－－－－－－－－－
+// localStorage[ 'comments' ] = JSON.stringify([ ])
 var words = 140
 var html = `
     <div class="comment">
@@ -155,43 +156,52 @@ $('.comment-text').on('keydown', function() {
     $('#id-words').text(word)
 })
 // 添加 评论 comments 模块
-var comments = [
-    {name:'少杰',date:'10月07日 星期三',message:'123'},
-    {name:'癫仁',date:'10月02日 星期二',message:'abc'}
-]
+var comments = JSON.parse(localStorage[ 'comments' ])
 // 读取 评论 comments 数据
 for (i of comments) {
-    var temp =`
-        <div class="message">
-            <div class="message-time">
-                <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
-            </div>
-            <div class="message-cont">
-                ${i.message}
-            </div>
-        </div>`
-    $('.comment-text').after(temp)
+    if (i.name !== undefined) {
+        var temp =`
+            <div class="message">
+                <div class="message-time">
+                    <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
+                </div>
+                <div class="message-cont">
+                    ${i.message}
+                </div>
+            </div>`
+        $('.comment-text').after(temp)
+    }
 }
 // 加载 评论 comments 数据
 
 $('#id-comment-put').on('click', function(event) {
-    var ku = {
-        name: $('#id-comment-input').val(),
-        date: time(),
-        message: $('#id-comment-text').val(),
+    var user = $('#id-comment-input').val()
+    var text = $('#id-comment-text').val()
+    if ( user.length > 1 && text.length > 1 ) {
+        var ku = { name: user, date: time(), message: text }
+        var temp =`
+            <div class="message">
+                <div class="message-time">
+                    <button class="message-name pure-button">${ku.name} 评论于 ${ku.date}</button>
+                </div>
+                <div class="message-cont">
+                    ${ku.message}
+                </div>
+            </div>`
+        $('.comment-text').after(temp)
+        $('#id-comment-text').val('')
+        comments.push(ku)
+        localStorage[ 'comments' ] = JSON.stringify(comments)
     }
-    $('#id-comment-input').val('')
-    $('#id-comment-text').val('')
+})
+$('body').on('dblclick', '.message-name', function(event) {
+$('.message-name').each( function(i, e) {
+    if (event.target === e) {
+        log(e)
+        log(comments)
+        // localStorage[ 'comments' ] = JSON.stringify(comments)
+    }
+})
 
-    comments.push(ku)
-    var temp =`
-        <div class="message">
-            <div class="message-time">
-                <button class="message-name pure-button">${ku.name} 评论于 ${ku.date}</button>
-            </div>
-            <div class="message-cont">
-                ${ku.message}
-            </div>
-        </div>`
-    $('.comment-text').after(temp)
+    $(event.target).closest( '.message' ).remove()
 })
