@@ -10,7 +10,7 @@ var tanChuang = function(title, mima) {
                 width: 100%;
                 height: 100%;
                 background: black;
-                opacity: 0.96;
+                opacity: 1;
                 color: white;
                 text-align: center;
             }
@@ -40,17 +40,15 @@ var tanChuang = function(title, mima) {
             }
             #id-tan-input {
                 color: black;
-                font-size: 150%;
+                font-size: 130%;
                 text-align: center;
                 font-weight: 400;
             }
             /* 按钮 */
             .tan-buttons {
-                color: white;
-                border-radius: 20px;
-                background: rgb(51, 103, 214);
-                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-                font-size: 100%;
+                color: rgb(104, 113, 116);
+                background: rgb(0, 0, 0);
+                font-size: 110%;
             }
         </style>
         `
@@ -90,7 +88,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-// tanChuang('你好，是否知道个人档案密钥','123')
+tanChuang('你好，是否知道个人档案密钥','123')
 
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -110,7 +108,7 @@ var ckXian = function () {
         }
     })
 } //后台添加代码,使用 ctrl+m 显示参考线 如果要全部看用把'div'改'*'
-ckXian ()
+ckXian()
 
 var time = function( z ) {
     if (z === undefined) { z = new Date() }
@@ -130,12 +128,6 @@ var time = function( z ) {
 }
 // time() === "10月22日 星期六"
 
-var comment = function() {
-    //
-}
-
-//－－－－－－－－－－－－－－－－－－－
-// localStorage[ 'comments' ] = JSON.stringify([ ])
 var words = 140
 var html = `
     <div class="comment">
@@ -156,24 +148,26 @@ $('.comment-text').on('keydown', function() {
     $('#id-words').text(word)
 })
 // 添加 评论 comments 模块
-var comments = JSON.parse(localStorage[ 'comments' ])
-// 读取 评论 comments 数据
-for (i of comments) {
-    if (i.name !== undefined) {
-        var temp =`
-            <div class="message">
-                <div class="message-time">
-                    <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
-                </div>
-                <div class="message-cont">
-                    ${i.message}
-                </div>
-            </div>`
-        $('.comment-text').after(temp)
+if (localStorage[ 'comments' ] === undefined) {
+    var comments = []
+    } else {
+        var comments = JSON.parse(localStorage[ 'comments' ])
+        for (i of comments) {
+        if (i.name !== undefined) {
+            var temp =`
+                <div class="message">
+                    <div class="message-time">
+                        <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
+                    </div>
+                    <div class="message-cont">
+                        ${i.message}
+                    </div>
+                </div>`
+            $('.comment-text').after(temp)
+        }
     }
 }
-// 加载 评论 comments 数据
-
+// 读取 加载 评论 comments 数据
 $('#id-comment-put').on('click', function(event) {
     var user = $('#id-comment-input').val()
     var text = $('#id-comment-text').val()
@@ -195,13 +189,6 @@ $('#id-comment-put').on('click', function(event) {
     }
 })
 $('body').on('dblclick', '.message-name', function(event) {
-$('.message-name').each( function(i, e) {
-    if (event.target === e) {
-        log(e)
-        log(comments)
-        // localStorage[ 'comments' ] = JSON.stringify(comments)
-    }
-})
-
     $(event.target).closest( '.message' ).remove()
+    localStorage[ 'comments' ] = JSON.stringify([ ])
 })

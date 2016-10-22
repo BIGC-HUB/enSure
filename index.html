@@ -15,7 +15,7 @@
                 /* 字体栈写在这: */
                 font-family: Roboto, 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;
             }
-            body {
+            html {
                 text-align: center;
                 background: rgb(241, 241, 241);
                 color: rgb(104, 113, 116);
@@ -34,7 +34,8 @@
             a.top-a:link   { color: white; text-decoration: none; } /*去下划线*/
             a.top-a:visited{ color: white; }
             a.top-a:active { color: rgb( 175, 175, 175); }
-            @media only screen and (min-width: 1000px) {
+            /* 横屏 大于 1000px */
+            @media only screen and (min-width: 64em) {
                 .top-center {
                     width: 1000px;
                 }
@@ -43,8 +44,8 @@
                     width: 1000px;
                 }
             }
-            /* 小于 1000px */
-            @media only screen and (max-width: 1000px) {
+            /* 横屏 小于 1000px */
+            @media only screen and (max-width: 64em) and (orientation: landscape) {
                 #id-notes,#id-homework {
                     display: none;
                 }
@@ -59,13 +60,35 @@
                     width: 95%;
                 }
             }
+            /* 竖屏 小于 1000px */
+            @media only screen and (max-width: 64em) and (orientation: portrait) {
+                #id-notes,#id-homework {
+                    display: none;
+                }
+                #id-home,#id-github,#id-resume {
+                    width: 33.3333%;
+                }
+                html {
+                    font-size: 200%;
+                }
+                #id-comment-text,#id-comment-okay,.message {
+                    margin: 0.4em auto;
+                    width: 95%;
+                }
+
+            }
             .top-center {
                 position: relative;
                 top: 50%;
                 transform: translateY(-50%);
                 margin: auto;
             }
-
+            /* 背景 */
+            .cont-background {
+                background: url('imgs/104.Matrix.png') no-repeat top;
+                background-size: 457px;
+            }
+            /* 评论 */
             #id-comment-text,#id-comment-okay,.message {
                 margin: 0.4em auto;
             }
@@ -75,9 +98,6 @@
             #id-comment-okay {
                 text-align: right;
                 margin: 0 auto 1.41em auto;
-            }
-            .message-time {
-
             }
             .message-cont {
                 border: 0;
@@ -94,7 +114,7 @@
     </head>
     <!-- 主要内容 -->
     <body>
-
+        <!-- 导航 -->
         <div class="top">
             <div class="top-center pure-g">
                 <a id="id-home"    class="top-a pure-u-1-5" href="#">BIGC</a>
@@ -104,31 +124,23 @@
                 <a id="id-github"  class="top-a pure-u-1-5" href="#">GitHub</a>
             </div>
         </div>
-
+        <span style="display: block; height: 3em;"></span>
+        <!-- 内容 -->
         <div class="cont">
-            <span style="display: block; height: 3em;"></span>
-            <span style="display: block; height: 20em;"></span>
+            <div class="cont-background" style="height: 457px;"></div>
             <h1>JavaScript，在此。</h1>
         </div>
+
+        <!-- 留言 -->
         <div class="message">
             <div class="message-time">
-                <button class="message-name pure-button">癫仁 评论于 10月07日 星期五</button>
+                <button class="message-name pure-button">亚索 评论于 10月22日 星期六</button>
             </div>
             <div class="message-cont">
-                专注掏粪
-            </div>
-        </div>
-        <div class="message">
-            <div class="message-time">
-                <button class="message-name pure-button">少杰 评论于 10月02日 星期天</button>
-            </div>
-            <div class="message-cont">
-                面对疾风吧
+                树叶的一生 只是为了归根吗
             </div>
         </div>
         <span style="display: block; height: 4em;"></span>
-
-
         <!-- 定制 log / 代码 debug -->
         <script>
             var log = function() {
