@@ -45,7 +45,7 @@ var tanChuang = function(title, mima) {
                 font-weight: 400;
             }
             /* 按钮 */
-            .pure-button {
+            .tan-buttons {
                 color: white;
                 border-radius: 20px;
                 background: rgb(51, 103, 214);
@@ -62,8 +62,8 @@ var tanChuang = function(title, mima) {
                     <input id="id-tan-input" type="text" placeholder="">
                 </div>
                 <div class="tan-button">
-                    <button id="id-tan-OK"     class="pure-button" type="button">进入</button>
-                    <button id="id-tan-Cancel" class="pure-button" type="button">取消</button>
+                    <button id="id-tan-OK"     class="tan-buttons pure-button" type="button">进入</button>
+                    <button id="id-tan-Cancel" class="tan-buttons pure-button" type="button">取消</button>
                 </div>
             </div>
             <div class="img-background">
@@ -92,20 +92,25 @@ var tanChuang = function(title, mima) {
 }
 // tanChuang('你好，是否知道个人档案密钥','123')
 
-var ckXian = function() {
-    var button = '<button class="xian-button" type="button">线 开关</button>'
-    $('body').append(button)
-    var style  = '<style id="id-xian">div { border: 0.1em; border-style: solid none; }</style>'
-    var i = true
-    $('.xian-button').on('click', function() {
-        if (i) {
-            $('body').append(style); i = false
-        } else {
-            $('#id-xian').remove();  i = true
+var ckXian = function () {
+    var body = document.querySelector('body')
+    var style =
+    `<style id="xm" media="screen">
+        div{outline: 1px red dashed;}
+    </style>`
+    var i = false
+    body.addEventListener('keydown', function(event){
+        if (event.keyCode === 77 && event.ctrlKey) {
+            if (i) {
+                var styletog = document.querySelector('#xm')
+                styletog.remove(); i= false
+            } else {
+                body.insertAdjacentHTML('afterbegin', style); i = true
+            }
         }
     })
-} // 在页面底部生成一个按钮 开关 参考线
-// ckXian()
+} //后台添加代码,使用 ctrl+m 显示参考线 如果要全部看用把'div'改'*'
+ckXian ()
 
 var time = function( z ) {
     if (z === undefined) { z = new Date() }
@@ -123,4 +128,70 @@ var time = function( z ) {
     }
     return `${Month}月${Day}日 星期${Week}`
 }
-time( )
+// time() === "10月22日 星期六"
+
+var comment = function() {
+    //
+}
+
+//－－－－－－－－－－－－－－－－－－－
+var words = 140
+var html = `
+    <div class="comment">
+        <form class="comment-text pure-form">
+            <textarea id="id-comment-text" maxlength="${words}" placeholder="在此输入评论" rows="4" required></textarea>
+            <div id="id-comment-okay">
+                <span class="pure-button pure-button-disabled">还能输入
+                <span   id="id-words">${words}</span> 个字</span>
+                <input  id="id-comment-input" type="text" placeholder="昵称" maxlength="10" required>
+                <button id="id-comment-put" class="pure-button">提交评论</button>
+            </div>
+        </form>
+    </div>
+    `
+$('.cont').after(html)
+$('.comment-text').on('keydown', function() {
+    var word = words - $('#id-comment-text').val().length
+    $('#id-words').text(word)
+})
+// 添加 评论 comments 模块
+var comments = [
+    {name:'少杰',date:'10月07日 星期三',message:'123'},
+    {name:'癫仁',date:'10月02日 星期二',message:'abc'}
+]
+// 读取 评论 comments 数据
+for (i of comments) {
+    var temp =`
+        <div class="message">
+            <div class="message-time">
+                <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
+            </div>
+            <div class="message-cont">
+                ${i.message}
+            </div>
+        </div>`
+    $('.comment-text').after(temp)
+}
+// 加载 评论 comments 数据
+
+$('#id-comment-put').on('click', function(event) {
+    var ku = {
+        name: $('#id-comment-input').val(),
+        date: time(),
+        message: $('#id-comment-text').val(),
+    }
+    $('#id-comment-input').val('')
+    $('#id-comment-text').val('')
+
+    comments.push(ku)
+    var temp =`
+        <div class="message">
+            <div class="message-time">
+                <button class="message-name pure-button">${ku.name} 评论于 ${ku.date}</button>
+            </div>
+            <div class="message-cont">
+                ${ku.message}
+            </div>
+        </div>`
+    $('.comment-text').after(temp)
+})
