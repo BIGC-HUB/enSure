@@ -31,20 +31,19 @@ var tanChuang = function(title, mima) {
             /* 标题 */
             .tan-title {
                 font-size: 1.81em;
-                padding: 10px;
-            }
-            /* 内容框 */
-            .tan-message {
+                font-weight: 300;
                 padding: 10px;
             }
             /* 输入框 */
-            #id-tan-input {
-                font-size: 1.61em;
-                color: black;
-                text-align: center;
-                border-radius: 20px;
+            .tan-message {
+                padding: 10px;
             }
-            #id-tan-input:focus { outline-style: none; }
+            #id-tan-input {
+                color: black;
+                font-size: 150%;
+                text-align: center;
+                font-weight: 400;
+            }
             /* 按钮 */
             .pure-button {
                 color: white;
@@ -59,12 +58,12 @@ var tanChuang = function(title, mima) {
         <div class="tanChuang">
             <div class="tan-center">
                 <div class="tan-title">${title}</div>
-                <div class="tan-message">
-                    <input id="id-tan-input" type="text" value="">
+                <div class="tan-message pure-form">
+                    <input id="id-tan-input" type="text" placeholder="">
                 </div>
                 <div class="tan-button">
-                    <button id="id-tan-OK"     class="pure-button" type="button">知道</button>
-                    <button id="id-tan-Cancel" class="pure-button" type="button">母鸡</button>
+                    <button id="id-tan-OK"     class="pure-button" type="button">进入</button>
+                    <button id="id-tan-Cancel" class="pure-button" type="button">取消</button>
                 </div>
             </div>
             <div class="img-background">
@@ -77,166 +76,51 @@ var tanChuang = function(title, mima) {
         let value = $('#id-tan-input')[0].value
         if (value === mima) {
             $('.tanChuang').remove()
+        } else {
+            $('#id-tan-input')[0].value = ''
+            $('#id-tan-input')[0].placeholder = '密码错误'
         }
     })
     $('#id-tan-Cancel').on('click', function() {
-        $('.tanChuang').remove()
+        $('#id-tan-input')[0].placeholder = '123'
+    })
+    $('#id-tan-input').on('keydown', function() {
+        if (event.key === 'Enter') {
+            $('#id-tan-OK').click()
+        }
     })
 }
 // tanChuang('你好，是否知道个人档案密钥','123')
 
+var ckXian = function() {
+    var button = '<button class="xian-button" type="button">线 开关</button>'
+    $('body').append(button)
+    var style  = '<style id="id-xian">div { border: 0.1em; border-style: solid none; }</style>'
+    var i = true
+    $('.xian-button').on('click', function() {
+        if (i) {
+            $('body').append(style); i = false
+        } else {
+            $('#id-xian').remove();  i = true
+        }
+    })
+} // 在页面底部生成一个按钮 开关 参考线
+// ckXian()
 
-var GuaSlide = function(element, images) {
-    var style = `
-            <style>
-                .GuaSlide {
-                    margin: auto;
-                    /* 边框 */
-                    width: 730px;
-                    height: 454px;
-                    /* 大小 */
-                    border-radius: 4px;
-                }
-                .img {
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-                    /* 定位 */
-                }
-                .img:hover { cursor: pointer; }
-                .img-button {
-                    display: none;
-                    width: 25px;
-                    height: 70px;
-                    background: black;
-                    color: white;
-                    border: 0;
-                    padding: 0;
-                    outline: 0;
-                    opacity: 0.418;
-                    font-family: Microsoft YaHei;
-                    font-size: 26px;
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-61.8%);
-                }
-                .img-button:hover { opacity: 0.5; cursor: pointer; }
-                .img-button-left  { left: 0;  text-align: left;}
-                .img-button-right { right: 0; text-align: right;}
-                .img-bottom {
-                    position: relative;
-                    bottom: 35px;
-                    /* 定位 */
-                }
-                .imgs-button {
-                    border: 0;
-                    padding: 0;
-                    outline: 0;
-                    width: 18px;
-                    height: 18px;
-                    font-family: Microsoft YaHei;
-                    font-size: 12px;
-                    border-radius: 50%;
-                    background: black;
-                    color: white;
-                    opacity: 0.618;
-                }
-                .imgs-button:hover {
-                    opacity: 0.8;
-                    background: #b61b1f;
-                    cursor: pointer;
-                }
-                .imgs {
-                    position: absolute;
-                    display: block;
-                }
-                .imgs-kai {
-                    display: block;
-                }
-                .imgs-button-kai {
-                    background: #b61b1f;
-                }
-            </style>`
-    var html = `
-            <div class="GuaSlide">
-                <div class="img">
-                    <img class="imgs" src=${images[0]} >
-                    <img class="imgs" src=${images[1]} >
-                    <img class="imgs" src=${images[2]} >
-                    <img class="imgs" src=${images[3]} >
-                    <img class="imgs" src=${images[4]} >
-                    <img class="imgs" src=${images[5]} >
-                    <button class="img-button img-button-left"  type="button"> < </button>
-                    <button class="img-button img-button-right" type="button"> > </button>
-                </div>
-                <div class="img-bottom">
-                    <button class="imgs-button" type="button" data-id='1'> 1 </button>
-                    <button class="imgs-button" type="button" data-id='2'> 2 </button>
-                    <button class="imgs-button" type="button" data-id='3'> 3 </button>
-                    <button class="imgs-button" type="button" data-id='4'> 4 </button>
-                    <button class="imgs-button" type="button" data-id='5'> 5 </button>
-                    <button class="imgs-button" type="button" data-id='6'> 6 </button>
-                </div>
-            </div>`
-    $(element).append(style)
-    $(element).append(html)
-    $( '.img' ).on( 'mouseover', function() {
-        $('.img-button').css('display','block')
-    })
-    $( '.img' ).on( 'mouseout' , function() {
-        $('.img-button').css('display','none')
-    })
-    var i = 0 % images.length
-    $('.imgs').each( function(index) {
-        var jiu = $($('.imgs')[index])
-        jiu.fadeOut(0)
-        jiu.removeClass('imgs-kai')
-        index =  ( index + 1 ) % images.length
-        var xin = $($('.imgs')[index])
-        xin.addClass('imgs-kai')
-        xin.fadeIn(0)
-    })
-    $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
-    $( '.img-button-right' ).on( 'click', function() {
-        var jiu = $($('.imgs')[Math.abs(i)])
-        jiu.fadeOut()
-        jiu.removeClass('imgs-kai')
-        $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
-        i =  ( i + 1 ) % images.length
-        var xin = $($('.imgs')[Math.abs(i)])
-        xin.addClass('imgs-kai')
-        xin.fadeIn()
-        $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
-    })
-    $( '.img-button-left'  ).on( 'click', function() {
-        var jiu = $($('.imgs')[Math.abs(i)])
-        jiu.fadeOut()
-        jiu.removeClass('imgs-kai')
-        $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
-        i =  ( (i - 1) + images.length ) % images.length
-        var xin = $($('.imgs')[Math.abs(i)])
-        xin.addClass('imgs-kai')
-        xin.fadeIn()
-        $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
-    })
-    $( '.img-bottom'       ).on( 'mouseover', '.imgs-button', function(event) {
-        var jiu = $($('.imgs')[Math.abs(i)])
-        jiu.fadeOut()
-        jiu.removeClass('imgs-kai')
-        $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
-        i = $(event.target).data('id') - 1
-        var xin = $($('.imgs')[Math.abs(i)])
-        xin.addClass('imgs-kai')
-        xin.fadeIn()
-        $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
-    })
+var time = function( z ) {
+    if (z === undefined) { z = new Date() }
+    var x = z.toString()
+    var zh     = '天一二三四五六'
+    var Year   = x.slice(10,15)
+    var Month  = z.getMonth() + 1
+    var Day    = x.slice(8,10)
+    var Hour   = x.slice(16,18)
+    var Minute = x.slice(19,21)
+    var Second = x.slice(22,24)
+    var Week   = zh[ z.getDay() ]
+    if ( String(Month).length === 1) {
+        Month = '0' + Month
+    }
+    return `${Month}月${Day}日 星期${Week}`
 }
-var images = [
-    "imgs/GuaSlide/1.jpg",
-    "imgs/GuaSlide/2.jpg",
-    "imgs/GuaSlide/3.jpg",
-    "imgs/GuaSlide/4.jpg",
-    "imgs/GuaSlide/5.jpg",
-    "imgs/GuaSlide/6.jpg",
-]
-GuaSlide('body',images)
+time( )

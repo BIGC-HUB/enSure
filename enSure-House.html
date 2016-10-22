@@ -9,23 +9,134 @@
         <style>
             a:link   { color: rgb(51, 103, 214); text-decoration: none; } /*去下划线*/
             a:visited{ color: rgb(51, 103, 214); }
-            a:hover  { text-decoration: underline; } /*鼠标样式*/
-            a:active { color: rgb( 5,  37, 119); text-decoration: none; }
+            a:active { color: rgb( 5,  37, 119); }
+            html, button, input, select, textarea,
+            .pure-g [class *= "pure-u"] {
+                /* 字体栈写在这: */
+                font-family: Roboto, 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;
+            }
             body {
-                margin: 20px auto 10px;
                 text-align: center;
                 background: rgb(241, 241, 241);
                 color: rgb(104, 113, 116);
-                font-family: Roboto, 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;
                 font-weight: 500;
                 font-size: 1.17em;
+            }
+            .top {
+                position:fixed;
+                width: 100%;
+                height: 3em;
+                background: black;
+                opacity: 0.86;
+                font-weight: 300;
+                color: rgb(241, 241, 241);
+            }
+            a.top-a:link   { color: white; text-decoration: none; } /*去下划线*/
+            a.top-a:visited{ color: white; }
+            a.top-a:active { color: rgb( 175, 175, 175); }
+            @media only screen and (min-width: 1000px) {
+                .top-center {
+                    width: 1000px;
+                }
+                #id-comment-text,#id-comment-ok,.message {
+                    margin: 0.4em auto;
+                    width: 1000px;
+                }
+            }
+            /* 小于 1000px */
+            @media only screen and (max-width: 1000px) {
+                #id-notes,#id-homework {
+                    display: none;
+                }
+                #id-home,#id-github,#id-resume {
+                    width: 33.3333%;
+                }
+                html {
+                    font-size: 110%;
+                }
+                #id-comment-text,#id-comment-ok,.message {
+                    margin: 0.4em auto;
+                    width: 95%;
+                }
+            }
+            .top-center {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                margin: auto;
+            }
+            #id-comment-text,#id-comment-ok,.message {
+                margin: 0.4em auto;
+            }
+            .message {
+                text-align: justify;
+            }
+            #id-comment-ok {
+                text-align: right;
+                margin: 0 auto 1.41em auto;
+            }
+            .message-time {
+
+            }
+            .message-cont {
+                border: 0;
+                border-top: 0.1em;
+                border-style: solid;
+                padding: 0.5em 0 2em 0;
+            }
+            .message-name {
+                border-top-right-radius: 14px;
+                color: rgb(155, 155, 155);
+                background: rgb(34, 34, 34);
             }
         </style>
     </head>
     <!-- 主要内容 -->
     <body>
 
-        <span>今天 </span><a href="#">开始嘛</a><br><br><br>
+        <div class="top">
+            <div class="top-center pure-g">
+                <a id="id-home"    class="top-a pure-u-1-5" href="#">BIGC</a>
+                <a id="id-resume"  class="top-a pure-u-1-5" href="#">简历</a>
+                <a id="id-notes"   class="top-a pure-u-1-5" href="#">笔记</a>
+                <a id="id-homework"class="top-a pure-u-1-5" href="#">作品</a>
+                <a id="id-github"  class="top-a pure-u-1-5" href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="cont">
+            <span style="display: block; height: 3em;"></span>
+            <span style="display: block; height: 20em;"></span>
+            <h1>JavaScript，在此。</h1>
+        </div>
+
+        <div class="comment">
+            <form class="comment-text pure-form">
+                <textarea id="id-comment-text" maxlength="140" placeholder="在此输入评论" rows="4" required></textarea>
+                <div id="id-comment-ok">
+                    <span class="pure-button pure-button-disabled">还能输入 140 个字</span>
+                    <input id="id-comment-input" type="text" placeholder="昵称" required>
+                    <button class="pure-button">提交评论</button>
+                </div>
+            </form>
+        </div>
+        <div class="message">
+            <div class="message-time">
+                <button class="message-name pure-button">萧瓜 评论于 10月07日 星期三</button>
+            </div>
+            <div class="message-cont">
+                天后還是天后，一開口就知道是妳唱的，聲音辨識度太高了，當然，還是那樣動聽
+            </div>
+        </div>
+        <div class="message">
+            <div class="message-time">
+                <button class="message-name pure-button">萧瓜 评论于 10月07日 星期三</button>
+            </div>
+            <div class="message-cont">
+                天后還是天后，一開口就知道是妳唱的，聲音辨識度太高了，當然，還是那樣動聽
+            </div>
+        </div>
+        <span style="display: block; height: 4em;"></span>
 
 
         <!-- 定制 log / 代码 debug -->
