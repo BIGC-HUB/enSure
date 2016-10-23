@@ -3,10 +3,11 @@
     <!-- 前情提要 -->
     <head>
         <meta charset="utf-8">
-        <title>大海简历</title>
+        <title>简历Resume - 大海</title>
         <link rel="stylesheet" href="ku/pure-0.6.0/pure.css">
         <link rel="stylesheet" href="ku/Pure-mobile.css">
         <link rel="stylesheet" href="ku/Font-awesome-4.6.3/css/font-awesome.min.css">
+        <!-- 主要样式 -->
         <style>
             a:link   { color: rgb(51, 103, 214); text-decoration: none; } /*去下划线*/
             a:visited{ color: rgb(51, 103, 214); }
@@ -69,6 +70,7 @@
                 background: rgb(34, 34, 34);
             }
         </style>
+        <!-- 自适应 -->
         <style media="screen">
             /* 横屏 大于 1000px */
             @media only screen and (min-width: 64em) {
@@ -114,6 +116,7 @@
 
             }
         </style>
+        <!-- 简历样式 -->
         <style>
             .pure-form-stacked input[type="text"],
             .pure-form-stacked input[type="password"],
@@ -133,7 +136,7 @@
         <!-- 导航 -->
         <div class="top">
             <div class="top-center pure-g">
-                <a id="id-home"    class="top-a pure-u-1-5" href="#"><i class="fa fa-apple fa-1x" aria-hidden="true"></i></a>
+                <a id="id-home"    class="top-a pure-u-1-5" href="#"><i class="fa fa-apple"></i></a>
                 <a id="id-resume"  class="top-a pure-u-1-5" href="#">简历</a>
                 <a id="id-notes"   class="top-a pure-u-1-5" href="#">笔记</a>
                 <a id="id-homework"class="top-a pure-u-1-5" href="#">作品</a>
@@ -145,12 +148,11 @@
         <div class="cont">
             <div class="cont-background" style="height: 457px;"></div>
             <h1>JavaScript前端工程师，在此。</h1>
-
+            <!-- 个人信息 -->
             <form class="resume-contact pure-form pure-form-stacked">
                 <fieldset>
                     <legend>汪洋</legend>
-
-                    <div class="pure-g">
+                    <div class="pure-g ">
                         <div class="pure-u-1 pure-u-md-1-3">
                             <label><i class="fa fa-phone fa-2x" aria-hidden="true"></i></label>
                             <input value="+86 189-6670-2120" type="text" readonly>
@@ -168,39 +170,47 @@
                     </div>
                 </fieldset>
             </form>
+                <div class="resume pure-g">
+                    <!-- 左 侧边栏 -->
+                    <div class="resume-left pure-u-1 pure-u-lg-2-5">
+                        <hr><h2><i class="fa fa-university" aria-hidden="true"></i>
+                        毕业院校</h2>2011 ~ 2015 西安美术学院 本科<hr>
+                        <h2><i class="fa fa-wrench" aria-hidden="true"></i>
+                        项目与工作经验</h2>
+                            2015<br> 杭州印象国际艺术教育 <b>教务老师</b><br>
+                        <br>2014<br> 三亚雍和国际青年旅舍 <b>义工</b><br>
+                        <br>2013<br> 西安锁艺人安防设备有限公司 <b>网页美工</b><br>
+                        <br>2011<br> 西安恒阳电子 <b>销售</b>
 
-            <div class="resume pure-g">
-                <div class="resume-left pure-u-1 pure-u-lg-1-2">
-                    <hr><h2><i class="fa fa-university" aria-hidden="true"></i>
-                    毕业院校</h2>2011 ~ 2015 西安美术学院 本科<hr>
-                    <h2><i class="fa fa-wrench" aria-hidden="true"></i>
-                    项目与工作经验</h2>
-                        2015<br> 杭州印象国际艺术教育 <b>教务老师</b><br>
-                    <br>2014<br> 三亚雍和国际青年旅舍 <b>义工</b><br>
-                    <br>2013<br> 西安锁艺人安防设备有限公司 <b>网页美工</b><br>
-                    <br>2011<br> 西安恒阳电子 <b>销售</b>
+                    </div>
+                    <!-- 右 侧边栏 -->
+                    <div class="resume-right pure-u-1 pure-u-lg-3-5">
+                        <hr><h2><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                        技能</h2>
+                        精通 Adobe illustrator / Photoshop<br><br>
+                            HTML CSS JavaScript <br>
+                            原生DOM API 事件绑定 事件委托 Ajax 封装 JSON<br>
+                            定制 Time 时间函数 CkXian 参考线工具<br>
+                            熟练操作 jQuery API 事件绑定 事件委托 Ajax操作<br>
+                            ES6 Font Awesome PureCSS Bootstrap<br>
+                            Python<br>
+                            https://zhuanlan.zhihu.com/p/23105699
 
 
+                    </div>
                 </div>
-                <div class="resume-right pure-u-1 pure-u-lg-1-2">
-                    <hr><h2><i class="fa fa-asterisk" aria-hidden="true"></i>
-                    技能</h2>
-                    精通 Adobe illustrator / Photoshop<br><br>
-                        HTML / CSS / JavaScript
-                </div>
-            </div>
-
+            <span style="display: block; height: 5em;"></span>
         </div>
         <!-- 留言 -->
         <div class="message">
             <div class="message-time">
-                <button class="message-name pure-button">亚索 评论于 10月22日 星期六</button>
+                <button class="message-name pure-button">Carl Sagan 评论于 10月22日 星期六</button>
             </div>
             <div class="message-cont">
-                树叶的一生 只是为了归根吗
+                　　在那里，那就是地球，那里有我们，有你爱的每个人，有你认识的每个人，有你听说过的每个人，以及在这个世上存在过的每个人，他们都在这裡度过了自己的一生。这里充满了我们的欢乐和痛苦，有成千上万的宗教信仰，意识形态和经济学说。
+                猎手与觅食者，英雄与懦夫，文明的缔造者和毁灭者，国王与农夫，每对年轻的情侣，每一个母亲与父亲和充满希望的孩子们，发明家与探险家，每一位高尚的教师，每一位贪腐的政客，每一位超级明星，每一位最高领袖，人类历史上的每一位圣人和罪人，都生活在这里，如一粒微尘，悬浮在一束阳光之中。
             </div>
         </div>
-        <span style="display: block; height: 4em;"></span>
         <!-- 定制 log / 代码 debug -->
         <script>
             var log = function() {
@@ -215,6 +225,6 @@
                 }
         </script>
 		<script src="ku/jquery-3.1.1.js" charset="utf-8"></script>
-        <script src="debug.js"  charset="utf-8"></script>
+        <script src="resume.js" charset="utf-8"></script>
     </body>
 </html>

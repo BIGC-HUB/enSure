@@ -88,7 +88,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-// tanChuang('你好，是否知道个人档案密钥','123')
+tanChuang('你好，是否知道个人档案密钥','123')
 
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -177,9 +177,9 @@ var comment = function() {
 comment()
 // 添加 评论 comments 模块
 if (localStorage.comments === undefined) {
-    var comments = []
+    varcomments = []
     } else {
-        var comments = JSON.parse(localStorage[ 'comments' ])
+        comments = JSON.parse(localStorage[ 'comments' ])
         for (i of comments) {
             var temp =`
                 <div class="message">
