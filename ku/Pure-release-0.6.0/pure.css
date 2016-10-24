@@ -742,9 +742,7 @@ this the same font stack that Normalize.css sets for the `body`.
     width: 95.8333%;
     *width: 95.8023%;
 }
-.pure-u-0 {
-	display: none;
-}
+
 .pure-u-1,
 .pure-u-1-1,
 .pure-u-5-5,
