@@ -88,7 +88,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-tanChuang('你好，是否知道个人档案密钥','123')
+// tanChuang('你好，是否知道个人档案密钥','123')
 
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -177,20 +177,20 @@ var comment = function() {
 comment()
 // 添加 评论 comments 模块
 if (localStorage.comments === undefined) {
-    varcomments = []
+    var comments = [{name:'卡尔萨根',date:'02月14日 星期三',message:'　　1990年旅行者一号飞过海王星轨道，距离地球六十四亿公里的时候，卡尔萨根终于说服了NASA把相机转向地球，拍下最后一张照片，再看地球最后一眼<br><br>　　“在那里，那就是地球，那里有我们，有你爱的每个人，有你认识的每个人，有你听说过的每个人，以及在这个世上存在过的每个人，他们都在这里度过了自己的一生。这里充满了我们的欢乐和痛苦，有成千上万的宗教信仰，意识形态和经济学说。 猎手与觅食者，英雄与懦夫，文明的缔造者和毁灭者，国王与农夫，每对年轻的情侣，每一个母亲与父亲和充满希望的孩子们，发明家与探险家，每一位高尚的教师，每一位贪腐的政客，每一位超级明星，每一位最高领袖，人类历史上的每一位圣人和罪人，都生活在这里，如一粒微尘，悬浮在一束阳光之中。”'}]
     } else {
-        comments = JSON.parse(localStorage[ 'comments' ])
-        for (i of comments) {
-            var temp =`
-                <div class="message">
-                    <div class="message-time">
-                        <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
-                    </div>
-                    <div class="message-cont">
-                        ${i.message}
-                    </div>
-                </div>`
-            $('.comment-text').after(temp)
+        comments = JSON.parse(localStorage.comments)
         }
+    for (i of comments) {
+        var temp =`
+            <div class="message">
+                <div class="message-time">
+                    <button class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
+                </div>
+                <div class="message-cont">
+                    ${i.message}
+                </div>
+            </div>`
+        $('.comment-text').after(temp)
     }
 // 初始 评论 comments 数据
