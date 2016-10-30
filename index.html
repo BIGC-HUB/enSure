@@ -50,7 +50,7 @@
             }
             /* 评论 */
             #id-comment-text,#id-comment-okay,.message {
-                margin: 0.4em auto;
+                margin: 0 auto;
             }
             .message {
                 text-align: justify;
@@ -73,17 +73,17 @@
         </style>
         <!-- 自适应 -->
         <style media="screen">
-            /* 横屏 大于 1000px */
+            /* 横屏 大于 80% */
             @media only screen and (min-width: 64em) {
                 .top-center {
-                    width: 1000px;
+                    width: 80%;
                 }
                 .resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0.4em auto;
-                    width: 1000px;
+                    margin: 0 auto;
+                    width: 80%;
                 }
             }
-            /* 横屏 小于 1000px */
+            /* 横屏 小于 80% */
             @media only screen and (max-width: 64em) and (orientation: landscape) {
                 #id-notes,#id-homework {
                     display: none;
@@ -95,11 +95,11 @@
                     font-size: 110%;
                 }
                 .resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0.4em auto;
+                    margin: 0 auto;
                     width: 95%;
                 }
             }
-            /* 竖屏 小于 1000px */
+            /* 竖屏 小于 80% */
             @media only screen and (max-width: 64em) and (orientation: portrait) {
                 #id-notes,#id-homework {
                     display: none;
@@ -111,7 +111,7 @@
                     font-size: 200%;
                 }
                 .resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0.4em auto;
+                    margin: 0 auto;
                     width: 95%;
                 }
 
@@ -137,6 +137,10 @@
             <div class="cont-background" style="height: 457px;"></div>
             <h1>JavaScript前端工程师，在此。</h1>
         </div>
+
+
+
+        
         <!-- 定制 log / 代码 debug -->
         <script>
             var log = function() {
