@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <title>海纳百川 - 大海</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="ku/Font-Awesome/css/font-awesome.min.css">
-        <style name='Main'>
+        <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- 全局 -->
+        <style>
             /* 字体栈 */
             html,button,input,select,textarea,.pure-g [class *="pure-u"] {
                 font-family:
@@ -19,15 +20,9 @@
                 text-align: center;
             }
             </style>
-        <style name='Search'>
-            .top {
-                position: fixed;
-                width: 100%;
-                top: 0;
-                text-align: center;
-            }
+        <!-- 搜索 -->
+        <style>
             .search {
-                text-align: center;
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -73,11 +68,34 @@
                 cursor: pointer;
             }
             </style>
-
+        <!-- 导航 -->
+        <style>
+            .top {
+                position: fixed;
+                width: 100%;
+                height: 3em;
+                z-index: 1;
+                background: #F5F6F9;
+                border-bottom: 1px solid #E6E7EC;
+            }
+            .top-center {
+                position:relative;
+                top: 1.5em;
+                transform: translateY(-50%);
+            }
+            .top-girds {
+                width: 20%;
+                display: inline-block;
+            }
+            </style>
     </head>
     <body>
         <div class="top">
-            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+            <div class="top-center">
+                <div class="top-girds"><i class="fa fa-home fa-2x" aria-hidden="true"></i></div>
+                <div class="top-girds">编辑</div>
+                <div class="top-girds">删除</div>
+            </div>
         </div>
 
         <div class="search">
@@ -89,37 +107,11 @@
             </div>
         </div>
 
-        <script name='ensure'>
-            var log = function() {
-                    console.log.apply(console, arguments)
-                }
-                //定义自己的log很重要 enSure增强进化版 穿衣服
-            var ensure = function(def, result, message) {
-                if (JSON.stringify(def) !== JSON.stringify(result)) {
-                    log('异常————————————>', message)
-                    log('def    = "' + def + '"\nresult = "' + result + '"')
-                }
-            }
-            var ckXian = function() {
-                    var body = document.querySelector('body')
-                    var style =
-                        `<style id="xm" media="screen">
-                        div{outline: 1px red dashed} </style>`
-                    var i = false
-                    body.addEventListener('keydown', function(event) {
-                        if (event.keyCode === 77 && event.ctrlKey) {
-                            if (i) {
-                                var styletog = document.querySelector('#xm')
-                                styletog.remove();
-                                i = false
-                            } else {
-                                body.insertAdjacentHTML('afterbegin', style);
-                                i = true
-                            }
-                        }
-                    })
-                }
-            ckXian()
-        </script>
+        <div class="engine">
+
+            </div>
+        <script src="ku/jQuery.js" charset="utf-8"></script>
+
+        <script src="debug.js" charset="utf-8"></script>
     </body>
 </html>
