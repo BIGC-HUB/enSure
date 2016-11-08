@@ -1,160 +1,107 @@
 <!DOCTYPE html>
 <html>
-    <!-- 前情提要 -->
     <head>
         <meta charset="utf-8">
-        <title>enSure</title>
-		<link rel="stylesheet" href="ku/Pure-release-0.6.0/pure-min.css">
-        <link rel="stylesheet" href="ku/Pure-mobile.css">
-        <link rel="stylesheet" href="ku/Font-awesome-4.6.3/css/font-awesome.min.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- 主要样式 -->
-        <style>
-            a:link   { color: rgb(51, 103, 214); text-decoration: none; } /*去下划线*/
-            a:visited{ color: rgb(51, 103, 214); }
-            a:active { color: rgb( 5,  37, 119); }
-            html, button, input, select, textarea,
-            .pure-g [class *= "pure-u"] {
-                /* 字体栈写在这: */
-                font-family: Roboto, 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;
-            }
-            html {
-                text-align: center;
-                background: rgb(241, 241, 241);
-                color: rgb(104, 113, 116);
-                font-weight: 500;
+        <title>认知手册 - 大海</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="ku/Font-Awesome/css/font-awesome.min.css">
+        <style name='主要样式'>
+            /* 字体栈 */
+            html,button,input,select,textarea,.pure-g [class *="pure-u"] {
+                font-family:
+                Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
                 font-size: 1.17em;
+                color: #333;
             }
-            .top {
-                position:fixed;
+            /* 固定式 */
+            body {
+                margin: 0;
+                text-align: center;
+                position: fixed;
                 width: 100%;
-                height: 3em;
-                background: black;
-                opacity: 0.86;
-                font-weight: 300;
-                color: rgb(241, 241, 241);
+                height: 100%;
             }
-            a.top-a:link   { color: white; text-decoration: none; } /*去下划线*/
-            a.top-a:visited{ color: white; }
-            a.top-a:active { color: rgb( 175, 175, 175); }
-            .top-center {
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
-                margin: auto;
+            </style>
+        <style name='搜索框样式'>
+            .search {
+                position:relative;
+                top: 38.2%;
+                transform: translateY(50%);
+                z-index: 3;
             }
-            /* 背景 */
-            .cont-background {
-                background: url('imgs/104.Matrix.png') no-repeat top;
-                background-size: 457px;
+            .search-input {
+                margin-right: -0.26em;
+                padding: 0.4em;
+                width: 38.2%;
+                border: 0.034em solid rgba(0,0,0,0.25);
+                border-top-left-radius: 2px;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 2px;
+                outline: 0;
             }
-            /* 评论 */
-            #id-comment-text,#id-comment-okay,.message {
-                margin: 0 auto;
+            .search-input:hover {
+                border: 0.034em solid rgba(0,0,0,0.4);
             }
-            .message {
-                text-align: justify;
+            .search-input:focus {
+                border: 0.034em solid #037dd8;
             }
-            #id-comment-okay {
-                text-align: right;
-                margin: 0 auto 1.41em auto;
+            .search-button {
+                padding: 0.4em;
+                width: 3.8em;
+                border: 0.034em solid #037dd8;
+                border-top-left-radius: 0;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+                border-bottom-left-radius: 0;
+                outline: 0;
+                background: #037dd8;
+                color: white;
             }
-            .message-cont {
-                border: 0;
-                border-top: 0.1em;
-                border-style: solid;
-                padding: 0.5em 0 2em 0;
+            .search-button:hover {
+                box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+                cursor: pointer;
             }
-            .message-name {
-                border-top-right-radius: 14px;
-                color: rgb(155, 155, 155);
-                background: rgb(34, 34, 34);
-            }
-        </style>
-        <!-- 自适应 -->
-        <style media="screen">
-            /* 横屏 大于 80% */
-            @media only screen and (min-width: 64em) {
-                .top-center {
-                    width: 80%;
-                }
-                .resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0 auto;
-                    width: 80%;
-                }
-            }
-            /* 横屏 小于 80% */
-            @media only screen and (max-width: 64em) and (orientation: landscape) {
-                #id-notes,#id-homework {
-                    display: none;
-                }
-                #id-home,#id-github,#id-resume {
-                    width: 33.3333%;
-                }
-                html {
-                    font-size: 110%;
-                }
-                .resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0 auto;
-                    width: 95%;
-                }
-            }
-            /* 竖屏 小于 80% */
-            @media only screen and (max-width: 64em) and (orientation: portrait) {
-                #id-notes,#id-homework {
-                    display: none;
-                }
-                #id-home,#id-github,#id-resume {
-                    width: 33.3333%;
-                }
-                html {
-                    font-size: 200%;
-                }
-                .resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0 auto;
-                    width: 95%;
-                }
-
-            }
-        </style>
-
+            </style>
     </head>
-    <!-- 主要内容 -->
     <body>
-        <!-- 导航 -->
-        <div class="top">
-            <div class="top-center pure-g">
-                <a id="id-home"    class="top-a pure-u-1-5" href="#"><i class="fa fa-apple"></i></a>
-                <a id="id-resume"  class="top-a pure-u-1-5" href="#">简历</a>
-                <a id="id-notes"   class="top-a pure-u-1-5" href="#">笔记</a>
-                <a id="id-homework"class="top-a pure-u-1-5" href="#">作品</a>
-                <a id="id-github"  class="top-a pure-u-1-5" href="#">GitHub</a>
-            </div>
+        <div class="search">
+            <input class="search-input" type="text" maxlength="100">
+            <button class="search-button">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
         </div>
-        <span style="display: block; height: 3em;"></span>
-        <!-- 内容 -->
-        <div class="cont">
-            <div class="cont-background" style="height: 457px;"></div>
-            <h1>JavaScript前端工程师，在此。</h1>
-        </div>
-
-
-
-        
-        <!-- 定制 log / 代码 debug -->
         <script>
             var log = function() {
-                console.log.apply(console, arguments)
+                    console.log.apply(console, arguments)
                 }
                 //定义自己的log很重要 enSure增强进化版 穿衣服
-            var ensure = function( def, result, message ) {
-                if( JSON.stringify( def ) !== JSON.stringify( result ) ) {
+            var ensure = function(def, result, message) {
+                if (JSON.stringify(def) !== JSON.stringify(result)) {
                     log('异常————————————>', message)
-                    log('def    = "'+def+'"\nresult = "'+result+'"')
-                    }
+                    log('def    = "' + def + '"\nresult = "' + result + '"')
                 }
+            }
+            var ckXian = function() {
+                    var body = document.querySelector('body')
+                    var style =
+                        `<style id="xm" media="screen">
+                        div{outline: 1px red dashed} </style>`
+                    var i = false
+                    body.addEventListener('keydown', function(event) {
+                        if (event.keyCode === 77 && event.ctrlKey) {
+                            if (i) {
+                                var styletog = document.querySelector('#xm')
+                                styletog.remove();
+                                i = false
+                            } else {
+                                body.insertAdjacentHTML('afterbegin', style);
+                                i = true
+                            }
+                        }
+                    })
+                }
+            ckXian()
         </script>
-		<script src="ku/jquery-3.1.1.js" charset="utf-8"></script>
-        <script src="debug.js" charset="utf-8"></script>
     </body>
 </html>
