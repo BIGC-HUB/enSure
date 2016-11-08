@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>认知手册 - 大海</title>
+        <title>海纳百川 - 大海</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="ku/Font-Awesome/css/font-awesome.min.css">
-        <style name='主要样式'>
+        <style name='Main'>
             /* 字体栈 */
             html,button,input,select,textarea,.pure-g [class *="pure-u"] {
                 font-family:
@@ -17,17 +17,27 @@
             body {
                 margin: 0;
                 text-align: center;
+            }
+            </style>
+        <style name='Search'>
+            .top {
                 position: fixed;
+                width: 100%;
+                top: 0;
+                text-align: center;
+            }
+            .search {
+                text-align: center;
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
             }
-            </style>
-        <style name='搜索框样式'>
-            .search {
+            .search-center {
                 position:relative;
                 top: 38.2%;
                 transform: translateY(50%);
-                z-index: 3;
             }
             .search-input {
                 margin-right: -0.26em;
@@ -63,15 +73,23 @@
                 cursor: pointer;
             }
             </style>
+
     </head>
     <body>
-        <div class="search">
-            <input class="search-input" type="text" maxlength="100">
-            <button class="search-button">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
+        <div class="top">
+            <i class="fa fa-sort-desc" aria-hidden="true"></i>
         </div>
-        <script>
+
+        <div class="search">
+            <div class="search-center">
+                <input class="search-input" type="text" maxlength="100">
+                <button class="search-button">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <script name='ensure'>
             var log = function() {
                     console.log.apply(console, arguments)
                 }
