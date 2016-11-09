@@ -8,11 +8,11 @@ var ensure = function(def, result, message) {
         log('def    = "' + def + '"\nresult = "' + result + '"')
     }
 }
-var ckXian = function() {
+var ckXian = function(mc) {
         var body = document.querySelector('body')
         var style =
             `<style id="xm" media="screen">
-            div{outline: 1px red dashed} </style>`
+            ${mc}{outline: 1px red dashed} </style>`
         var i = false
         body.addEventListener('keydown', function(event) {
             if (event.keyCode === 77 && event.ctrlKey) {
@@ -27,10 +27,14 @@ var ckXian = function() {
             }
         })
     }
-ckXian()
+ckXian('*')
 // 定义 log enSure
 
-// $('.top').on('mouseover', function() {
-//     $(event.target).addClass('top-hover')
-//     $('.top').off('mouseover')
-// })
+$('#id-top').on('mouseover', function() {
+    $('.top').show()
+    setTimeout("$('.top').hide()", 5000)
+})
+$('.top').on('click', function() {
+    $('.search').hide()
+    $('.engine').show()
+})
