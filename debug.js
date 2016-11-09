@@ -104,3 +104,6 @@ $('.engine-init').on('click', 'engine', function(event) {
     $('#id-top-button').click()
 })
 // 引擎 按钮
+
+// 1. 搜索引擎预加载
+// 2. engine自动排序 和 添加/删除 功能engine
