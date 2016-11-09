@@ -31,10 +31,11 @@ ckXian('*')
 // 定义 log enSure
 
 $('#id-top').on('mouseover', function() {
-    $('.top').show()
-    setTimeout("$('.top').hide()", 5000)
-})
-$('.top').on('click', function() {
-    $('.search').hide()
-    $('.engine').show()
+    $('.top').fadeIn()
+    var t = setTimeout("$('.top').fadeOut()", 5000)
+    $('.top').on('click', function() {
+        $('.search').slideToggle(1000)
+        setTimeout("$('.engine').slideToggle(2000)", 1000)
+        clearTimeout(t)
+    })
 })
