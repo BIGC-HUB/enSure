@@ -98,6 +98,7 @@
                 outline: 0;
                 border: 0.034em solid #037dd8;
                 border-top: 0;
+                margin-right: -0.26em;
             }
             .search-li {
                 padding: 0.2em;
@@ -107,10 +108,10 @@
             }
             .search-list-button {
                 width: 3.88em;
-                border: 0;
                 outline: 0;
                 background: transparent; /* 透明 */
                 color: transparent;
+                border: 2px solid transparent;
             }
             </style>
         <!-- 引擎 -->
@@ -151,7 +152,7 @@
             </style>
     </head>
     <body>
-        <span id="id-Sug"></span>
+        <div id="id-Sug"></div>
         <!-- 导航 -->
         <div class="top">
             <div class="top-center">
@@ -169,7 +170,7 @@
                 <button class="search-button">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
-                <br>
+                <div></div>
                 <div class="search-list">
                     <div class="search-li">大海</div>
                     <div class="search-li">大海图片</div>
