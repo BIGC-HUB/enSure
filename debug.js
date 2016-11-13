@@ -106,28 +106,43 @@ var so = {
         var data = encodeURI(content)
         var sugurl = `https://www.sogou.com/suggnew/ajajjson?type=web&key=${data}`
         //回调函数
-        window.sogou = { sug: function(json){so.sug = json[1]} }
+        window.sogou = { sug: function(json) {
+            so.sug = json[1]
+            $('.search-li').remove()
+            if(so.sug.length === 0) {
+                so.hide()
+            } else {
+                so.show()
+            }
+        }}
         //动态 JS脚本
         var temp =  `<script src=${sugurl}></script>`
         $("#id-Sug").html(temp)
         //http://www.cnblogs.com/woider/p/5805248.html
     },
     sug:[],
+    hide: function() {
+        $('.search-list').css('border-color','transparent')
+    },
+    show: function() {
+        $('.search-list').css('border-color','#037dd8')
+        for (i of so.sug) {
+            $('.search-list').append(`<div class="search-li">${i}</div>`)
+        }
+        $('.search-list').append(`<div class="search-space"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>`)
+        $('.search-space')[0].remove()
+    },
 }
 $('.search-input').on('keyup', function() {
+    log(event.keyCode)
     if (event.keyCode === 13) {
         $('.search-button').click()
+    } else if (event.keyCode === 38) {
+        log('上')
+    } else if (event.keyCode === 40) {
+        log('下')
     } else {
-        $('.search-li').remove()
         so.gou(event.target.value)
-        if(so.sug.length === 0) {
-            $('.search-list').css('border-color','transparent')
-        } else {
-            $('.search-list').css('border-color','#037dd8')
-            for (i of so.sug) {
-                $('.search-list').prepend(`<div class="search-li">${i}</div>`)
-            }
-        }
     }
 })
 $('.search-input').on('blur', function() {
@@ -136,12 +151,9 @@ $('.search-input').on('blur', function() {
 })
 $('.search-input').on('focus', function() {
     if(so.sug.length === 0) {
-        $('.search-list').css('border-color','transparent')
+        so.hide()
     } else {
-        $('.search-list').css('border-color','#037dd8')
-        for (i of so.sug) {
-            $('.search-list').prepend(`<div class="search-li">${i}</div>`)
-        }
+        so.show()
     }
 })
 // 2. engine自动排序 和 添加/删除 功能engine
