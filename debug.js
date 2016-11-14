@@ -43,56 +43,52 @@ $('.top').on('click', function() {
     }
 })
 // 初始化 引擎
-var engine = [
-    {id:0,
-        name:'搜狗',
-        url:`http://www.sogou.com/web?ie={inputEncoding}&query=`,
-    },{
-        id:1,
-        name:'搜狗',
-        url:`http://www.sogou.com/web?ie={inputEncoding}&query=`,
-    },{
-        id:2,
-        name:'必应',
-        url:`http://cn.bing.com/search?q=`,
-    },{
-        id:3,
-        name:'知乎',
-        url:`http://www.zhihu.com/search?q=`,
-    },{
-        id:4,
-        name:'微信',
-        url:`http://weixin.sogou.com/weixin?type=2&query=`,
-    },{
-        id:5,
-        name:'百度百科',
-        url:`http://baike.baidu.com/item/`,
-    },
-]
-for (i of engine) {
+var engine = {
+    all : [
+        {id:0,
+            name:'',
+            url:`http://www.sogou.com/web?ie={inputEncoding}&query=`,
+        },{
+            id:1,
+            name:'搜狗',
+            url:`http://www.sogou.com/web?ie={inputEncoding}&query=`,
+        },{
+            id:2,
+            name:'必应',
+            url:`http://cn.bing.com/search?q=`,
+        },{
+            id:3,
+            name:'知乎',
+            url:`http://www.zhihu.com/search?q=`,
+        },{
+            id:4,
+            name:'微信',
+            url:`http://weixin.sogou.com/weixin?type=2&query=`,
+        },{
+            id:5,
+            name:'百度百科',
+            url:`http://baike.baidu.com/item/`,
+        },
+    ],
+    id  : 0,
+}
+for (i of engine.all) {
     if (i.id > 0) {
         var temp = `<engine data-id=${i.id}>${i.name}</engine>`
-        $('.engine-init').append(temp)
+        $('.engine-often').append(temp)
+    }
+    if (i.id === engine.id) {
+        var input = $('.search-input')[0]
+        input.dataset.id  = i.id
+        input.placeholder = i.name
     }
 }
 // 搜索 按钮
 $('.search-button').on('click',   function() {
-    var input = $('.search-input')[0]
-    var value = input.value
-    var id    = Number(input.dataset.id)
-    for (i of engine) {
-        if (i.id === id) {
-            var url = i.url + value
-        }
-    }
-    if (value !== '') {
-        window.open( url )
-    } else {
-        $('.search-input').focus()
-    }
+    so.search()
 })
 // 引擎 按钮
-$('.engine-init').on('click', 'engine', function(event) {
+$('.engine-often').on('click', 'engine', function(event) {
     var id = event.target.dataset.id
     var input = $('.search-input')[0]
     input.dataset.id = id
@@ -101,6 +97,23 @@ $('.engine-init').on('click', 'engine', function(event) {
 })
 // 智能提示
 var so = {
+    search: function(value){
+        var input = $('.search-input')[0]
+        var id    = Number(input.dataset.id)
+        if (value === undefined) {
+            var value = input.value
+        }
+        for (i of engine.all) {
+            if (i.id === id) {
+                var url = i.url + value
+            }
+        }
+        if (value !== '') {
+            window.open( url )
+        } else {
+            $('.search-input').focus()
+        }
+    },
     gou: function(content) {
         //组装 URL
         var data = encodeURI(content)
@@ -147,6 +160,7 @@ var so = {
     },
     hide: function() {
         $('.search-list').css('border-color','transparent')
+        setTimeout("$('.search-li').hide()", 100)
     },
     show: function() {
         $('.search-list').css('border-color','#037dd8')
@@ -162,6 +176,10 @@ $('.search-list' ).on('mouseover', '.search-li', function(event) {
     var hover = true
     so.addClass(hover)
 })
+$('.search-list' ).on('click',     '.search-li', function(event) {
+    var value = $(event.target).text()
+    so.search(value)
+})
 $('.search-input').on('keyup', function() {
     if (event.keyCode === 13) {
         $('.search-button').click()
@@ -174,15 +192,15 @@ $('.search-input').on('keyup', function() {
         so.now = -1
     }
 })
-$('.search-input').on('blur', function() {
-    $('.search-li').remove()
-    $('.search-list').css('border-color','transparent')
+$('.search-input').on('blur',  function() {
+    so.hide()
 })
 $('.search-input').on('focus', function() {
     if(so.sug.length === 0) {
         so.hide()
     } else {
-        so.show()
+        $('.search-list').css('border-color','#037dd8')
+        $('.search-li').show()
     }
 })
 // 2. engine自动排序 和 添加/删除 功能engine
