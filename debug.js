@@ -29,12 +29,13 @@ var ckXian = function(mc) {
     })
 }
 ckXian('*')
-    // 绑定 导航
+// 绑定 导航
 $('#id-top').on('mouseover', function() {
     $('.top').fadeIn(618)
 })
 $('.top').on('click', function() {
         if ($('.search').css("display") !== 'none') {
+
             $('.search').slideUp(618)
             setTimeout("$('.engine').slideDown(618)", 618)
         } else {
@@ -84,7 +85,32 @@ var engine = {
         id: 9,
         name: '有道翻译',
         url: `http://dict.youdao.com/w/`,
+    }, {
+        id: 10,
+        name: '淘宝',
+        url: `https://s.taobao.com/search?q=`,
+    }, {
+        id: 11,
+        name: '马蜂窝',
+        url: `http://www.mafengwo.cn/group/s.php?q=`,
+    }, {
+        id: 12,
+        name: '优酷',
+        url: `http://www.soku.com/search_video/q_`,
+    }, {
+        id: 13,
+        name: '豆瓣电影',
+        url: `https://movie.douban.com/subject_search?search_text=`,
+    }, {
+        id: 14,
+        name: '澎湃新闻',
+        url: `http://www.thepaper.cn/searchResult.jsp?inpsearch=`,
+    }, {
+        id: 15,
+        name: '高德地图',
+        url: `http://ditu.amap.com/search?query=`,
     },
+    //搜索引擎
     ],
     id: 0,
 }
@@ -103,7 +129,7 @@ for (i of engine.all) {
 $('.search-button').on('click', function() {
         so.search()
     })
-    // 引擎 按钮
+// 引擎 按钮
 $('.engine-often').on('click', 'engine', function(event) {
         var id = event.target.dataset.id
         var input = $('.search-input')[0]
@@ -111,7 +137,7 @@ $('.engine-often').on('click', 'engine', function(event) {
         input.placeholder = $(event.target).text()
         $('#id-top-button').click()
     })
-    // 智能提示
+// 智能提示
 var so = {
     search: function(value) {
         var input = $('.search-input')[0]

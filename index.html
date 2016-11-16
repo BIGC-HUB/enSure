@@ -8,7 +8,6 @@
     <!-- 全局 -->
     <style>
         /* 字体栈 */
-
         html,
         button,
         input,
@@ -16,7 +15,6 @@
         textarea,
         .pure-g [class *="pure-u"] {
             font-size: 1.17em;
-            color: #333;
             font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
         }
         /* 固定式 */
@@ -58,7 +56,22 @@
         .search-center {
             position: relative;
             top: 61.8%;
-            transform: translateY(-50%);
+            transform: translateY(-61.8%);
+        }
+
+        logo {
+            display: block;
+            margin: 0 auto 2em;
+            width:  150px;
+            height: 150px;
+            line-height: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            cursor: pointer;
+            border: 1px solid #E6E7EC;
+            border-radius: 50%;
         }
 
         .search-input {
@@ -156,8 +169,9 @@
             border-bottom: 1px solid #D5D7DF;
         }
 
-        .engine-design {
+        .engine-composite {
             height: 4em;
+            line-height: 4em;
         }
 
         .engine-coding {
@@ -165,33 +179,34 @@
         }
 
         engine {
-            width: 8em;
-            height: 2.5em;
+            width:  150px;
+            height: 150px;
+            line-height: 150px;
             display: inline-block;
-            margin: 1em;
-            padding: 0.5em;
+            margin:  0.5em;
             /* 禁止 换行 */
             white-space: nowrap;
             /* 隐藏 超出部分 */
             overflow: hidden;
             /* 省略号 替代 */
             text-overflow: ellipsis;
-            box-sizing: border-box;
-            box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);
+            /*box-sizing: border-box;*/
+            /*box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);*/
             cursor: pointer;
             border: 2px solid transparent;
-            border-radius: 2px;
+            border-radius: 50%;
         }
 
         engine:hover {
             border: 2px solid #389CFF;
-            border-radius: 2px;
+            border-radius: 50%;
             background: #F5F6F9;
         }
 
         engine:active {
             border-color: #F5F6F9;
         }
+
         </style>
 </head>
 <body>
@@ -208,6 +223,7 @@
     <!-- 搜索 -->
     <div class="search">
         <div class="search-center">
+            <logo>网易云音乐</logo>
             <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
             <button class="search-button">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -226,11 +242,8 @@
         <div class="engine-often">
 
         </div>
-        <div class="engine-design">
-
-        </div>
-        <div class="engine-coding">
-            正在施工
+        <div class="engine-composite">
+            综合　／　编程　／　认知　／　音乐　／　电影　／　新闻　／　购物　／　地图　／　旅行
         </div>
     </div>
     <!-- 代码 -->
