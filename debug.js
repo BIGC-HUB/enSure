@@ -161,8 +161,8 @@ $('.engine-often').on('click', 'engine', function(event) {
     for (i of engine.All) {
         if (i.id === id) {
             input.dataset.id = i.id
+            input.placeholder = i.name
             if (i.icon !== undefined) {
-                input.placeholder = i.name
                 $('logo').html(`<i class="iconfont icon-${i.icon}"></i>`)
             } else {
                 $('logo').html(i.name)
@@ -248,7 +248,7 @@ var so = {
         for (var i = 0; i < so.sug.length; i++) {
             $('.search-list').append(`<div data-id=${i} class="search-li">${so.sug[i]}</div>`)
         }
-        $('.search-list').append(`<div class="search-space"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>`)
+        $('.search-list').append(`<div class="search-space"><i class="iconfont icon-down fa-lg" aria-hidden="true"></i></div>`)
         $('.search-space')[0].remove()
     },
 }
@@ -285,3 +285,4 @@ $('.search-input').on('focus', function() {
         }
     })
 // 2. engine自动排序 和 添加/删除 功能engine
+// 抛弃 Font-Awesome 库， 转存图标

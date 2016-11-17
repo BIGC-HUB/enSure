@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>海纳百川 - 大海</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet"> -->
     <link href="ku/iconFont/iconfont.css" rel="stylesheet">
     <!-- 全局 -->
     <style>
@@ -18,13 +18,26 @@
         /* 字体库 */
         .iconfont {
             font-size: 5.5em;
-            color: #E6E7EC;
         }
+        .fa-lg {
+          font-size: 1.33333333em;
+          line-height: 0.75em;
+          vertical-align: -15%;
+        }
+        .icon-dahai  { color: #E6E7EC; }
         .icon-baidu  { color: rgb(35,25,220); }
         .icon-weixin { color: rgb(0,188,12); }
         .icon-zhihu  { color: rgb(15,136,235); }
         .icon-bing   { color: rgb(255,185,0); }
-        .icon-sogou  { color: #fd6853;}
+        .icon-sogou  { color: #fd6853; }
+        /*
+        .icon-cloud-music { color: rgb(244,10,1); }
+        .icon-youku  { color: rgb(141,216,248); }
+        .icon-taobao { color: rgb(255,84,0); }
+        .icon-youdao { color: rgb(222,12,37); }
+        .icon-douban { color: rgb(26,150,61); }
+        .icon-amap { color: #333; }
+        */
         body {
             margin: 0 auto;
             text-align: center;
@@ -64,6 +77,10 @@
 
             border: 1px solid #E6E7EC;
             border-radius: 50%;
+        }
+        logo:hover {
+            border-radius: 50%;
+            background: #F5F6F9;
         }
         .search {
             z-index: -1;
@@ -171,7 +188,7 @@
         .engine-coding {
             height: 4em;
         }
-        /* button */
+
         engine {
             width:  150px;
             height: 150px;
@@ -184,8 +201,6 @@
             overflow: hidden;
             /* 省略号 替代 */
             text-overflow: ellipsis;
-            /*box-sizing: border-box;*/
-            /*box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);*/
             cursor: pointer;
             border: 2px solid transparent;
             border-radius: 50%;
@@ -206,7 +221,7 @@
     <div class="top">
         <div class="top-center">
             <div class="top-girds">
-                <i id="id-top-button" class="fa fa-angle-double-down fa-lg"></i>
+                <i id="id-top-button" class="iconfont icon-down fa-lg"></i>
             </div>
         </div>
     </div>
@@ -216,14 +231,14 @@
             <logo></logo>
             <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
             <button class="search-button">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i class="iconfont icon-search fa-lg" aria-hidden="true"></i>
                 </button>
             <div></div>
             <div class="search-list">
-                <div class="search-space"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>
+                <div class="search-space"><i class="iconfont icon-down fa-lg" aria-hidden="true"></i></div>
             </div>
             <button class="search-list-button">
-                    <i class="fa fa-angle-double-down fa-lg" aria-hidden="true"></i>
+                    <i class="iconfont icon-down fa-lg" aria-hidden="true"></i>
                 </button>
         </div>
     </div>
@@ -235,6 +250,9 @@
         <div class="engine-composite">
             综合　／　编程　／　认知　／　音乐　／　电影　／　新闻　／　购物　／　地图　／　旅行
         </div>
+    </div>
+    <div style="color: transparent; font-size: 0.5em;">
+        VERSION 16.11.17
     </div>
     <!-- 代码 -->
     <script src="ku/jQuery.js" charset="utf-8"></script>
