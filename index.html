@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>海纳百川 - 大海</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet"> -->
     <link href="ku/iconFont/iconfont.css" rel="stylesheet">
     <!-- 全局 -->
     <style>
@@ -48,6 +47,8 @@
         .top {
             display: none;
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 3em;
             z-index: 1;
@@ -65,7 +66,7 @@
     <style>
         logo {
             display: block;
-            margin: 0 auto 2em;
+            margin: 6.18% auto 2em;
             width:  8em;
             height: 8em;
             line-height: 8em;
@@ -176,7 +177,7 @@
         .engine {
             display: none;
             width: 85%;
-            margin: 0 auto;
+            margin: 4em auto 0;
         }
         .engine-often {
             border-bottom: 1px solid #D5D7DF;
@@ -227,24 +228,21 @@
     </div>
     <!-- 搜索 -->
     <div class="search">
-        <div class="search-center">
-            <logo></logo>
-            <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
-            <button class="search-button">
-                    <i class="iconfont icon-search fa-lg" aria-hidden="true"></i>
-                </button>
-            <div></div>
-            <div class="search-list">
-                <div class="search-space"><i class="iconfont icon-down fa-lg" aria-hidden="true"></i></div>
-            </div>
-            <button class="search-list-button">
-                    <i class="iconfont icon-down fa-lg" aria-hidden="true"></i>
-                </button>
+        <logo></logo>
+        <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
+        <button class="search-button">
+                <i class="iconfont icon-search fa-lg" aria-hidden="true"></i>
+            </button>
+        <div></div>
+        <div class="search-list">
+            <div class="search-space"><i class="iconfont icon-down fa-lg" aria-hidden="true"></i></div>
         </div>
+        <button class="search-list-button">
+                <i class="iconfont icon-down fa-lg" aria-hidden="true"></i>
+            </button>
     </div>
     <!-- 引擎 -->
     <div class="engine">
-        <span style='display:block; height:4em'></span>
         <div class="engine-often">
         </div>
         <div class="engine-composite">
