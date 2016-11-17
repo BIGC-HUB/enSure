@@ -248,7 +248,7 @@ var so = {
         for (var i = 0; i < so.sug.length; i++) {
             $('.search-list').append(`<div data-id=${i} class="search-li">${so.sug[i]}</div>`)
         }
-        $('.search-list').append(`<div class="search-space"><i class="iconfont icon-down fa-lg" aria-hidden="true"></i></div>`)
+        $('.search-list').append(`<div class="search-space">海納百川</div>`)
         $('.search-space')[0].remove()
     },
 }
