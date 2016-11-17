@@ -130,7 +130,7 @@ var engine = {
 for (i of engine.All) {
     if (i.id > 0 && i.id < 6) {
         if (i.icon !== undefined) {
-            var temp = `<engine data-id=${i.id}> <i class="iconfont icon-${i.icon}"></i> </engine>`
+            var temp = `<engine data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
             var temp = `<engine data-id=${i.id}>${i.name}</engine>`
         }
@@ -141,7 +141,7 @@ for (i of engine.All) {
         input.dataset.id = i.id
         if (i.icon !== undefined) {
             input.placeholder = i.name
-            $('logo').html(`<i class="iconfont icon-${i.icon}"></i>`)
+            $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
         } else {
             $('logo').html(i.name)
         }
@@ -163,7 +163,7 @@ $('.engine-often').on('click', 'engine', function(event) {
             input.dataset.id = i.id
             input.placeholder = i.name
             if (i.icon !== undefined) {
-                $('logo').html(`<i class="iconfont icon-${i.icon}"></i>`)
+                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
             } else {
                 $('logo').html(i.name)
             }

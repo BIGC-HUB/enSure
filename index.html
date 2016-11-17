@@ -15,15 +15,16 @@
             font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
         }
         /* 字体库 */
-        .iconfont {
-            font-size: 5.5em;
-        }
         .fa-lg {
-          font-size: 1.33333333em;
-          line-height: 0.75em;
-          vertical-align: -15%;
+            font-size: 1.33333333em;
+            line-height: 0.75em;
+            vertical-align: -15%;
         }
-        .icon-dahai  { color: #E6E7EC; }
+        .fa-logo {
+            font-size: 5.5em;
+            color: #E6E7EC;
+        }
+        /* 临时颜色 */
         .icon-baidu  { color: rgb(35,25,220); }
         .icon-weixin { color: rgb(0,188,12); }
         .icon-zhihu  { color: rgb(15,136,235); }
@@ -37,6 +38,12 @@
         .icon-douban { color: rgb(26,150,61); }
         .icon-amap { color: #333; }
         */
+        /* 再次设置 */
+        .fa-mini-logo {
+            margin: 0 auto 0.3em;
+            display: block;
+            color: #E6E7EC;
+        }
         body {
             margin: 0 auto;
             text-align: center;
@@ -125,9 +132,9 @@
             text-align: start;
             padding: 0.44em;
             width: 38.2%; /*width: 61.8%;*/
+            margin-right: -0.26em;
             border: 1px solid transparent;
             border-top: 0;
-            margin-right: -0.26em;
         }
         .search-li {
             padding: 0.1em;
@@ -151,11 +158,10 @@
         }
         .search-list-button {
             display: inline-block;
-            padding: 0.4em;
-            width: 3.8em;
+            padding:  0.2545em;
+            font-size: 2.3em;
             outline: 0;
             background: transparent;
-            color: transparent;
             border: 2px solid transparent;
         }
         </style>
@@ -212,22 +218,23 @@
     <!-- 搜索 -->
     <div class="search">
         <logo></logo>
-        <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
+        <input class="search-input" data-id="0" type="text" placeholder="" maxlength="100">
         <button class="search-button">
                 <i class="iconfont icon-search fa-lg" aria-hidden="true"></i>
             </button>
-        <div>
-            <div class="search-list">
+        <div></div>
+
+        <div class="search-list">
                 <div class="search-space">海納百川</div>
             </div>
-            <button class="search-list-button">
-                    <i class="iconfont icon-down fa-lg" aria-hidden="true"></i>
-            </button>
+        <div class="search-list-button">
+            <i class="fa-lg fa-mini-logo iconfont icon-cloud-music" aria-hidden="true"></i>
+            <i class="fa-lg fa-mini-logo iconfont icon-baidu" aria-hidden="true"></i>
+            <i class="fa-lg fa-mini-logo iconfont icon-sogou" aria-hidden="true"></i>
+            <i class="fa-lg fa-mini-logo iconfont icon-zhihu" aria-hidden="true"></i>
+            <i class="fa-lg fa-mini-logo iconfont icon-youku" aria-hidden="true"></i>
         </div>
-
     </div>
-
-
     <!-- 引擎 -->
     <div class="engine">
         <div class="engine-often">
