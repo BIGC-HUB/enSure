@@ -130,11 +130,15 @@ var engine = {
 for (i of engine.All) {
     if (i.id > 0 && i.id < 6) {
         if (i.icon !== undefined) {
+            var mini = `<i data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
             var temp = `<engine data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
+            var mini = ``
             var temp = `<engine data-id=${i.id}>${i.name}</engine>`
         }
         $('.engine-often').append(temp)
+        $('.search-list-logo').append(mini)
+        $('.fa-mini').css('display', 'none')
     }
     if (i.id === engine.Default) {
         var input = $('.search-input')[0]
@@ -277,12 +281,42 @@ $('.search-input').on('blur', function() {
     so.hide()
 })
 $('.search-input').on('focus', function() {
-        if (so.sug.length === 0) {
-            so.hide()
-        } else {
-            $('.search-list').css('border-color', '#037dd8')
-            $('.search-li').show()
+    $('.fa-mini').hide()
+    $('.search-list-button').css('color', 'transparent')
+    if (so.sug.length === 0) {
+        so.hide()
+    } else {
+        $('.search-list').css('border-color', '#037dd8')
+        $('.search-li').show()
+    }
+})
+// 迷你图标
+$('.search-list-button').on('click', function() {
+    if ($('.fa-mini').css('display') === 'none') {
+        $('.fa-mini').fadeIn(618)
+    } else {
+        $('.fa-mini').fadeOut(618)
+    }
+})
+$('.search-list-logo').on('mouseover', function() {
+    $('.search-list-button').css('color', '#333')
+})
+
+$('.search-list-logo').on('click', '.fa-mini', function(event) {
+    var id = Number(event.target.dataset.id)
+    var input = $('.search-input')[0]
+    for (i of engine.All) {
+        if (i.id === id) {
+            input.dataset.id = i.id
+            input.placeholder = i.name
+            if (i.icon !== undefined) {
+                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
+            } else {
+                $('logo').html(i.name)
+            }
         }
-    })
+    }
+    $('.fa-mini').hide()
+    $('.search-list-button').css('color', 'transparent')
+})
 // 2. engine自动排序 和 添加/删除 功能engine
-// 抛弃 Font-Awesome 库， 转存图标
