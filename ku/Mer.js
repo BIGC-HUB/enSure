@@ -171,19 +171,23 @@ var engine = {
     }
 }
 for (i of engine.All) {
-    // && i.id < 6
     if (i.id > 0) {
         if (i.icon !== undefined) {
             // 初始化 颜色
             $('style').append(`.icon-${i.icon}{color:${i.color}}`)
             // 初始化 图标
-            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
             var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
-            var mini = ``
             var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
         }
         $('.engine-often').append(temp)
+    }
+    if (i.id > 0 && i.id < 6) {
+        if (i.icon !== undefined) {
+            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
+        } else {
+            var mini = ``
+        }
         $('.search-list-logo').append(mini)
         $('.fa-mini').css('display','none')
     }
@@ -226,13 +230,7 @@ $('.search-list-logo').on('click', '.fa-mini', function(event) {
     var input = $('.search-input')[0]
     for (i of engine.All) {
         if (i.id === id) {
-            input.dataset.id = i.id
-            input.placeholder = i.name
-            if (i.icon !== undefined) {
-                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
-            } else {
-                $('logo').html(i.name)
-            }
+            engine.Logo(input)
         }
     }
     $('.fa-mini').hide()

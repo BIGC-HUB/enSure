@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1479382003950'); /* IE9*/
-  src: url('iconfont.eot?t=1479382003950#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1479382003950') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1479382003950') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1479382003950#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1479832387791'); /* IE9*/
+  src: url('iconfont.eot?t=1479832387791#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1479832387791') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1479832387791') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1479832387791#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -15,10 +15,6 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.icon-douban:before { content: "\3440"; }
-
-.icon-youku:before { content: "\e64a"; }
 
 .icon-youdao:before { content: "\e65c"; }
 
