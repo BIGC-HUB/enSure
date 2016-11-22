@@ -171,7 +171,7 @@ for (i of engine.All) {
             var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
             var mini = ``
-            var temp = `<engine style="color:${i.color}" data-id=${i.id}>${i.name}</engine>`
+            var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
         }
         $('.engine-often').append(temp)
         $('.search-list-logo').append(mini)
@@ -207,7 +207,7 @@ $('.engine-often').on('click', 'engine', function(event) {
                 $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
             } else {
                 input.placeholder = ''
-                $('logo').html(`<span style="font-size:1.5em; color:${i.color}" >${i.name}</span>`)
+                $('logo').html(`<span style="color:${i.color}" class='engine-font'>${i.name}</span>`)
             }
         }
     }

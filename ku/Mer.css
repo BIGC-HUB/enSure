@@ -211,6 +211,9 @@
             height: 8em;
             line-height: 8em;
         }
+        .engine-font {
+            font-size: 1.5em;
+        }
         .fa-logo {
             font-size: 5.5em;
         }
