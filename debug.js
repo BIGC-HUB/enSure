@@ -28,7 +28,7 @@ var ckXian = function(mc) {
         }
     })
 }
-ckXian('*')
+ckXian('div')
 // 绑定 导航
 $('logo').on('click', function() {
     $('.top').fadeIn(618)
@@ -64,11 +64,13 @@ var engine = {
         id: 3,
         name: '知乎',
         icon: 'zhihu',
+        wap: `https://zhihu.sogou.com/zhihuwap?query=`,
         url: `http://zhihu.sogou.com/zhihu?query=`,
     }, {
         id: 4,
         name: '微信',
         icon: 'weixin',
+        wap: `https://weixin.sogou.com/weixinwap?type=2&query=`,
         url: `http://weixin.sogou.com/weixin?type=2&query=`,
     }, {
         id: 5,
@@ -125,19 +127,24 @@ var engine = {
         name: '高德地图',
         icon: 'amap',
         url: `http://ditu.amap.com/search?query=`,
+    }, {
+        id: 16,
+        name: '高德地图',
+        icon: 'amap',
+        url: `http://ditu.amap.com/search?query=`,
     },
     //搜索引擎
     ],
     Default: 0,
 }
 for (i of engine.All) {
-    //
-    if (i.id > 0 && i.id < 6) {
+    // && i.id < 6
+    if (i.id > 0) {
         if (i.icon !== undefined) {
-            var mini = `<i data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
-            var temp = `<engine data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
+            var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
-            var mini = `<i data-id=${i.id} class="fa-mini iconfont icon-dahai" aria-hidden="true"></i>`
+            var mini = ``
             var temp = `<engine data-id=${i.id}>${i.name}</engine>`
         }
         $('.engine-often').append(temp)
