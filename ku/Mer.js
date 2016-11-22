@@ -48,6 +48,7 @@ var engine = {
     All: [{
         id: 0,
         name: '',
+        color: '#E6E7EC',
         icon: 'dahai',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
     }, {
@@ -163,15 +164,18 @@ for (i of engine.All) {
     // && i.id < 6
     if (i.id > 0) {
         if (i.icon !== undefined) {
-            var mini = `<i style="color:${i.color}" title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
-            var temp = `<engine title="${i.name}" data-id=${i.id}> <i style="color:${i.color}" class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+            // 初始化 颜色
+            $('style').append(`.icon-${i.icon}{color:${i.color}}`)
+            // 初始化 图标
+            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
+            var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
             var mini = ``
             var temp = `<engine style="color:${i.color}" data-id=${i.id}>${i.name}</engine>`
         }
         $('.engine-often').append(temp)
         $('.search-list-logo').append(mini)
-        $('.fa-mini').css('display', 'none')
+        $('.fa-mini').css('display','none')
     }
     if (i.id === engine.Default) {
         var input = $('.search-input')[0]
@@ -200,10 +204,10 @@ $('.engine-often').on('click', 'engine', function(event) {
             input.dataset.id = i.id
             if (i.icon !== undefined) {
                 input.placeholder = i.name
-                $('logo').html(`<i style="color:${i.color}" class="fa-logo iconfont icon-${i.icon}"></i>`)
+                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
             } else {
                 input.placeholder = ''
-                $('logo').html(`<span style="color:${i.color}">${i.name}</span>`)
+                $('logo').html(`<span style="font-size:1.5em; color:${i.color}" >${i.name}</span>`)
             }
         }
     }
