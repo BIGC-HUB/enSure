@@ -53,85 +53,107 @@ var engine = {
     }, {
         id: 1,
         name: '搜狗',
+        color: '#fd6853',
         icon: 'sogou',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
     }, {
         id: 2,
         name: '必应',
+        color: '#ffb900',
         icon: 'bing',
         url: `http://cn.bing.com/search?q=`,
     }, {
         id: 3,
         name: '知乎',
+        color: '#0f88eb',
         icon: 'zhihu',
         wap: `https://zhihu.sogou.com/zhihuwap?query=`,
         url: `http://zhihu.sogou.com/zhihu?query=`,
     }, {
         id: 4,
         name: '微信',
+        color: '#00bc0c',
         icon: 'weixin',
         wap: `https://weixin.sogou.com/weixinwap?type=2&query=`,
         url: `http://weixin.sogou.com/weixin?type=2&query=`,
     }, {
         id: 5,
         name: '百度百科',
+        color: '#2319dc',
         icon: 'baidu',
         url: `http://baike.baidu.com/item/`,
     }, {
         id: 6,
         name: '网易云音乐',
+        color: '#f40a01',
         icon: 'cloud-music',
         url: `http://music.163.com/#/search/m/?s=`,
     }, {
         id: 7,
         name: 'w3school',
+        color: '#bd2d30',
         icon: undefined,
         url: `http://cn.bing.com/search?q=site:w3school.com.cn+`,
     }, {
         id: 8,
         name: '片源网',
+        color: '#3860BB',
         icon: undefined,
         url: `http://pianyuan.net/search?q=`,
     }, {
         id: 9,
         name: '有道词典',
+        color: '#e31333',
         icon: 'youdao',
         url: `http://dict.youdao.com/w/`,
     }, {
         id: 10,
         name: '淘宝',
+        color: '#ed4403',
         icon: 'taobao',
         url: `https://s.taobao.com/search?q=`,
     }, {
         id: 11,
         name: '马蜂窝',
+        color: '#FFCB10',
         icon: undefined,
         url: `http://www.mafengwo.cn/group/s.php?q=`,
     }, {
         id: 12,
         name: '优酷',
-        icon: 'youku',
+        color: '#2fb3ff',
+        icon: undefined,
         url: `http://www.soku.com/search_video/q_`,
     }, {
         id: 13,
         name: '豆瓣电影',
-        icon: 'douban',
+        color: '#2e963d',
+        icon: undefined,
         url: `https://movie.douban.com/subject_search?search_text=`,
     }, {
         id: 14,
         name: '澎湃新闻',
+        color: '#000000',
         icon: undefined,
         url: `http://www.thepaper.cn/searchResult.jsp?inpsearch=`,
     }, {
         id: 15,
-        name: '高德地图',
-        icon: 'amap',
-        url: `http://ditu.amap.com/search?query=`,
+        name: '新浪微博',
+        color: '#E73137',
+        icon: 'sina',
+        url: `http://s.weibo.com/weibo/`,
     }, {
         id: 16,
         name: '高德地图',
+        color: '#4C90F9',
         icon: 'amap',
         url: `http://ditu.amap.com/search?query=`,
+    }, {
+        id: 17,
+        name: '花瓣',
+        color: '#DF4751',
+        icon: 'huaban',
+        url: `http://huaban.com/search/?q=`,
     },
     //搜索引擎
     ],
@@ -141,11 +163,11 @@ for (i of engine.All) {
     // && i.id < 6
     if (i.id > 0) {
         if (i.icon !== undefined) {
-            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
-            var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+            var mini = `<i style="color:${i.color}" title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
+            var temp = `<engine title="${i.name}" data-id=${i.id}> <i style="color:${i.color}" class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
             var mini = ``
-            var temp = `<engine data-id=${i.id}>${i.name}</engine>`
+            var temp = `<engine style="color:${i.color}" data-id=${i.id}>${i.name}</engine>`
         }
         $('.engine-often').append(temp)
         $('.search-list-logo').append(mini)
@@ -176,11 +198,12 @@ $('.engine-often').on('click', 'engine', function(event) {
     for (i of engine.All) {
         if (i.id === id) {
             input.dataset.id = i.id
-            input.placeholder = i.name
             if (i.icon !== undefined) {
-                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
+                input.placeholder = i.name
+                $('logo').html(`<i style="color:${i.color}" class="fa-logo iconfont icon-${i.icon}"></i>`)
             } else {
-                $('logo').html(i.name)
+                input.placeholder = ''
+                $('logo').html(`<span style="color:${i.color}">${i.name}</span>`)
             }
         }
     }
