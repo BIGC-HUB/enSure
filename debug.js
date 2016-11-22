@@ -36,6 +36,9 @@ $('logo').on('click', function() {
     setTimeout("$('.engine').slideDown(618)", 618)
 })
 $('.top').on('click', function() {
+    $('.fa-mini').hide()
+    $('.search-list-button').css('color', 'transparent')
+
     $('.top').fadeOut(618)
     $('.engine').slideUp(618)
     setTimeout("$('.search').slideDown(618)", 618)
@@ -128,12 +131,13 @@ var engine = {
     Default: 0,
 }
 for (i of engine.All) {
+    //
     if (i.id > 0 && i.id < 6) {
         if (i.icon !== undefined) {
             var mini = `<i data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
             var temp = `<engine data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
-            var mini = ``
+            var mini = `<i data-id=${i.id} class="fa-mini iconfont icon-dahai" aria-hidden="true"></i>`
             var temp = `<engine data-id=${i.id}>${i.name}</engine>`
         }
         $('.engine-often').append(temp)
@@ -174,6 +178,34 @@ $('.engine-often').on('click', 'engine', function(event) {
         }
     }
     $('.top').click()
+})
+// 迷你图标
+$('.search-list-button').on('click', function() {
+    if ($('.fa-mini').css('display') === 'none') {
+        $('.fa-mini').fadeIn(618)
+    } else {
+        $('.fa-mini').fadeOut(618)
+    }
+})
+$('.search-list-logo').on('mouseover', function() {
+    $('.search-list-button').css('color', '#333')
+})
+$('.search-list-logo').on('click', '.fa-mini', function(event) {
+    var id = Number(event.target.dataset.id)
+    var input = $('.search-input')[0]
+    for (i of engine.All) {
+        if (i.id === id) {
+            input.dataset.id = i.id
+            input.placeholder = i.name
+            if (i.icon !== undefined) {
+                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
+            } else {
+                $('logo').html(i.name)
+            }
+        }
+    }
+    $('.fa-mini').hide()
+    $('.search-list-button').css('color', 'transparent')
 })
 // 智能提示
 var so = {
@@ -289,34 +321,5 @@ $('.search-input').on('focus', function() {
         $('.search-list').css('border-color', '#037dd8')
         $('.search-li').show()
     }
-})
-// 迷你图标
-$('.search-list-button').on('click', function() {
-    if ($('.fa-mini').css('display') === 'none') {
-        $('.fa-mini').fadeIn(618)
-    } else {
-        $('.fa-mini').fadeOut(618)
-    }
-})
-$('.search-list-logo').on('mouseover', function() {
-    $('.search-list-button').css('color', '#333')
-})
-
-$('.search-list-logo').on('click', '.fa-mini', function(event) {
-    var id = Number(event.target.dataset.id)
-    var input = $('.search-input')[0]
-    for (i of engine.All) {
-        if (i.id === id) {
-            input.dataset.id = i.id
-            input.placeholder = i.name
-            if (i.icon !== undefined) {
-                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
-            } else {
-                $('logo').html(i.name)
-            }
-        }
-    }
-    $('.fa-mini').hide()
-    $('.search-list-button').css('color', 'transparent')
 })
 // 2. engine自动排序 和 添加/删除 功能engine

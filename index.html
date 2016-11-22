@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>海纳百川 - 大海</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="ku/iconFont/iconfont.css" rel="stylesheet">
     <!-- 全局 -->
     <style>
@@ -21,8 +21,21 @@
             vertical-align: -15%;
         }
         .fa-logo {
-            font-size: 5.5em;
+            font-size: 3.5em;
             color: #E6E7EC;
+        }
+        .fa-mini {
+            display: block;
+            width: 1.78em;
+            font-size: 2.5em;
+            margin: 0.1em auto 0;
+            border: 1px solid transparent;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .fa-mini:hover {
+            border: 1px solid #E6E7EC;
+            background: #F5F6F9;
         }
         /* 临时颜色 */
         .icon-baidu  { color: rgb(35,25,220); }
@@ -30,16 +43,6 @@
         .icon-zhihu  { color: rgb(15,136,235); }
         .icon-bing   { color: rgb(255,185,0); }
         .icon-sogou  { color: #fd6853; }
-
-        .fa-mini {
-            display: block;
-            width: 1.78em;
-            font-size: 2.5em;
-            margin: 0.1em auto;
-        }
-        .fa-mini:hover {
-            cursor: pointer;
-        }
         body {
             margin: 0 auto;
             text-align: center;
@@ -90,7 +93,7 @@
         .search-input {
             margin-right: -0.26em;
             padding: 0.4em;
-            width: 38.2%;  /*width: 61.8%;*/
+            width: 61.8%;
             border: 1px solid rgba(0, 0, 0, 0.25);
             border-top-left-radius: 2px;
             border-top-right-radius: 0;
@@ -125,7 +128,7 @@
             display: inline-block;
             text-align: start;
             padding: 0.44em;
-            width: 38.2%; /*width: 61.8%;*/
+            width: 61.8%;
             margin-right: -0.26em;
             border: 1px solid transparent;
             border-top: 0;
@@ -156,15 +159,23 @@
         }
         .search-list-button {
             color: transparent;
+            background: transparent;
             outline: 0;
             border: 0;
+            padding: 0;
             font-size: 1em;
-            background: transparent;
             width: 4.45em;
             height: 2.5em;
+            border: 1px solid transparent;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 1em;
+            border-bottom-left-radius: 1em;
+            cursor: pointer;
         }
         .search-list-button:hover {
-            cursor: pointer;
+            border: 1px solid #E6E7EC;
+            background: #F5F6F9;
         }
         </style>
     <!-- 引擎 -->
@@ -187,9 +198,9 @@
 
         engine {
             display: inline-block;
-            width:  8em;
-            height: 8em;
-            line-height: 8em;
+            width:  4em;
+            height: 4em;
+            line-height: 4em;
             margin:  0.5em;
             /* 禁止 换行 */
             white-space: nowrap;
@@ -206,6 +217,29 @@
             background: #F5F6F9;
         }
         </style>
+    <!-- 媒体查询 -->
+    <style>
+        /* 小屏幕（平板，大于等于 768px） */
+        @media (min-width: 768px) {
+            engine {
+                width:  8em;
+                height: 8em;
+                line-height: 8em;
+            }
+            .fa-logo {
+                font-size: 5.5em;
+            }
+            .search-input, .search-list {
+                width: 38.2%;
+            }
+        }
+        /* 中等屏幕（桌面显示器，大于等于 992px） */
+        @media (min-width: 992px) {
+            }
+        /* 大屏幕（大桌面显示器，大于等于 1200px） */
+        @media (min-width: 1200px) {
+            }
+    </style>
 </head>
 <body>
     <div id="id-Sug"></div>
@@ -240,10 +274,10 @@
         <div class="engine-often">
         </div>
         <div class="engine-composite">
-            综合　／　编程　／　认知　／　音乐　／　电影　／　新闻　／　购物　／　地图　／　旅行
+            <!-- 综合　／　编程　／　认知　／　音乐　／　电影　／　新闻　／　购物　／　地图　／　旅行 -->
         </div>
         <div style="color: transparent; font-size: 0.5em;">
-            VERSION 16.11.17
+            VERSION 16.11.22
         </div>
     </div>
     <!-- 代码 -->
