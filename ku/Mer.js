@@ -159,6 +159,16 @@ var engine = {
     //搜索引擎
     ],
     Default: 0,
+    Logo: function(input) {
+        input.dataset.id = i.id
+        if (i.icon !== undefined) {
+            input.placeholder = i.name
+            $('logo').html(`<i class="fa-logo-da iconfont icon-${i.icon}"></i>`)
+        } else {
+            input.placeholder = ''
+            $('logo').html(`<span class="fa-logo-zi" style="color:${i.color}">${i.name}</span>`)
+        }
+    }
 }
 for (i of engine.All) {
     // && i.id < 6
@@ -179,13 +189,7 @@ for (i of engine.All) {
     }
     if (i.id === engine.Default) {
         var input = $('.search-input')[0]
-        input.dataset.id = i.id
-        if (i.icon !== undefined) {
-            input.placeholder = i.name
-            $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
-        } else {
-            $('logo').html(i.name)
-        }
+        engine.Logo(input)
     }
 }
 // 搜索 按钮
@@ -201,14 +205,7 @@ $('.engine-often').on('click', 'engine', function(event) {
     var input = $('.search-input')[0]
     for (i of engine.All) {
         if (i.id === id) {
-            input.dataset.id = i.id
-            if (i.icon !== undefined) {
-                input.placeholder = i.name
-                $('logo').html(`<i class="fa-logo iconfont icon-${i.icon}"></i>`)
-            } else {
-                input.placeholder = ''
-                $('logo').html(`<span style="color:${i.color}" class='engine-font'>${i.name}</span>`)
-            }
+            engine.Logo(input)
         }
     }
     $('.top').click()
