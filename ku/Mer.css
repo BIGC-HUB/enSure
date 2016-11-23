@@ -26,8 +26,8 @@
     }
     .fa-mini {
         display: block;
-        font-size: 2.5em;
-        margin: 0 auto 0.1em;
+        font-size: 52px;
+        margin: 0 auto 2px;
         border: 1px solid transparent;
         border-radius: 2px;
         cursor: pointer;
@@ -84,15 +84,14 @@
     }
     /* 输入框 */
     .search-main, .search-more {
-        display: table;
-        margin: 0 auto;
-        width: 100%;
+        font-size: 0;
     }
     .search-more {
         margin-bottom: 2px;
     }
     .search-input {
-        padding: 0.4em;
+        font-size: 21px;
+        padding: 8px;
         width: 61.8%;
         border: 1px solid rgba(0, 0, 0, 0.25);
         border-top-left-radius: 2px;
@@ -108,8 +107,9 @@
         border: 1px solid #037dd8;
     }
     .search-button {
-        padding: 0.4em;
-        width: 3.8em;
+        font-size: 21px;
+        padding: 8px;
+        width: 79px;
         border: 1px solid #037dd8;
         border-top-left-radius: 0;
         border-top-right-radius: 2px;
@@ -128,9 +128,10 @@
     }
     /* 智能提示 */
     .search-list {
+        font-size: 21px;
+        padding: 8px;
         display: inline-block;
         text-align: start;
-        padding: 0.46em;
         width: 61.8%;
         border: 1px solid transparent;
         border-top: 0;
@@ -158,16 +159,14 @@
         padding: 0.1em;
         text-align: right;
         color: transparent;
-        /* #037dd8 */
     }
     .search-list-button {
+        font-size: 18px;
+        width: 79px;
+        height: 50px;
         color: transparent;
         background: transparent;
         outline: 0;
-        border: 0;
-        font-size: 1em;
-        width: 4.45em;
-        height: 2.5em;
         border: 1px solid transparent;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
