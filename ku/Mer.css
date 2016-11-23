@@ -27,7 +27,7 @@
     .fa-mini {
         display: block;
         font-size: 2.5em;
-        margin: 0.1em auto 0;
+        margin: 0 auto 0.1em;
         border: 1px solid transparent;
         border-radius: 2px;
         cursor: pointer;
@@ -83,8 +83,12 @@
         background: #F5F6F9;
     }
     /* 输入框 */
+    .search-main, .search-more {
+        display: table;
+        margin: 0 auto;
+        width: 100%;
+    }
     .search-input {
-        margin-right: -0.26em;
         padding: 0.4em;
         width: 61.8%;
         border: 1px solid rgba(0, 0, 0, 0.25);
@@ -116,15 +120,18 @@
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
         cursor: pointer;
     }
+    .search-list-mini {
+        display: inline-block;
+    }
     /* 智能提示 */
     .search-list {
         display: inline-block;
         text-align: start;
-        padding: 0.44em;
+        padding: 0.46em;
         width: 61.8%;
-        margin-right: -0.26em;
         border: 1px solid transparent;
         border-top: 0;
+        outline: 0;
     }
     .search-li {
         padding: 0.1em;
@@ -145,10 +152,6 @@
         text-align: right;
         color: transparent;
         /* #037dd8 */
-    }
-    .search-list-logo {
-        display: inline-block;
-        background: transparent;
     }
     .search-list-button {
         color: transparent;

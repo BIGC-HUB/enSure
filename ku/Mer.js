@@ -68,14 +68,14 @@ var engine = {
         name: '知乎',
         color: '#0f88eb',
         icon: 'zhihu',
-        wap: `https://zhihu.sogou.com/zhihuwap?query=`,
+        wap: `http://zhihu.sogou.com/zhihuwap?query=`,
         url: `http://zhihu.sogou.com/zhihu?query=`,
     }, {
         id: 4,
         name: '微信',
         color: '#00bc0c',
         icon: 'weixin',
-        wap: `https://weixin.sogou.com/weixinwap?type=2&query=`,
+        wap: `http://weixin.sogou.com/weixinwap?type=2&query=`,
         url: `http://weixin.sogou.com/weixin?type=2&query=`,
     }, {
         id: 5,
@@ -188,7 +188,7 @@ for (i of engine.All) {
         } else {
             var mini = ``
         }
-        $('.search-list-logo').append(mini)
+        $('.search-list-mini').append(mini)
         $('.fa-mini').css('display','none')
     }
     if (i.id === engine.Default) {
@@ -222,10 +222,10 @@ $('.search-list-button').on('click', function() {
         $('.fa-mini').fadeOut(618)
     }
 })
-$('.search-list-logo').on('mouseover', function() {
+$('.search-list-mini').on('mouseover', function() {
     $('.search-list-button').css('color', '#333')
 })
-$('.search-list-logo').on('click', '.fa-mini', function(event) {
+$('.search-list-mini').on('click', '.fa-mini', function(event) {
     var id = Number(event.target.dataset.id)
     var input = $('.search-input')[0]
     for (i of engine.All) {
@@ -246,7 +246,15 @@ var so = {
         }
         for (i of engine.All) {
             if (i.id === id) {
-                var url = i.url + value
+                if (screen.width < 768) {
+                    if (i.wap === undefined) {
+                        var url = i.url + value
+                    } else {
+                        var url = i.wap + value
+                    }
+                } else {
+                    var url = i.url + value
+                }
             }
         }
         if (value !== '') {
