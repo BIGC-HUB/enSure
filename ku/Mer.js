@@ -160,39 +160,38 @@ var engine = {
     ],
     Default: 0,
     Logo: function(input) {
-        input.dataset.id = e.id
-        if (e.icon !== undefined) {
-            input.placeholder = e.name
-            $('logo').html(`<i class="fa-logo-da iconfont icon-${e.icon}"></i>`)
+        input.dataset.id = i.id
+        if (i.icon !== undefined) {
+            input.placeholder = i.name
+            $('logo').html(`<i class="fa-logo-da iconfont icon-${i.icon}"></i>`)
         } else {
             input.placeholder = ''
-            $('logo').html(`<span class="fa-logo-zi" style="color:${e.color}">${e.name}</span>`)
+            $('logo').html(`<span class="fa-logo-zi" style="color:${i.color}">${i.name}</span>`)
         }
     }
 }
-for (var i = 0; i < engine.All.length; i++) {
-    var e = engine.All[i]
-    if (i > 0) {
-        if (e.icon !== undefined) {
+for (i of engine.All) {
+    if (i.id > 0) {
+        if (i.icon !== undefined) {
             // 初始化 颜色
-            $('style').append(`.icon-${e.icon}{color:${e.color}}`)
+            $('style').append(`.icon-${i.icon}{color:${i.color}}`)
             // 初始化 图标
-            var temp = `<engine title="${e.name}" data-id=${e.id}> <i class="fa-logo iconfont icon-${e.icon}"></i> </engine>`
+            var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
-            var temp = `<engine data-id=${e.id}><span style="color:${e.color}" class='engine-font'>${e.name}</span></engine>`
+            var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
         }
         $('.engine-often').append(temp)
     }
-    if (i > 0 && i < 6) {
-        if (e.icon !== undefined) {
-            var mini = `<i title="${e.name}" data-id=${e.id} class="fa-mini iconfont icon-${e.icon}" aria-hidden="true"></i>`
+    if (i.id > 0 && i.id < 6) {
+        if (i.icon !== undefined) {
+            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
         } else {
             var mini = ``
         }
         $('.search-list-mini').append(mini)
         $('.fa-mini').css('display','none')
     }
-    if (i === engine.Default) {
+    if (i.id === engine.Default) {
         var input = $('.search-input')[0]
         engine.Logo(input)
     }
@@ -208,8 +207,8 @@ $('.engine-often').on('click', 'engine', function(event) {
         id = Number(event.target.dataset.id)
     }
     var input = $('.search-input')[0]
-    for (e of engine.All) {
-        if (e.id === id) {
+    for (i of engine.All) {
+        if (i.id === id) {
             engine.Logo(input)
         }
     }
@@ -229,8 +228,8 @@ $('.search-list-mini').on('mouseover', function() {
 $('.search-list-mini').on('click', '.fa-mini', function(event) {
     var id = Number(event.target.dataset.id)
     var input = $('.search-input')[0]
-    for (e of engine.All) {
-        if (e.id === id) {
+    for (i of engine.All) {
+        if (i.id === id) {
             engine.Logo(input)
         }
     }
@@ -245,16 +244,16 @@ var so = {
         if (value === undefined) {
             var value = input.value
         }
-        for (e of engine.All) {
-            if (e.id === id) {
+        for (i of engine.All) {
+            if (i.id === id) {
                 if (screen.width < 768) {
-                    if (e.wap === undefined) {
-                        var url = e.url + value
+                    if (i.wap === undefined) {
+                        var url = i.url + value
                     } else {
-                        var url = e.wap + value
+                        var url = i.wap + value
                     }
                 } else {
-                    var url = e.url + value
+                    var url = i.url + value
                 }
             }
         }
