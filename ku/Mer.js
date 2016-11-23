@@ -32,130 +32,130 @@ ckXian('*')
 // 天下之水 莫大于海 万川归之
 var engine = {
     All: [{
-        id: 0,
+        id: 0, // 综合
         name: '',
         color:'#E6E7EC',
         icon: 'dahai',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
-    }, {
+    },{
         id: 1,
         name: '搜狗',
         color:'#fd6853',
         icon: 'sogou',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
-    }, {
+    },{
         id: 2,
         name: '必应',
         color:'#ffb900',
         icon: 'bing',
         url: `http://cn.bing.com/search?q=`,
-    }, {
+    },{
         id: 3,
         name: '知乎',
         color:'#0f88eb',
         icon: 'zhihu',
         wap: `http://zhihu.sogou.com/zhihuwap?query=`,
         url: `http://zhihu.sogou.com/zhihu?query=`,
-    }, {
+    },{
         id: 4,
         name: '微信',
         color:'#00bc0c',
         icon: 'weixin',
         wap: `http://weixin.sogou.com/weixinwap?type=2&query=`,
         url: `http://weixin.sogou.com/weixin?type=2&query=`,
-    }, {
+    },{
         id: 5,
         name: '百度百科',
         color:'#2319dc',
         icon: 'baidu',
         url: `http://baike.baidu.com/item/`,
-    }, {
-        id: 6,
-        name: '酷狗音乐',
-        color:'#2CA2F9',
-        icon: undefined,
-        url: `http://m.kugou.com/search?keyword=`,
-    }, {
-        id: 7,
+    },{
+        id: 10, // 编程
         name: 'w3school',
         color:'#bd2d30',
         icon: undefined,
         url: `http://cn.bing.com/search?q=site:w3school.com.cn+`,
-    }, {
-        id: 8,
-        name: '片源网',
-        color:'#3860BB',
-        icon: undefined,
-        url: `http://pianyuan.net/search?q=`,
-    }, {
-        id: 9,
-        name: '有道词典',
-        color:'#e31333',
-        icon: 'youdao',
-        url: `http://m.youdao.com/dict?q=`,
-    }, {
-        id: 10,
-        name: '淘宝',
-        color:'#ed4403',
-        icon: 'taobao',
-        wap: `https://s.m.taobao.com/h5?q=`,
-        url: `https://s.taobao.com/search?q=`,
-    }, {
-        id: 11,
-        name: '马蜂窝',
-        color:'#FFCB10',
-        icon: undefined,
-        wap: `https://m.mafengwo.cn/mdd/query.php?q=`,
-        url: `http://www.mafengwo.cn/group/s.php?q=`,
-    }, {
-        id: 12,
-        name: '优酷视频',
-        color:'#2fb3ff',
-        icon: undefined,
-        url: `http://www.soku.com/search_video/q_`,
-    }, {
-        id: 13,
+    },{
+        id: 20, // 认知
         name: '豆瓣电影',
         color:'#2e963d',
         icon: undefined,
         url: `https://movie.douban.com/subject_search?search_text=`,
-    }, {
-        id: 14,
+    },{
+        id: 21,
+        name: '有道词典',
+        color:'#e31333',
+        icon: 'youdao',
+        url: `http://m.youdao.com/dict?q=`,
+    },{
+        id: 30, // 设计
+        name: '花瓣',
+        color:'#DF4751',
+        icon: 'huaban',
+        url: `http://huaban.com/search/?q=`,
+    },{
+        id: 40, // 新闻
         name: '澎湃新闻',
         color:'#000000',
         icon: undefined,
         wap: `http://m.thepaper.cn/search.jsp?k=`,
         url: `http://www.thepaper.cn/searchResult.jsp?inpsearch=`,
-    }, {
-        id: 15,
+    },{
+        id: 18,
         name: '新浪微博',
         color:'#E73137',
         icon: 'sina',
         url: `http://s.weibo.com/weibo/`,
-    }, {
-        id: 16,
+    },{
+        id: 50, // 购物
+        name: '淘宝',
+        color:'#ed4403',
+        icon: 'taobao',
+        wap: `https://s.m.taobao.com/h5?q=`,
+        url: `https://s.taobao.com/search?q=`,
+    },{
+        id: 60, // 旅行
+        name: '马蜂窝',
+        color:'#FFCB10',
+        icon: undefined,
+        wap: `https://m.mafengwo.cn/mdd/query.php?q=`,
+        url: `http://www.mafengwo.cn/group/s.php?q=`,
+    },{
+        id: 70, // 地图
         name: '高德地图',
         color:'#4C90F9',
         icon: 'amap',
         url: `http://ditu.amap.com/search?city=100000&query=`,
-    }, {
-        id: 17,
-        name: '花瓣',
-        color:'#DF4751',
-        icon: 'huaban',
-        url: `http://huaban.com/search/?q=`,
-    }, {
-        id: 18,
-        name: '网易云音乐',
-        color:'#f40a01',
-        icon: 'cloud-music',
-        url: `http://music.163.com/#/search/m/?s=`,
-    }, {
-        id: 19,
+    },{
+        id: 80, // 音乐
+        name: '酷狗音乐',
+        color:'#2CA2F9',
+        icon: undefined,
+        url: `http://m.kugou.com/search?keyword=`,
+    },{
+        id: 81,
         name: '酷我音乐',
         color:'#feca2e',
         icon: undefined,
         url: `http://m.kuwo.cn/?key=`,
+    },{
+        id: 82,
+        name: '网易云音乐',
+        color:'#f40a01',
+        icon: 'cloud-music',
+        url: `http://music.163.com/#/search/m/?s=`,
+    },{
+        id: 90, // 电影
+        name: '片源网',
+        color:'#3860BB',
+        icon: undefined,
+        url: `http://pianyuan.net/search?q=`,
+    },{
+        id: 91,
+        name: '优酷视频',
+        color:'#2fb3ff',
+        icon: undefined,
+        url: `http://www.soku.com/search_video/q_`,
     },],
     Default: 0,
     Logo: function(input) {
@@ -171,31 +171,31 @@ var engine = {
     Tag: [{
         id: 0,
         name: '综合',
-    }, {
+    },{
         id: 1,
         name: '编程',
-    }, {
+    },{
         id: 2,
         name: '认知'
-    }, {
+    },{
         id: 3,
         name: '设计'
-    }, {
+    },{
         id: 4,
         name: '新闻'
-    }, {
+    },{
         id: 5,
         name: '购物'
-    }, {
+    },{
         id: 6,
         name: '旅行'
-    }, {
+    },{
         id: 7,
         name: '地图'
-    }, {
+    },{
         id: 8,
         name: '音乐'
-    }, {
+    },{
         id: 9,
         name: '电影'
     }],

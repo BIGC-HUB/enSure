@@ -185,7 +185,7 @@
     }
 
 /* 引擎 */
-     engine {
+    engine {
         display: inline-block;
         width:  4.2em;
         height: 4.2em;
@@ -201,7 +201,7 @@
         border: 2px solid transparent;
         border-radius: 50%;
     }
-     engine:hover {
+    engine:hover {
         background: #F5F6F9;
     }
     .engine {
@@ -224,9 +224,8 @@
         line-height: 4em;
         cursor: pointer;
     }
-    tag:hover {
-        background: #F5F6F9;
-    }
+    tag:hover  {color: #037dd8;}
+    tag:active {background: #F5F6F9;}
 
 /* 栅格 */
     .pure-u-1-1, .pure-u-1-2, .pure-u-1-3, .pure-u-1-4, .pure-u-1-5,
