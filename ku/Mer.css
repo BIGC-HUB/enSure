@@ -91,8 +91,9 @@
     }
     .search-input {
         font-size: 25px;
-        padding: 8px;
         width: 61.8%;
+        height: 32px;
+        padding: 8px;
         border: 1px solid rgba(0, 0, 0, 0.25);
         border-top-left-radius: 2px;
         border-top-right-radius: 0;
@@ -107,9 +108,12 @@
         border: 1px solid #037dd8;
     }
     .search-button {
+        display: inline-block;
         font-size: 25px;
-        padding: 8px;
         width: 79px;
+        height: 32px;
+        line-height: 32px;
+        padding: 8px;
         border: 1px solid #037dd8;
         border-top-left-radius: 0;
         border-top-right-radius: 2px;
@@ -161,9 +165,12 @@
         color: transparent;
     }
     .search-list-button {
+        display: inline-block;
         font-size: 18px;
         width: 79px;
-        height: 50px;
+        padding: 8px;
+        height: 33px;
+        line-height: 33px;
         color: transparent;
         background: transparent;
         outline: 0;
