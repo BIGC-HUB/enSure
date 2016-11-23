@@ -48,113 +48,128 @@ var engine = {
     All: [{
         id: 0,
         name: '',
-        color: '#E6E7EC',
+        color:'#E6E7EC',
         icon: 'dahai',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
     }, {
         id: 1,
         name: '搜狗',
-        color: '#fd6853',
+        color:'#fd6853',
         icon: 'sogou',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
     }, {
         id: 2,
         name: '必应',
-        color: '#ffb900',
+        color:'#ffb900',
         icon: 'bing',
         url: `http://cn.bing.com/search?q=`,
     }, {
         id: 3,
         name: '知乎',
-        color: '#0f88eb',
+        color:'#0f88eb',
         icon: 'zhihu',
         wap: `http://zhihu.sogou.com/zhihuwap?query=`,
         url: `http://zhihu.sogou.com/zhihu?query=`,
     }, {
         id: 4,
         name: '微信',
-        color: '#00bc0c',
+        color:'#00bc0c',
         icon: 'weixin',
         wap: `http://weixin.sogou.com/weixinwap?type=2&query=`,
         url: `http://weixin.sogou.com/weixin?type=2&query=`,
     }, {
         id: 5,
         name: '百度百科',
-        color: '#2319dc',
+        color:'#2319dc',
         icon: 'baidu',
         url: `http://baike.baidu.com/item/`,
     }, {
         id: 6,
-        name: '网易云音乐',
-        color: '#f40a01',
-        icon: 'cloud-music',
-        url: `http://music.163.com/#/search/m/?s=`,
+        name: '酷狗音乐',
+        color:'#2CA2F9',
+        icon: undefined,
+        url: `http://m.kugou.com/search?keyword=`,
     }, {
         id: 7,
         name: 'w3school',
-        color: '#bd2d30',
+        color:'#bd2d30',
         icon: undefined,
         url: `http://cn.bing.com/search?q=site:w3school.com.cn+`,
     }, {
         id: 8,
         name: '片源网',
-        color: '#3860BB',
+        color:'#3860BB',
         icon: undefined,
         url: `http://pianyuan.net/search?q=`,
     }, {
         id: 9,
         name: '有道词典',
-        color: '#e31333',
+        color:'#e31333',
         icon: 'youdao',
-        url: `http://dict.youdao.com/w/`,
+        url: `http://m.youdao.com/dict?q=`,
     }, {
         id: 10,
         name: '淘宝',
-        color: '#ed4403',
+        color:'#ed4403',
         icon: 'taobao',
+        wap: `https://s.m.taobao.com/h5?q=`,
         url: `https://s.taobao.com/search?q=`,
     }, {
         id: 11,
         name: '马蜂窝',
-        color: '#FFCB10',
+        color:'#FFCB10',
         icon: undefined,
+        wap: `https://m.mafengwo.cn/mdd/query.php?q=`,
         url: `http://www.mafengwo.cn/group/s.php?q=`,
     }, {
         id: 12,
         name: '优酷',
-        color: '#2fb3ff',
+        color:'#2fb3ff',
         icon: undefined,
         url: `http://www.soku.com/search_video/q_`,
     }, {
         id: 13,
         name: '豆瓣电影',
-        color: '#2e963d',
+        color:'#2e963d',
         icon: undefined,
         url: `https://movie.douban.com/subject_search?search_text=`,
     }, {
         id: 14,
         name: '澎湃新闻',
-        color: '#000000',
+        color:'#000000',
         icon: undefined,
+        wap: `http://m.thepaper.cn/search.jsp?k=`,
         url: `http://www.thepaper.cn/searchResult.jsp?inpsearch=`,
     }, {
         id: 15,
         name: '新浪微博',
-        color: '#E73137',
+        color:'#E73137',
         icon: 'sina',
         url: `http://s.weibo.com/weibo/`,
     }, {
         id: 16,
         name: '高德地图',
-        color: '#4C90F9',
+        color:'#4C90F9',
         icon: 'amap',
-        url: `http://ditu.amap.com/search?query=`,
+        url: `http://ditu.amap.com/search?city=100000&query=`,
     }, {
         id: 17,
         name: '花瓣',
-        color: '#DF4751',
+        color:'#DF4751',
         icon: 'huaban',
         url: `http://huaban.com/search/?q=`,
+    }, {
+        id: 18,
+        name: '网易云音乐',
+        color:'#f40a01',
+        icon: 'cloud-music',
+        url: `http://music.163.com/#/search/m/?s=`,
+    }, {
+        id: 19,
+        name: '酷我音乐',
+        color:'#feca2e',
+        icon: undefined,
+        url: `http://m.kuwo.cn/?key=`,
     },
     //搜索引擎
     ],
@@ -176,7 +191,7 @@ for (i of engine.All) {
             // 初始化 颜色
             $('style').append(`.icon-${i.icon}{color:${i.color}}`)
             // 初始化 图标
-            var temp = `<engine title="${i.name}" data-id=${i.id}> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+            var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
         } else {
             var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
         }
@@ -259,6 +274,7 @@ var so = {
         }
         if (value !== '') {
             window.open(url)
+            // window.location.href = url
         } else {
             $('.search-input').focus()
         }
