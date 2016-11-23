@@ -29,21 +29,7 @@ var ckXian = function(mc) {
     })
 }
 ckXian('*')
-// 绑定 导航
-$('logo').on('click', function() {
-    $('.top').fadeIn(618)
-    $('.search').slideUp(618)
-    setTimeout("$('.engine').slideDown(618)", 618)
-})
-$('.top').on('click', function() {
-    $('.fa-mini').hide()
-    $('.search-list-button').css('color', 'transparent')
-
-    $('.top').fadeOut(618)
-    $('.engine').slideUp(618)
-    setTimeout("$('.search').slideDown(618)", 618)
-})
-// 初始化 引擎
+// 天下之水 莫大于海 万川归之
 var engine = {
     All: [{
         id: 0,
@@ -123,7 +109,7 @@ var engine = {
         url: `http://www.mafengwo.cn/group/s.php?q=`,
     }, {
         id: 12,
-        name: '优酷',
+        name: '优酷视频',
         color:'#2fb3ff',
         icon: undefined,
         url: `http://www.soku.com/search_video/q_`,
@@ -170,9 +156,7 @@ var engine = {
         color:'#feca2e',
         icon: undefined,
         url: `http://m.kuwo.cn/?key=`,
-    },
-    //搜索引擎
-    ],
+    },],
     Default: 0,
     Logo: function(input) {
         input.dataset.id = i.id
@@ -183,75 +167,39 @@ var engine = {
             input.placeholder = ''
             $('logo').html(`<span class="fa-logo-zi" style="color:${i.color}">${i.name}</span>`)
         }
-    }
+    },
+    Tag: [{
+        id: 0,
+        name: '综合',
+    }, {
+        id: 1,
+        name: '编程',
+    }, {
+        id: 2,
+        name: '认知'
+    }, {
+        id: 3,
+        name: '设计'
+    }, {
+        id: 4,
+        name: '新闻'
+    }, {
+        id: 5,
+        name: '购物'
+    }, {
+        id: 6,
+        name: '旅行'
+    }, {
+        id: 7,
+        name: '地图'
+    }, {
+        id: 8,
+        name: '音乐'
+    }, {
+        id: 9,
+        name: '电影'
+    }],
 }
-for (i of engine.All) {
-    if (i.id > 0) {
-        if (i.icon !== undefined) {
-            // 初始化 颜色
-            $('style').append(`.icon-${i.icon}{color:${i.color}}`)
-            // 初始化 图标
-            var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
-        } else {
-            var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
-        }
-        $('.engine-often').append(temp)
-    }
-    if (i.id > 0 && i.id < 6) {
-        if (i.icon !== undefined) {
-            var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
-        } else {
-            var mini = ``
-        }
-        $('.search-list-mini').append(mini)
-        $('.fa-mini').css('display','none')
-    }
-    if (i.id === engine.Default) {
-        var input = $('.search-input')[0]
-        engine.Logo(input)
-    }
-}
-// 搜索 按钮
-$('.search-button').on('click', function() {
-        so.search()
-    })
-// 引擎 按钮
-$('.engine-often').on('click', 'engine', function(event) {
-    var id = Number(event.target.parentElement.dataset.id)
-    if (!id) {
-        id = Number(event.target.dataset.id)
-    }
-    var input = $('.search-input')[0]
-    for (i of engine.All) {
-        if (i.id === id) {
-            engine.Logo(input)
-        }
-    }
-    $('.top').click()
-})
-// 迷你图标
-$('.search-list-button').on('click', function() {
-    if ($('.fa-mini').css('display') === 'none') {
-        $('.fa-mini').fadeIn(618)
-    } else {
-        $('.fa-mini').fadeOut(618)
-    }
-})
-$('.search-list-mini').on('mouseover', function() {
-    $('.search-list-button').css('color', '#333')
-})
-$('.search-list-mini').on('click', '.fa-mini', function(event) {
-    var id = Number(event.target.dataset.id)
-    var input = $('.search-input')[0]
-    for (i of engine.All) {
-        if (i.id === id) {
-            engine.Logo(input)
-        }
-    }
-    $('.fa-mini').hide()
-    $('.search-list-button').css('color', 'transparent')
-})
-// 智能提示
 var so = {
     search: function(value) {
         var input = $('.search-input')[0]
@@ -341,38 +289,125 @@ var so = {
         $('.search-space')[0].remove()
     },
 }
-$('.search-list').on('mouseover', '.search-li', function(event) {
-    so.now = Number(event.target.dataset.id)
-    var hover = true
-    so.addClass(hover)
-})
-$('.search-list').on('click', '.search-li', function(event) {
-    var value = $(event.target).text()
-    so.search(value)
-})
-$('.search-input').on('keyup', function() {
-    if (event.keyCode === 13) {
-        $('.search-button').click()
-    } else if (event.keyCode === 38) {
-        so.upDown(-1)
-    } else if (event.keyCode === 40) {
-        so.upDown(1)
-    } else {
-        so.gou(event.target.value)
-        so.now = -1
+var __init__ = function() {
+    var TagLength = Math.round(engine.Tag.length / 2)
+    for (i of engine.All) {
+        if (i.id > 0 && i.id < 6) {
+            if (i.icon !== undefined) {
+                // 初始化 颜色
+                $('style').append(`.icon-${i.icon}{color:${i.color}}`)
+                // 初始化 图标
+                var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+            } else {
+                var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
+            }
+            $('.engine-often').append(temp)
+        }
+        if (i.id > 0 && i.id < 6) {
+            if (i.icon !== undefined) {
+                var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
+            } else {
+                var mini = ``
+            }
+            $('.search-list-mini').append(mini)
+            $('.fa-mini').css('display','none')
+        }
+        if (i.id === engine.Default) {
+            var input = $('.search-input')[0]
+            engine.Logo(input)
+        }
     }
-})
-$('.search-input').on('blur', function() {
-    so.hide()
-})
-$('.search-input').on('focus', function() {
-    $('.fa-mini').hide()
-    $('.search-list-button').css('color', 'transparent')
-    if (so.sug.length === 0) {
+    for (i of engine.Tag) {
+        $('.engine-tag').append(`<tag class="pure-u-1-${TagLength}">${i.name}</tag>`)
+    }
+    // 导航按钮
+    $('logo').on('click', function() {
+        $('.top').fadeIn(618)
+        $('.search').slideUp(618)
+        setTimeout("$('.engine').slideDown(618)", 618)
+    })
+    $('.top').on('click', function() {
+        $('.fa-mini').hide()
+        $('.search-list-button').css('color', 'transparent')
+
+        $('.top').fadeOut(618)
+        $('.engine').slideUp(618)
+        setTimeout("$('.search').slideDown(618)", 618)
+    })
+    // 搜索按钮
+    $('.search-button').on('click', function() {
+            so.search()
+        })
+    // 引擎按钮
+    $('.engine-often').on('click', 'engine', function(event) {
+        var id = Number(event.target.parentElement.dataset.id)
+        if (!id) {
+            id = Number(event.target.dataset.id)
+        }
+        var input = $('.search-input')[0]
+        for (i of engine.All) {
+            if (i.id === id) {
+                engine.Logo(input)
+            }
+        }
+        $('.top').click()
+    })
+    // 迷你图标
+    $('.search-list-button').on('click', function() {
+        if ($('.fa-mini').css('display') === 'none') {
+            $('.fa-mini').fadeIn(618)
+        } else {
+            $('.fa-mini').fadeOut(618)
+        }
+    })
+    $('.search-list-mini').on('mouseover', function() {
+        $('.search-list-button').css('color', '#333')
+    })
+    $('.search-list-mini').on('click', '.fa-mini', function(event) {
+        var id = Number(event.target.dataset.id)
+        var input = $('.search-input')[0]
+        for (i of engine.All) {
+            if (i.id === id) {
+                engine.Logo(input)
+            }
+        }
+        $('.fa-mini').hide()
+        $('.search-list-button').css('color', 'transparent')
+    })
+    // 智能提示
+    $('.search-list').on('mouseover', '.search-li', function(event) {
+        so.now = Number(event.target.dataset.id)
+        var hover = true
+        so.addClass(hover)
+    })
+    $('.search-list').on('click', '.search-li', function(event) {
+        var value = $(event.target).text()
+        so.search(value)
+    })
+    $('.search-input').on('keyup', function() {
+        if (event.keyCode === 13) {
+            $('.search-button').click()
+        } else if (event.keyCode === 38) {
+            so.upDown(-1)
+        } else if (event.keyCode === 40) {
+            so.upDown(1)
+        } else {
+            so.gou(event.target.value)
+            so.now = -1
+        }
+    })
+    $('.search-input').on('blur', function() {
         so.hide()
-    } else {
-        $('.search-list').css('border-color', '#037dd8')
-        $('.search-li').show()
-    }
-})
-// 2. engine自动排序 和 添加/删除 功能engine
+    })
+    $('.search-input').on('focus', function() {
+        $('.fa-mini').hide()
+        $('.search-list-button').css('color', 'transparent')
+        if (so.sug.length === 0) {
+            so.hide()
+        } else {
+            $('.search-list').css('border-color', '#037dd8')
+            $('.search-li').show()
+        }
+    })
+}
+__init__()
