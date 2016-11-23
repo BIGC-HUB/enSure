@@ -28,7 +28,7 @@ var ckXian = function(mc) {
         }
     })
 }
-ckXian('div')
+ckXian('*')
 // 绑定 导航
 $('logo').on('click', function() {
     $('.top').fadeIn(618)

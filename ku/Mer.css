@@ -27,7 +27,7 @@
     .fa-mini {
         display: block;
         font-size: 52px;
-        margin: 0 auto 2px;
+        margin: 0 auto 4px;
         border: 1px solid transparent;
         border-radius: 2px;
         cursor: pointer;
@@ -90,7 +90,7 @@
         margin-bottom: 2px;
     }
     .search-input {
-        font-size: 21px;
+        font-size: 26px;
         padding: 8px;
         width: 61.8%;
         border: 1px solid rgba(0, 0, 0, 0.25);
@@ -107,7 +107,7 @@
         border: 1px solid #037dd8;
     }
     .search-button {
-        font-size: 21px;
+        font-size: 26px;
         padding: 8px;
         width: 79px;
         border: 1px solid #037dd8;
