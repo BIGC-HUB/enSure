@@ -29,7 +29,7 @@ var ckXian = function(mc) {
     })
 }
 ckXian('*')
-// 天下之水 莫大于海 万川归之
+// 海纳百川
 var engine = {
     All: [{
         "id": 0,
@@ -155,7 +155,7 @@ var engine = {
         "url": "http://pianyuan.net/search?q="
     }, 93, 94, 95, 96, 97, 98, 99],
     Default: 0,
-    Logo: function(input) {
+    Logo: function(input, i) {
         input.dataset.id = i.id
         if (i.icon !== undefined) {
             input.placeholder = i.name
@@ -313,7 +313,8 @@ var __init__ = function() {
         // 默认
         if (i.id === engine.Default) {
             var input = $('.search-input')[0]
-            engine.Logo(input)
+            var i = engine.All[engine.Default]
+            engine.Logo(input, i)
         }
     }
     for (i of engine.Tag) {
@@ -344,11 +345,8 @@ var __init__ = function() {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
-        for (i of engine.All) {
-            if (i.id === id) {
-                engine.Logo(input)
-            }
-        }
+        var i = engine.All[id]
+        engine.Logo(input, i)
         $('.top').click()
     })
     // 迷你图标
@@ -365,11 +363,8 @@ var __init__ = function() {
     $('.search-list-mini').on('click', '.fa-mini', function(event) {
         var id = Number(event.target.dataset.id)
         var input = $('.search-input')[0]
-        for (i of engine.All) {
-            if (i.id === id) {
-                engine.Logo(input)
-            }
-        }
+        var i = engine.All[id]
+        engine.Logo(input, i)
         $('.fa-mini').hide()
         $('.search-list-button').css('color', 'transparent')
     })
@@ -433,11 +428,8 @@ var __init__ = function() {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
-        for (i of engine.All) {
-            if (i.id === id) {
-                engine.Logo(input)
-            }
-        }
+        var i = engine.All[id]
+        engine.Logo(input, i)
         $('.top').click()
     })
 }
