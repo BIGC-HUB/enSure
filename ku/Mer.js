@@ -77,12 +77,6 @@ var engine = {
         url: `http://cn.bing.com/search?q=site:w3school.com.cn+`,
     },{
         id: 20, // 认知
-        name: '豆瓣电影',
-        color:'#2e963d',
-        icon: undefined,
-        url: `https://movie.douban.com/subject_search?search_text=`,
-    },{
-        id: 21,
         name: '有道词典',
         color:'#e31333',
         icon: 'youdao',
@@ -101,7 +95,7 @@ var engine = {
         wap: `http://m.thepaper.cn/search.jsp?k=`,
         url: `http://www.thepaper.cn/searchResult.jsp?inpsearch=`,
     },{
-        id: 18,
+        id: 41,
         name: '新浪微博',
         color:'#E73137',
         icon: 'sina',
@@ -133,29 +127,41 @@ var engine = {
         icon: undefined,
         url: `http://m.kugou.com/search?keyword=`,
     },{
-        id: 81,
+        id: 81, // 音乐
+        name: '虾米音乐',
+        color:'#FF6F32',
+        icon: undefined,
+        url: `http://h.xiami.com/#!/search/result/?key=`,
+    },{
+        id: 82,
         name: '酷我音乐',
         color:'#feca2e',
         icon: undefined,
         url: `http://m.kuwo.cn/?key=`,
     },{
-        id: 82,
+        id: 83,
         name: '网易云音乐',
         color:'#f40a01',
         icon: 'cloud-music',
         url: `http://music.163.com/#/search/m/?s=`,
     },{
         id: 90, // 电影
-        name: '片源网',
-        color:'#3860BB',
+        name: '豆瓣电影',
+        color:'#2e963d',
         icon: undefined,
-        url: `http://pianyuan.net/search?q=`,
+        url: `https://movie.douban.com/subject_search?search_text=`,
     },{
         id: 91,
         name: '优酷视频',
         color:'#2fb3ff',
         icon: undefined,
         url: `http://www.soku.com/search_video/q_`,
+    },{
+        id: 92,
+        name: '片源网',
+        color:'#3860BB',
+        icon: undefined,
+        url: `http://pianyuan.net/search?q=`,
     },],
     Default: 0,
     Logo: function(input) {
@@ -290,8 +296,8 @@ var so = {
     },
 }
 var __init__ = function() {
-    var TagLength = Math.round(engine.Tag.length / 2)
     for (i of engine.All) {
+        // 综合
         if (i.id > 0 && i.id < 6) {
             if (i.icon !== undefined) {
                 // 初始化 颜色
@@ -303,6 +309,7 @@ var __init__ = function() {
             }
             $('.engine-often').append(temp)
         }
+        // 迷你
         if (i.id > 0 && i.id < 6) {
             if (i.icon !== undefined) {
                 var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
@@ -312,13 +319,14 @@ var __init__ = function() {
             $('.search-list-mini').append(mini)
             $('.fa-mini').css('display','none')
         }
+        // 默认
         if (i.id === engine.Default) {
             var input = $('.search-input')[0]
             engine.Logo(input)
         }
     }
     for (i of engine.Tag) {
-        $('.engine-tag').append(`<tag>${i.name}</tag>`)
+        $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
     }
     // 导航按钮
     $('logo').on('click', function() {
@@ -341,7 +349,7 @@ var __init__ = function() {
     // 引擎按钮
     $('.engine-often').on('click', 'engine', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
-        if (!id) {
+        if (id === NaN) {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
@@ -408,6 +416,38 @@ var __init__ = function() {
             $('.search-list').css('border-color', '#037dd8')
             $('.search-li').show()
         }
+    })
+    // 标签
+    $('.engine-tag').on('click', 'tag', function(event) {
+        $('.engine-show').empty()
+        var start = Number(event.target.dataset.id + '0')
+        var end   = start + 10
+        for (i of engine.All) {
+            if (i.id >= start && i.id < end) {
+                if (i.icon !== undefined) {
+                    // 初始化 颜色
+                    $('style').append(`.icon-${i.icon}{color:${i.color}}`)
+                    // 初始化 图标
+                    var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+                } else {
+                    var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
+                }
+                $('.engine-show').append(temp)
+            }
+        }
+    })
+    $('.engine-show').on('click', 'engine', function(event) {
+        var id = Number(event.target.parentElement.dataset.id)
+        if (id === NaN) {
+            id = Number(event.target.dataset.id)
+        }
+        var input = $('.search-input')[0]
+        for (i of engine.All) {
+            if (i.id === id) {
+                engine.Logo(input)
+            }
+        }
+        $('.top').click()
     })
 }
 __init__()
