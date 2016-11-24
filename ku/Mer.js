@@ -318,7 +318,7 @@ var __init__ = function() {
         }
     }
     for (i of engine.Tag) {
-        $('.engine-tag').append(`<tag class="pure-u-1-${TagLength}">${i.name}</tag>`)
+        $('.engine-tag').append(`<tag>${i.name}</tag>`)
     }
     // 导航按钮
     $('logo').on('click', function() {
