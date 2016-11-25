@@ -314,8 +314,6 @@ var so = {
         for (var i = 0; i < so.sug.length; i++) {
             $('.search-list').append(`<div data-id=${i} class="search-li">${so.sug[i]}</div>`)
         }
-        $('.search-list').append(`<div class="search-space">海納百川</div>`)
-        $('.search-space')[0].remove()
     },
     moreHide: function() {
         $('.so-note').hide()
@@ -367,8 +365,6 @@ var __init__ = function() {
             $('.search-list').append(`<input class="so-note" data-id=${i} type="text" style="display: none;">`)
             $('.so-note')[i].value = so.note[i]
         }
-        $('.search-list').append(`<div class="search-space">海納百川</div>`)
-        $('.search-space')[0].remove()
     }
     init()
     // 导航按钮
@@ -398,7 +394,7 @@ var __init__ = function() {
         engine.Logo(input, e)
         $('.top').click()
     })
-    // 迷你图标
+    // 迷你图标 + ToDo
     $('.search-list-button').on('click', function() {
         if ($('.fa-mini').css('display') === 'none') {
             $('.fa-mini').fadeIn(618)
