@@ -32,128 +32,165 @@ ckXian('*')
 // 海纳百川
 var engine = {
     All: [{
-        "id": 0,
-        "name": "",
-        "color": "#E6E7EC",
-        "icon": "dahai",
-        "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
-    }, {
-        "id": 1,
-        "name": "搜狗",
-        "color": "#fd6853",
-        "icon": "sogou",
-        "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
-    }, {
-        "id": 2,
-        "name": "必应",
-        "color": "#ffb900",
-        "icon": "bing",
-        "url": "http://cn.bing.com/search?q="
-    }, {
-        "id": 3,
-        "name": "知乎",
-        "color": "#0f88eb",
-        "icon": "zhihu",
-        "wap": "http://zhihu.sogou.com/zhihuwap?query=",
-        "url": "http://zhihu.sogou.com/zhihu?query="
-    }, {
-        "id": 4,
-        "name": "微信",
-        "color": "#00bc0c",
-        "icon": "weixin",
-        "wap": "http://weixin.sogou.com/weixinwap?type=2&query=",
-        "url": "http://weixin.sogou.com/weixin?type=2&query="
-    }, {
-        "id": 5,
-        "name": "百度百科",
-        "color": "#2319dc",
-        "icon": "baidu",
-        "url": "http://baike.baidu.com/item/"
-    }, 6, 7, 8, 9, {
-        "id": 10,
-        "name": "w3school",
-        "color": "#bd2d30",
-        "url": "http://cn.bing.com/search?q=site:w3school.com.cn+"
-    }, 11, 12, 13, 14, 15, 16, 17, 18, 19, {
-        "id": 20,
-        "name": "有道词典",
-        "color": "#e31333",
-        "icon": "youdao",
-        "url": "http://m.youdao.com/dict?q="
-    }, 21, 22, 23, 24, 25, 26, 27, 28, 29, {
-        "id": 30,
-        "name": "花瓣",
-        "color": "#DF4751",
-        "icon": "huaban",
-        "url": "http://huaban.com/search/?q="
-    }, 31, 32, 33, 34, 35, 36, 37, 38, 39, {
-        "id": 40,
-        "name": "澎湃新闻",
-        "color": "#000000",
-        "wap": "http://m.thepaper.cn/search.jsp?k=",
-        "url": "http://www.thepaper.cn/searchResult.jsp?inpsearch="
-    }, {
-        "id": 41,
-        "name": "新浪微博",
-        "color": "#E73137",
-        "icon": "sina",
-        "url": "http://s.weibo.com/weibo/"
-    }, 42, 43, 44, 45, 46, 47, 48, 49, {
-        "id": 50,
-        "name": "淘宝",
-        "color": "#ed4403",
-        "icon": "taobao",
-        "wap": "https://s.m.taobao.com/h5?q=",
-        "url": "https://s.taobao.com/search?q="
-    }, 51, 52, 53, 54, 55, 56, 57, 58, 59, {
-        "id": 60,
-        "name": "马蜂窝",
-        "color": "#FFCB10",
-        "wap": "https://m.mafengwo.cn/mdd/query.php?q=",
-        "url": "http://www.mafengwo.cn/group/s.php?q="
-    }, 61, 62, 63, 64, 65, 66, 67, 68, 69, {
-        "id": 70,
-        "name": "高德地图",
-        "color": "#4C90F9",
-        "icon": "amap",
-        "url": "http://ditu.amap.com/search?city=100000&query="
-    }, 71, 72, 73, 74, 75, 76, 77, 78, 79, {
-        "id": 80,
-        "name": "酷狗音乐",
-        "color": "#2CA2F9",
-        "url": "http://m.kugou.com/search?keyword="
-    }, {
-        "id": 81,
-        "name": "虾米音乐",
-        "color": "#FF6F32",
-        "url": "http://h.xiami.com/#!/search/result/?key="
-    }, {
-        "id": 82,
-        "name": "酷我音乐",
-        "color": "#feca2e",
-        "url": "http://m.kuwo.cn/?key="
-    }, {
-        "id": 83,
-        "name": "网易云音乐",
-        "color": "#f40a01",
-        "icon": "cloud-music",
-        "url": "http://music.163.com/#/search/m/?s="
-    }, 84, 85, 86, 87, 88, 89, {
-        "id": 90,
-        "name": "豆瓣电影",
-        "color": "#2e963d",
-        "url": "https://movie.douban.com/subject_search?search_text="
-    }, {
-        "id": 91,
-        "name": "优酷视频",
-        "color": "#2fb3ff",
-        "url": "http://www.soku.com/search_video/q_"
-    }, {
-        "id": 92,
-        "name": "片源网",
-        "color": "#3860BB",
-        "url": "http://pianyuan.net/search?q="
-    }, 93, 94, 95, 96, 97, 98, 99],
+            "id": 0,
+            "name": "",
+            "color": "#E6E7EC",
+            "icon": "dahai",
+            "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
+        }, {
+            "id": 1,
+            "name": "搜狗",
+            "color": "#fd6853",
+            "icon": "sogou",
+            "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
+        }, {
+            "id": 2,
+            "name": "必应",
+            "color": "#ffb900",
+            "icon": "bing",
+            "url": "http://cn.bing.com/search?q="
+        }, {
+            "id": 3,
+            "name": "知乎",
+            "color": "#0f88eb",
+            "icon": "zhihu",
+            "wap": "http://zhihu.sogou.com/zhihuwap?query=",
+            "url": "http://zhihu.sogou.com/zhihu?query="
+        }, {
+            "id": 4,
+            "name": "微信",
+            "color": "#00bc0c",
+            "icon": "weixin",
+            "wap": "http://weixin.sogou.com/weixinwap?type=2&query=",
+            "url": "http://weixin.sogou.com/weixin?type=2&query="
+        }, {
+            "id": 5,
+            "name": "百度百科",
+            "color": "#2319dc",
+            "icon": "baidu",
+            "url": "http://baike.baidu.com/item/"
+        }, 6, 7, 8, 9, {
+            "id": 10,
+            "name": "w3school",
+            "color": "#bd2d30",
+            "url": "http://cn.bing.com/search?q=site:w3school.com.cn+"
+        }, {
+            "id": 11,
+            "name": "MDN",
+            "color": "#056B9F",
+            "url": "https://developer.mozilla.org/zh-CN/search?q="
+        }, {
+            "id": 12,
+            "name": "阮一峰",
+            "color": "#556677",
+            "url": "http://cn.bing.com/search?q=site:ruanyifeng.com+"
+        }, {
+            "id": 13,
+            "name": "JavaScript",
+            "color": "#08c",
+            "url": "https://www.zybuluo.com/iwangyang/note/519509?="
+        }, {
+            "id": 14,
+            "name": "Python",
+            "color": "#08c",
+            "url": "https://www.zybuluo.com/iwangyang/note/460072?="
+        }, 15, 16, 17, 18, 19, {
+            "id": 20,
+            "name": "有道词典",
+            "color": "#e31333",
+            "icon": "youdao",
+            "url": "http://m.youdao.com/dict?q="
+        }, 21, 22, 23, 24, 25, 26, 27, 28, 29, {
+            "id": 30,
+            "name": "花瓣",
+            "color": "#DF4751",
+            "icon": "huaban",
+            "url": "http://huaban.com/search/?q="
+        }, {
+            "id": 31,
+            "name": "Topit.me",
+            "color": "#FC6B96",
+            "url": "http://www.topit.me/items/search?query="
+        }, 32, 33, 34, 35, 36, 37, 38, 39, {
+            "id": 40,
+            "name": "澎湃新闻",
+            "color": "#000000",
+            "wap": "http://m.thepaper.cn/search.jsp?k=",
+            "url": "http://www.thepaper.cn/searchResult.jsp?inpsearch="
+        }, {
+            "id": 41,
+            "name": "新浪微博",
+            "color": "#E73137",
+            "icon": "sina",
+            "url": "http://s.weibo.com/weibo/"
+        }, 42, 43, 44, 45, 46, 47, 48, 49, {
+            "id": 50,
+            "name": "淘宝",
+            "color": "#ed4403",
+            "icon": "taobao",
+            "wap": "https://s.m.taobao.com/h5?q=",
+            "url": "https://s.taobao.com/search?q="
+        }, 51, 52, 53, 54, 55, 56, 57, 58, 59, {
+            "id": 60,
+            "name": "马蜂窝",
+            "color": "#FFCB10",
+            "wap": "https://m.mafengwo.cn/mdd/query.php?q=",
+            "url": "http://www.mafengwo.cn/group/s.php?q="
+        }, {
+            "id": 61,
+            "name": "飞猪",
+            "color": "#3C3C3C",
+            "wap": "https://h5.m.taobao.com/trip/search/result/index.html?keyword=",
+            "url": "https://www.alitrip.com/kezhan/?="
+        }, {
+            "id": 62,
+            "name": "去哪儿",
+            "color": "#0088a4",
+            "wap": "https://touchsearch.qunar.com/intention/productlist.htm?q=",
+            "url": "http://bnb.qunar.com/?="
+        }, 63, 64, 65, 66, 67, 68, 69, {
+            "id": 70,
+            "name": "高德地图",
+            "color": "#4C90F9",
+            "icon": "amap",
+            "url": "http://ditu.amap.com/search?city=100000&query="
+        }, 71, 72, 73, 74, 75, 76, 77, 78, 79, {
+            "id": 80,
+            "name": "酷狗音乐",
+            "color": "#2CA2F9",
+            "url": "http://m.kugou.com/search?keyword="
+        }, {
+            "id": 81,
+            "name": "虾米音乐",
+            "color": "#FF6F32",
+            "url": "http://h.xiami.com/#!/search/result/?key="
+        }, {
+            "id": 82,
+            "name": "酷我音乐",
+            "color": "#feca2e",
+            "url": "http://m.kuwo.cn/?key="
+        }, {
+            "id": 83,
+            "name": "网易云音乐",
+            "color": "#f40a01",
+            "icon": "cloud-music",
+            "url": "http://music.163.com/#/search/m/?s="
+        }, 84, 85, 86, 87, 88, 89, {
+            "id": 90,
+            "name": "豆瓣电影",
+            "color": "#2e963d",
+            "url": "https://movie.douban.com/subject_search?search_text="
+        }, {
+            "id": 91,
+            "name": "优酷视频",
+            "color": "#2fb3ff",
+            "url": "http://www.soku.com/search_video/q_"
+        }, {
+            "id": 92,
+            "name": "片源网",
+            "color": "#3860BB",
+            "url": "http://pianyuan.net/search?q="
+        }, 93, 94, 95, 96, 97, 98, 99],
     Default: 0,
     Logo: function(input, e) {
         input.dataset.id = e.id
@@ -458,6 +495,10 @@ var admin = {
         return a
     },
     add: function(id, name, color, icon, url, wap) {
+        if (id === undefined) {
+            log(`admin.add(0, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
+            return admin.tag()
+        }
         var xj = JSON.parse(JSON.stringify(engine.All))
         var i = xj[id]
         if (i.id !== undefined) {
