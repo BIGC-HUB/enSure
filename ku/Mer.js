@@ -96,11 +96,25 @@ var engine = {
             "url": "https://www.zybuluo.com/iwangyang/note/460072?="
         }, 15, 16, 17, 18, 19, {
             "id": 20,
+            "name": "喜马拉雅",
+            "color": "#ef5619",
+            "icon": undefined,
+            "wap": "http://m.ximalaya.com/search/",
+            "url": "http://www.ximalaya.com/search/"
+        }, {
+            "id": 21,
             "name": "有道词典",
             "color": "#e31333",
             "icon": "youdao",
             "url": "http://m.youdao.com/dict?q="
-        }, 21, 22, 23, 24, 25, 26, 27, 28, 29, {
+        }, {
+            "id": 22,
+            "name": "网易公开课",
+            "color": "#206740",
+            "icon": undefined,
+            "wap": "http://m.open.163.com/?=",
+            "url": "http://c.open.163.com/search/search.htm?query="
+        }, 23, 24, 25, 26, 27, 28, 29, {
             "id": 30,
             "name": "花瓣",
             "color": "#DF4751",
