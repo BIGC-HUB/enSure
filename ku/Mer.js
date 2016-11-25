@@ -322,7 +322,7 @@ var so = {
         $('.search-list').css('border-color', 'transparent')
     },
     sug: [],
-    note: ['大校','逃跑计划'],
+    note: ['TODO',''],
     now: -1,
 }
 var __init__ = function() {
@@ -365,6 +365,8 @@ var __init__ = function() {
             $('.search-list').append(`<input class="so-note" data-id=${i} type="text" style="display: none;">`)
             $('.so-note')[i].value = so.note[i]
         }
+        $('.so-note')[0].placeholder = "输入内容 ／ Enter 添加 ／ Del 删除"
+        $('.so-note')[1].placeholder = "输入内容 ／ Enter 添加 ／ Del 删除"
     }
     init()
     // 导航按钮
@@ -415,6 +417,18 @@ var __init__ = function() {
         var e = engine.All[id]
         engine.Logo(input, e)
         so.moreHide()
+    })
+    $('.search-list').on('keyup', '.so-note', function(event) {
+        if (event.keyCode === 13) {
+            var id = so.note.length
+            $('.search-list').append(`<input class="so-note" data-id=${id} type="text">`)
+            so.note.push('')
+            $($('.so-note')[id]).focus()
+        } else if (event.keyCode === 46) {
+            if (Number(event.target.dataset.id) !== 0) {
+                event.target.remove()
+            }
+        }
     })
     // 智能提示
     $('.search-list').on('mouseover', '.search-li', function(event) {
