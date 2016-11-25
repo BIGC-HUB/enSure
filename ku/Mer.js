@@ -317,7 +317,14 @@ var so = {
         $('.search-list').append(`<div class="search-space">海納百川</div>`)
         $('.search-space')[0].remove()
     },
+    moreHide: function() {
+        $('.so-note').hide()
+        $('.fa-mini').hide()
+        $('.search-list-button').css('color', 'transparent')
+        $('.search-list').css('border-color', 'transparent')
+    },
     sug: [],
+    note: ['大校','逃跑计划'],
     now: -1,
 }
 var __init__ = function() {
@@ -356,6 +363,12 @@ var __init__ = function() {
         for (i of engine.Tag) {
             $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
         }
+        for (var i = 0; i < so.note.length; i++) {
+            $('.search-list').append(`<input class="so-note" data-id=${i} type="text" style="display: none;">`)
+            $('.so-note')[i].value = so.note[i]
+        }
+        $('.search-list').append(`<div class="search-space">海納百川</div>`)
+        $('.search-space')[0].remove()
     }
     init()
     // 导航按钮
@@ -365,9 +378,7 @@ var __init__ = function() {
         setTimeout("$('.engine').slideDown(618)", 618)
     })
     $('.top').on('click', function() {
-        $('.fa-mini').hide()
-        $('.search-list-button').css('color', 'transparent')
-
+        so.moreHide()
         $('.top').fadeOut(618)
         $('.engine').slideUp(618)
         setTimeout("$('.search').slideDown(618)", 618)
@@ -379,7 +390,7 @@ var __init__ = function() {
     // 引擎按钮
     $('.engine-often').on('click', 'engine', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
-        if (!id) {
+        if (!id && id !== 0) {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
@@ -391,8 +402,12 @@ var __init__ = function() {
     $('.search-list-button').on('click', function() {
         if ($('.fa-mini').css('display') === 'none') {
             $('.fa-mini').fadeIn(618)
+            $('.so-note').fadeIn(618)
+            $('.search-list').css('border-color', 'rgba(0, 0, 0, 0.25)')
         } else {
+            $('.so-note').fadeOut(618)
             $('.fa-mini').fadeOut(618)
+            $('.search-list').css('border-color', 'transparent')
         }
     })
     $('.search-list-mini').on('mouseover', function() {
@@ -403,8 +418,7 @@ var __init__ = function() {
         var input = $('.search-input')[0]
         var e = engine.All[id]
         engine.Logo(input, e)
-        $('.fa-mini').hide()
-        $('.search-list-button').css('color', 'transparent')
+        so.moreHide()
     })
     // 智能提示
     $('.search-list').on('mouseover', '.search-li', function(event) {
@@ -432,8 +446,7 @@ var __init__ = function() {
         so.hide()
     })
     $('.search-input').on('focus', function() {
-        $('.fa-mini').hide()
-        $('.search-list-button').css('color', 'transparent')
+        so.moreHide()
         if (so.sug.length === 0) {
             so.hide()
         } else {
@@ -464,7 +477,7 @@ var __init__ = function() {
     })
     $('.engine-show').on('click', 'engine', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
-        if (!id) {
+        if (!id && id !== 0) {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
