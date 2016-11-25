@@ -155,14 +155,14 @@ var engine = {
         "url": "http://pianyuan.net/search?q="
     }, 93, 94, 95, 96, 97, 98, 99],
     Default: 0,
-    Logo: function(input, i) {
-        input.dataset.id = i.id
-        if (i.icon !== undefined) {
-            input.placeholder = i.name
-            $('logo').html(`<i class="fa-logo-da iconfont icon-${i.icon}"></i>`)
+    Logo: function(input, e) {
+        input.dataset.id = e.id
+        if (e.icon !== undefined) {
+            input.placeholder = e.name
+            $('logo').html(`<i class="fa-logo-da iconfont icon-${e.icon}"></i>`)
         } else {
             input.placeholder = ''
-            $('logo').html(`<span class="fa-logo-zi" style="color:${i.color}">${i.name}</span>`)
+            $('logo').html(`<span class="fa-logo-zi" style="color:${e.color}">${e.name}</span>`)
         }
     },
     Tag: [{
@@ -176,7 +176,7 @@ var engine = {
         name: '认知'
     },{
         id: 3,
-        name: '设计'
+        name: '图片'
     },{
         id: 4,
         name: '新闻'
@@ -225,18 +225,15 @@ var so = {
         if (value === undefined) {
             var value = input.value
         }
-        for (i of engine.All) {
-            if (i.id === id) {
-                if (screen.width < 768) {
-                    if (i.wap === undefined) {
-                        var url = i.url + value
-                    } else {
-                        var url = i.wap + value
-                    }
-                } else {
-                    var url = i.url + value
-                }
+        var e = engine.All[id]
+        if (screen.width < 768) {
+            if (e.wap === undefined) {
+                var url = e.url + value
+            } else {
+                var url = e.wap + value
             }
+        } else {
+            var url = e.url + value
         }
         if (value !== '') {
             window.open(url)
@@ -287,39 +284,43 @@ var so = {
     now: -1,
 }
 var __init__ = function() {
-    for (i of engine.All) {
-        // 综合
-        if (i.id > 0 && i.id < 6) {
-            if (i.icon !== undefined) {
-                // 初始化 颜色
-                $('style').append(`.icon-${i.icon}{color:${i.color}}`)
-                // 初始化 图标
-                var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
-            } else {
-                var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
+    var init = function() {
+        var i = 0
+        for (i of engine.All) {
+            // 综合
+            if (i.id > 0 && i.id < 6) {
+                if (i.icon !== undefined) {
+                    // 初始化 颜色
+                    $('style').append(`.icon-${i.icon}{color:${i.color}}`)
+                    // 初始化 图标
+                    var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+                } else {
+                    var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
+                }
+                $('.engine-often').append(temp)
             }
-            $('.engine-often').append(temp)
-        }
-        // 迷你
-        if (i.id > 0 && i.id < 6) {
-            if (i.icon !== undefined) {
-                var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
-            } else {
-                var mini = ``
+            // 迷你
+            if (i.id > 0 && i.id < 6) {
+                if (i.icon !== undefined) {
+                    var mini = `<i title="${i.name}" data-id=${i.id} class="fa-mini iconfont icon-${i.icon}" aria-hidden="true"></i>`
+                } else {
+                    var mini = ``
+                }
+                $('.search-list-mini').append(mini)
+                $('.fa-mini').css('display','none')
             }
-            $('.search-list-mini').append(mini)
-            $('.fa-mini').css('display','none')
+            // 默认
+            if (i.id === engine.Default) {
+                var input = $('.search-input')[0]
+                var e = engine.All[engine.Default]
+                engine.Logo(input, e)
+            }
         }
-        // 默认
-        if (i.id === engine.Default) {
-            var input = $('.search-input')[0]
-            var i = engine.All[engine.Default]
-            engine.Logo(input, i)
+        for (i of engine.Tag) {
+            $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
         }
     }
-    for (i of engine.Tag) {
-        $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
-    }
+    init()
     // 导航按钮
     $('logo').on('click', function() {
         $('.top').fadeIn(618)
@@ -345,8 +346,8 @@ var __init__ = function() {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
-        var i = engine.All[id]
-        engine.Logo(input, i)
+        var e = engine.All[id]
+        engine.Logo(input, e)
         $('.top').click()
     })
     // 迷你图标
@@ -363,8 +364,8 @@ var __init__ = function() {
     $('.search-list-mini').on('click', '.fa-mini', function(event) {
         var id = Number(event.target.dataset.id)
         var input = $('.search-input')[0]
-        var i = engine.All[id]
-        engine.Logo(input, i)
+        var e = engine.All[id]
+        engine.Logo(input, e)
         $('.fa-mini').hide()
         $('.search-list-button').css('color', 'transparent')
     })
@@ -406,20 +407,22 @@ var __init__ = function() {
     // 标签
     $('.engine-tag').on('click', 'tag', function(event) {
         $('.engine-show').empty()
-        var start = Number(event.target.dataset.id + '0')
-        var end   = start + 10
-        for (i of engine.All) {
-            if (i.id >= start && i.id < end) {
-                if (i.icon !== undefined) {
+        var id = Number(event.target.dataset.id + '0')
+        var end   = id + 10
+        while (id < end) {
+            var e = engine.All[id]
+            if (e.id !== undefined) {
+                if (e.icon !== undefined) {
                     // 初始化 颜色
-                    $('style').append(`.icon-${i.icon}{color:${i.color}}`)
+                    $('style').append(`.icon-${e.icon}{color:${e.color}}`)
                     // 初始化 图标
-                    var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
+                    var temp = `<engine data-id=${e.id} title="${e.name}"> <i class="fa-logo iconfont icon-${e.icon}"></i> </engine>`
                 } else {
-                    var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
+                    var temp = `<engine data-id=${e.id}><span style="color:${e.color}" class='engine-font'>${e.name}</span></engine>`
                 }
                 $('.engine-show').append(temp)
             }
+            id++
         }
     })
     $('.engine-show').on('click', 'engine', function(event) {
@@ -428,8 +431,8 @@ var __init__ = function() {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
-        var i = engine.All[id]
-        engine.Logo(input, i)
+        var e = engine.All[id]
+        engine.Logo(input, e)
         $('.top').click()
     })
 }
