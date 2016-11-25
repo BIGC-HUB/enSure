@@ -379,7 +379,7 @@ var __init__ = function() {
     // 引擎按钮
     $('.engine-often').on('click', 'engine', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
-        if (id === NaN) {
+        if (!id) {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
@@ -464,7 +464,7 @@ var __init__ = function() {
     })
     $('.engine-show').on('click', 'engine', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
-        if (id === NaN) {
+        if (!id) {
             id = Number(event.target.dataset.id)
         }
         var input = $('.search-input')[0]
