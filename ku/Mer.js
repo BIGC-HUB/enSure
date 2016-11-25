@@ -202,6 +202,13 @@ var engine = {
             $('logo').html(`<span class="fa-logo-zi" style="color:${e.color}">${e.name}</span>`)
         }
     },
+    Read: function(key) {
+        if (localStorage.getItem(key) === null) {
+            return ['TODO','']
+        } else {
+            return JSON.parse(localStorage.getItem(key))
+        }
+    },
     Tag: [{
         id: 0,
         name: '综合',
@@ -322,8 +329,8 @@ var so = {
         $('.search-list').css('border-color', 'transparent')
     },
     sug: [],
-    note: ['TODO',''],
     now: -1,
+    note: engine.Read('note'),
 }
 var __init__ = function() {
     var init = function() {
@@ -364,9 +371,10 @@ var __init__ = function() {
         for (var i = 0; i < so.note.length; i++) {
             $('.search-list').append(`<input class="so-note" data-id=${i} type="text" style="display: none;">`)
             $('.so-note')[i].value = so.note[i]
+            if (i === 1) {
+                $('.so-note')[i].placeholder = "输入内容 ／ Enter 添加 ／ Del 删除"
+            }
         }
-        $('.so-note')[0].placeholder = "输入内容 ／ Enter 添加 ／ Del 删除"
-        $('.so-note')[1].placeholder = "输入内容 ／ Enter 添加 ／ Del 删除"
     }
     init()
     // 导航按钮
@@ -418,6 +426,7 @@ var __init__ = function() {
         engine.Logo(input, e)
         so.moreHide()
     })
+    // ToDo
     $('.search-list').on('keyup', '.so-note', function(event) {
         if (event.keyCode === 13) {
             var id = so.note.length
@@ -425,10 +434,24 @@ var __init__ = function() {
             so.note.push('')
             $($('.so-note')[id]).focus()
         } else if (event.keyCode === 46) {
-            if (Number(event.target.dataset.id) !== 0) {
+            var i = Number(event.target.dataset.id)
+            if (i < 2) {
+                event.target.value = ''
+            } else {
                 event.target.remove()
             }
+            so.note.splice(i,1)
+            localStorage.setItem("note",JSON.stringify(so.note))
         }
+    })
+    $('.search-list').on('focus', '.so-note', function(event) {
+        $('.fa-mini').fadeOut(618)
+    })
+    $('.search-list').on('blur', '.so-note', function(event) {
+        var val = event.target.value
+        var id  = Number(event.target.dataset.id)
+        so.note[id] = val
+        localStorage.setItem("note",JSON.stringify(so.note))
     })
     // 智能提示
     $('.search-list').on('mouseover', '.search-li', function(event) {
