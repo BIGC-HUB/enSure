@@ -95,6 +95,7 @@
         vertical-align: bottom;
         font-size: 25px;
         width: 61.8%;
+        height: 33.333333px;
         padding: 8px;
         border: 1px solid rgba(0, 0, 0, 0.25);
         border-top-left-radius: 2px;
@@ -110,9 +111,12 @@
         border: 1px solid #037dd8;
     }
     .search-button {
+        vertical-align: bottom;
         display: inline-block;
-        font-size: 25px;
+        font-size: 24px;
         width: 79px;
+        height: 33.333333px;
+        line-height: 33.333333px;
         padding: 8px;
         border: 1px solid #037dd8;
         border-top-left-radius: 0;
@@ -122,10 +126,10 @@
         outline: 0;
         background: #037dd8;
         color: white;
+        cursor: pointer;
     }
     .search-button:hover {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-        cursor: pointer;
     }
     .search-list-mini {
         display: inline-block;
@@ -149,11 +153,6 @@
     .search-li-hover {
         background: #037dd8;
         color: #fff;
-    }
-    .search-space {
-        padding: 0.1em;
-        text-align: right;
-        color: transparent;
     }
     .search-list-button {
         vertical-align: top;
@@ -195,9 +194,9 @@
         height: 4.2em;
         line-height: 4.2em;
         margin:  0.5em;
-        cursor: pointer;
         border: 2px solid transparent;
         border-radius: 50%;
+        cursor: pointer;
     }
     engine:hover {
         background: #F5F6F9;
@@ -223,8 +222,9 @@
         line-height: 4em;
         cursor: pointer;
     }
-    tag:hover  {color: #037dd8;}
-    tag:active {background: #F5F6F9;}
+    tag:hover {
+        color: #037dd8;
+    }
 /* 媒体查询 */
     /* 小屏幕（平板，大于等于 768px） */
     @media (min-width: 768px) {
