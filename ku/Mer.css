@@ -171,6 +171,7 @@
     }
     /* 笔记 */
     .so-note {
+        padding: 1px 0px;
         text-align: center;
         font-size: 1em;
         width: 100%;
@@ -187,6 +188,8 @@
 
 /* 引擎 */
     engine {
+        vertical-align: bottom;
+        /*尝试解决 ipad 偏移问题*/
         display: inline-block;
         width:  4.2em;
         height: 4.2em;

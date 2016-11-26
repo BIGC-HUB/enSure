@@ -36,12 +36,14 @@ var engine = {
             "name": "",
             "color": "#E6E7EC",
             "icon": "dahai",
+            "wap": "https://wap.sogou.com/web/searchList.jsp?keyword=",
             "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
         }, {
             "id": 1,
             "name": "搜狗",
             "color": "#fd6853",
             "icon": "sogou",
+            "wap": "https://wap.sogou.com/web/searchList.jsp?keyword=",
             "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
         }, {
             "id": 2,
@@ -98,7 +100,6 @@ var engine = {
             "id": 20,
             "name": "喜马拉雅",
             "color": "#ef5619",
-            "icon": undefined,
             "wap": "http://m.ximalaya.com/search/",
             "url": "http://www.ximalaya.com/search/"
         }, {
@@ -111,7 +112,6 @@ var engine = {
             "id": 22,
             "name": "网易公开课",
             "color": "#206740",
-            "icon": undefined,
             "wap": "http://m.open.163.com/?=",
             "url": "http://c.open.163.com/search/search.htm?query="
         }, 23, 24, 25, 26, 27, 28, 29, {
@@ -144,7 +144,24 @@ var engine = {
             "icon": "taobao",
             "wap": "https://s.m.taobao.com/h5?q=",
             "url": "https://s.taobao.com/search?q="
-        }, 51, 52, 53, 54, 55, 56, 57, 58, 59, {
+        }, {
+            "id": 51,
+            "name": "京东",
+            "color": "#B1191A",
+            "wap": "https://so.m.jd.com/ware/search.action?keyword=",
+            "url": "https://search.jd.com/Search?&enc=utf-8&keyword="
+        }, {
+            "id": 52,
+            "name": "亚马逊",
+            "color": "#000",
+            "wap": "https://www.amazon.cn/gp/aw/s/ref=nb_sb_noss?k=",
+            "url": "https://www.amazon.cn/s/ref=nb_sb_noss?field-keywords="
+        }, {
+            "id": 53,
+            "name": "天猫",
+            "color": "#BF0000",
+            "url": "https://list.tmall.com/search_product.htm?q="
+        }, 54, 55, 56, 57, 58, 59, {
             "id": 60,
             "name": "马蜂窝",
             "color": "#FFCB10",
@@ -168,7 +185,18 @@ var engine = {
             "color": "#4C90F9",
             "icon": "amap",
             "url": "http://ditu.amap.com/search?city=100000&query="
-        }, 71, 72, 73, 74, 75, 76, 77, 78, 79, {
+        }, {
+            "id": 71,
+            "name": "腾讯地图",
+            "color": "#3399FF",
+            "wap": "http://map.qq.com/m/nearby/search?=",
+            "url": "http://map.qq.com?="
+        }, {
+            "id": 72,
+            "name": "百度地图",
+            "color": "#2319dc",
+            "url": "http://map.baidu.com/mobile/webapp/search/search/qt=s&wd="
+        }, 73, 74, 75, 76, 77, 78, 79, {
             "id": 80,
             "name": "酷狗音乐",
             "color": "#2CA2F9",
@@ -383,10 +411,10 @@ var __init__ = function() {
             $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
         }
         for (var i = 0; i < so.note.length; i++) {
-            $('.search-list').append(`<input class="so-note" data-id=${i} type="text" style="display: none;">`)
+            $('.search-list').append(`<input class="so-note" data-id="${i}" type="text" placeholder="" maxlength="100" style="display: none;">`)
             $('.so-note')[i].value = so.note[i]
             if (i === 1) {
-                $('.so-note')[i].placeholder = "输入内容 ／ Enter 添加 ／ Del 删除"
+                $('.so-note')[i].placeholder = "输入内容 ／ Enter 换行"
             }
         }
     }
@@ -444,18 +472,19 @@ var __init__ = function() {
     $('.search-list').on('keyup', '.so-note', function(event) {
         if (event.keyCode === 13) {
             var id = so.note.length
-            $('.search-list').append(`<input class="so-note" data-id=${id} type="text">`)
+            $('.search-list').append(`<input class="so-note" data-id="${id}" type="text" placeholder="" maxlength="100">`)
             so.note.push('')
             $($('.so-note')[id]).focus()
-        } else if (event.keyCode === 46) {
+        } else if (event.keyCode === 8 && event.target.value === '') {
             var i = Number(event.target.dataset.id)
             if (i < 2) {
                 event.target.value = ''
             } else {
                 event.target.remove()
+                $($('.so-note')[i-1]).focus()
+                so.note.splice(i, 1)
+                localStorage.setItem("note",JSON.stringify(so.note))
             }
-            so.note.splice(i,1)
-            localStorage.setItem("note",JSON.stringify(so.note))
         }
     })
     $('.search-list').on('focus', '.so-note', function(event) {
