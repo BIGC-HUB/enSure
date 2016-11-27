@@ -246,7 +246,7 @@ var engine = {
     },
     Read: function(key) {
         if (localStorage.getItem(key) === null) {
-            return ['TODO','']
+            return ['记事本','']
         } else {
             return JSON.parse(localStorage.getItem(key))
         }
@@ -359,7 +359,7 @@ var so = {
         setTimeout("$('.search-li').hide()", 100)
     },
     show: function() {
-        $('.search-list').css('border-color', '#037dd8')
+        $('.search-list').css('border-color', '#037DD8')
         for (var i = 0; i < so.sug.length; i++) {
             $('.search-list').append(`<div data-id=${i} class="search-li">${so.sug[i]}</div>`)
         }
@@ -526,7 +526,7 @@ var __init__ = function() {
         if (so.sug.length === 0) {
             so.hide()
         } else {
-            $('.search-list').css('border-color', '#037dd8')
+            $('.search-list').css('border-color', '#037DD8')
             $('.search-li').show()
         }
     })
