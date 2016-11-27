@@ -1,4 +1,61 @@
 // 定义 log enSure
+// var admin = {
+//     tag: function() {
+//         var a = ''
+//         for (e of engine.Tag) {
+//             var max =  Number(e.id + '0') + 10
+//             var min =  Number(e.id + '0')
+//             a = a + `\n${e.name}：`
+//             for (i of engine.All) {
+//                 if (i.id !== undefined && i.id >= min && i.id < max) {
+//                     if (i.name === '') {
+//                         a = a + i.id + ' ' + '大海' + ' '
+//                     } else {
+//                         a = a + i.id + ' ' + i.name + ' '
+//                     }
+//                 }
+//             }
+//         }
+//         return a
+//     },
+//     add: function(id, name, color, icon, url, wap) {
+//         if (id === undefined) {
+//             log(`admin.add(0, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
+//             return admin.tag()
+//         }
+//         var xj = JSON.parse(JSON.stringify(engine.All))
+//         var i = xj[id]
+//         if (i.id !== undefined) {
+//             log(`ID:${i.id}\nNAME:${i.name}`)
+//             return admin.tag()
+//         } else if (name === undefined) {
+//             log('ID:可以使用')
+//             log(`admin.add(${id}, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
+//             return admin.tag()
+//         }
+//         if (wap) {
+//             i = {
+//                 "id": id,
+//                 "name": name,
+//                 "color": color,
+//                 "icon": icon,
+//                 "url": url,
+//                 "wap": wap,
+//             }
+//         } else {
+//             i = {
+//             "id": id,
+//             "name": name,
+//             "color": color,
+//             "icon": icon,
+//             "url": url,
+//             }
+//         }
+//         log('完成')
+//         log(`ID:${i.id}\nNAME:${i.name}`)
+//         return JSON.stringify(xj)
+//     },
+// }
 var log = function() {
         console.log.apply(console, arguments)
     }
@@ -98,10 +155,9 @@ var engine = {
             "url": "https://www.zybuluo.com/iwangyang/note/460072?="
         }, 15, 16, 17, 18, 19, {
             "id": 20,
-            "name": "喜马拉雅",
-            "color": "#ef5619",
-            "wap": "http://m.ximalaya.com/search/",
-            "url": "http://www.ximalaya.com/search/"
+            "name": "鸠摩搜书",
+            "color": "#7b5e40",
+            "url": "https://www.jiumodiary.com/?="
         }, {
             "id": 21,
             "name": "有道词典",
@@ -114,7 +170,12 @@ var engine = {
             "color": "#206740",
             "wap": "http://m.open.163.com/?=",
             "url": "http://c.open.163.com/search/search.htm?query="
-        }, 23, 24, 25, 26, 27, 28, 29, {
+        }, {
+            "id": 23,
+            "name": "世界图书馆",
+            "color": "#00618e",
+            "url": "http://mx.wdl.org/zh/search/?q="
+        }, 24, 25, 26, 27, 28, 29, {
             "id": 30,
             "name": "花瓣",
             "color": "#DF4751",
@@ -125,7 +186,19 @@ var engine = {
             "name": "Topit.me",
             "color": "#FC6B96",
             "url": "http://www.topit.me/items/search?query="
-        }, 32, 33, 34, 35, 36, 37, 38, 39, {
+        }, {
+            "id": 32,
+            "name": "站酷",
+            "color": "#282828",
+            "wap": "http://m.idea.zcool.com.cn/search.do?keys=",
+            "url": "http://idea.zcool.com.cn/index.do?keys="
+        }, {
+            "id": 33,
+            "name": "动图搜索",
+            "color": "#e84763",
+            "wap": "http://www.gifmiao.com/search?keyword=",
+            "url": "http://www.soogif.com/search/"
+        }, 34, 35, 36, 37, 38, 39, {
             "id": 40,
             "name": "澎湃新闻",
             "color": "#000000",
@@ -137,7 +210,13 @@ var engine = {
             "color": "#E73137",
             "icon": "sina",
             "url": "http://s.weibo.com/weibo/"
-        }, 42, 43, 44, 45, 46, 47, 48, 49, {
+        }, {
+            "id": 42,
+            "name": "好奇心日报",
+            "color": "#FFD000",
+            "wap": "http://m.qdaily.com/mobile/searches?key=",
+            "url": "http://www.qdaily.com/searches?key="
+        }, 43, 44, 45, 46, 47, 48, 49, {
             "id": 50,
             "name": "淘宝",
             "color": "#ed4403",
@@ -184,6 +263,7 @@ var engine = {
             "name": "高德地图",
             "color": "#4C90F9",
             "icon": "amap",
+            "wap": "http://m.amap.com/search/mapview/keywords=",
             "url": "http://ditu.amap.com/search?city=100000&query="
         }, {
             "id": 71,
@@ -217,22 +297,34 @@ var engine = {
             "color": "#f40a01",
             "icon": "cloud-music",
             "url": "http://music.163.com/#/search/m/?s="
-        }, 84, 85, 86, 87, 88, 89, {
+        }, {
+            "id": 84,
+            "name": "喜马拉雅",
+            "color": "#ef5619",
+            "wap": "http://m.ximalaya.com/search/",
+            "url": "http://www.ximalaya.com/search/"
+        }, 85, 86, 87, 88, 89, {
             "id": 90,
             "name": "豆瓣电影",
             "color": "#2e963d",
             "url": "https://movie.douban.com/subject_search?search_text="
         }, {
             "id": 91,
-            "name": "优酷视频",
+            "name": "优酷",
             "color": "#2fb3ff",
             "url": "http://www.soku.com/search_video/q_"
         }, {
             "id": 92,
-            "name": "片源网",
+            "name": "磁力链接",
             "color": "#3860BB",
             "url": "http://pianyuan.net/search?q="
-        }, 93, 94, 95, 96, 97, 98, 99],
+        }, {
+            "id": 93,
+            "name": "哔哩哔哩",
+            "color": "#f25d8e",
+            "wap": "http://www.bilibili.com/mobile/search.html?keyword=",
+            "url": "http://search.bilibili.com/all?keyword="
+        }, 94, 95, 96, 97, 98, 99],
     Default: 0,
     Logo: function(input, e) {
         input.dataset.id = e.id
@@ -398,7 +490,7 @@ var __init__ = function() {
                     var mini = ``
                 }
                 $('.search-list-mini').append(mini)
-                $('.fa-mini').css('display','none')
+                $('.fa-mini').css({'display':'none','color':'#E6E7EC'})
             }
             // 默认
             if (i.id === engine.Default) {
@@ -467,6 +559,16 @@ var __init__ = function() {
         var e = engine.All[id]
         engine.Logo(input, e)
         so.moreHide()
+    })
+    $('.search-list-mini').on('mouseover', 'i', function(event) {
+        if (event.target.dataset.id) {
+            $(event.target).removeAttr('style')
+        }
+    })
+    $('.search-list-mini').on('mouseout', 'i', function(event) {
+        if (event.target.dataset.id) {
+            $(event.target).css('color','#E6E7EC')
+        }
     })
     // ToDo
     $('.search-list').on('keyup', '.so-note', function(event) {
@@ -563,61 +665,3 @@ var __init__ = function() {
     })
 }
 __init__()
-
-var admin = {
-    tag: function() {
-        var a = ''
-        for (e of engine.Tag) {
-            var max =  Number(e.id + '0') + 10
-            var min =  Number(e.id + '0')
-            a = a + `\n${e.name}：`
-            for (i of engine.All) {
-                if (i.id !== undefined && i.id >= min && i.id < max) {
-                    if (i.name === '') {
-                        a = a + i.id + ' ' + '大海' + ' '
-                    } else {
-                        a = a + i.id + ' ' + i.name + ' '
-                    }
-                }
-            }
-        }
-        return a
-    },
-    add: function(id, name, color, icon, url, wap) {
-        if (id === undefined) {
-            log(`admin.add(0, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
-            return admin.tag()
-        }
-        var xj = JSON.parse(JSON.stringify(engine.All))
-        var i = xj[id]
-        if (i.id !== undefined) {
-            log(`ID:${i.id}\nNAME:${i.name}`)
-            return admin.tag()
-        } else if (name === undefined) {
-            log('ID:可以使用')
-            log(`admin.add(${id}, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
-            return admin.tag()
-        }
-        if (wap) {
-            i = {
-                "id": id,
-                "name": name,
-                "color": color,
-                "icon": icon,
-                "url": url,
-                "wap": wap,
-            }
-        } else {
-            i = {
-            "id": id,
-            "name": name,
-            "color": color,
-            "icon": icon,
-            "url": url,
-            }
-        }
-        log('完成')
-        log(`ID:${i.id}\nNAME:${i.name}`)
-        return JSON.stringify(xj)
-    },
-}
