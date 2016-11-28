@@ -447,7 +447,7 @@ var so = {
         }
     },
     hide: function() {
-        $('.search-list').css('border-color', 'transparent')
+        $('.search-list').removeAttr('style')
         setTimeout("$('.search-li').hide()", 100)
     },
     show: function() {
@@ -460,7 +460,7 @@ var so = {
         $('.so-note').hide()
         $('.fa-mini').hide()
         $('.search-list-button').css('color', 'transparent')
-        $('.search-list').css('border-color', 'transparent')
+        $('.search-list').removeAttr('style')
     },
     sug: [],
     now: -1,
@@ -547,7 +547,7 @@ var __init__ = function() {
         } else {
             $('.so-note').fadeOut(618)
             $('.fa-mini').fadeOut(618)
-            $('.search-list').css('border-color', 'transparent')
+            $('.search-list').removeAttr('style')
         }
     })
     $('.search-list-mini').on('mouseover', function() {
@@ -581,11 +581,16 @@ var __init__ = function() {
             var i = Number(event.target.dataset.id)
             if (i < 2) {
                 event.target.value = ''
-            } else {
+            } else if (i !== so.note.length) {
                 event.target.remove()
                 $($('.so-note')[i-1]).focus()
                 so.note.splice(i, 1)
                 localStorage.setItem("note",JSON.stringify(so.note))
+                $('.so-note').each( function(index, e) {
+                    if (e.dataset.id > i) {
+                        e.dataset.id = Number(e.dataset.id) - 1
+                    }
+                })
             }
         }
     })
