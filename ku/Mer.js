@@ -447,8 +447,7 @@ var so = {
         }
     },
     hide: function() {
-        $('.search-list').removeAttr('style')
-        setTimeout("$('.search-li').hide()", 100)
+        setTimeout("$('.search-li').hide();$('.search-list').css('border-color','transparent')", 100)
     },
     show: function() {
         $('.search-list').css('border-color', '#037DD8')
