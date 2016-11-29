@@ -1,61 +1,4 @@
 // 定义 log enSure
-// var admin = {
-//     tag: function() {
-//         var a = ''
-//         for (e of engine.Tag) {
-//             var max =  Number(e.id + '0') + 10
-//             var min =  Number(e.id + '0')
-//             a = a + `\n${e.name}：`
-//             for (i of engine.All) {
-//                 if (i.id !== undefined && i.id >= min && i.id < max) {
-//                     if (i.name === '') {
-//                         a = a + i.id + ' ' + '大海' + ' '
-//                     } else {
-//                         a = a + i.id + ' ' + i.name + ' '
-//                     }
-//                 }
-//             }
-//         }
-//         return a
-//     },
-//     add: function(id, name, color, icon, url, wap) {
-//         if (id === undefined) {
-//             log(`admin.add(0, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
-//             return admin.tag()
-//         }
-//         var xj = JSON.parse(JSON.stringify(engine.All))
-//         var i = xj[id]
-//         if (i.id !== undefined) {
-//             log(`ID:${i.id}\nNAME:${i.name}`)
-//             return admin.tag()
-//         } else if (name === undefined) {
-//             log('ID:可以使用')
-//             log(`admin.add(${id}, "大海", "#E6E7EC", "dahai", "http://bigc.cc")`)
-//             return admin.tag()
-//         }
-//         if (wap) {
-//             i = {
-//                 "id": id,
-//                 "name": name,
-//                 "color": color,
-//                 "icon": icon,
-//                 "url": url,
-//                 "wap": wap,
-//             }
-//         } else {
-//             i = {
-//             "id": id,
-//             "name": name,
-//             "color": color,
-//             "icon": icon,
-//             "url": url,
-//             }
-//         }
-//         log('完成')
-//         log(`ID:${i.id}\nNAME:${i.name}`)
-//         return JSON.stringify(xj)
-//     },
-// }
 var log = function() {
         console.log.apply(console, arguments)
     }
@@ -506,9 +449,9 @@ var __init__ = function() {
     })
     $('.top').on('click', function() {
         so.moreHide()
-        $('.top').fadeOut(618)
-        $('.engine').slideUp(618)
-        setTimeout("$('.search').slideDown(618)", 618)
+        $('.top').fadeOut(382)
+        $('.engine').slideUp(382)
+        setTimeout("$('.search').slideDown(382)", 382)
     })
     // 搜索按钮
     $('.search-button').on('click', function() {
@@ -623,7 +566,8 @@ var __init__ = function() {
             if (e.id !== undefined) {
                 if (e.icon !== undefined) {
                     // 初始化 颜色
-                    if (!$('style').text().includes(`${e.icon}`)) {
+                    var style = document.querySelector( "style" ).innerHTML
+                    if (style.indexOf(`.icon-${e.icon}{color`) === -1) {
                         $('style').append(`.icon-${e.icon}{color:${e.color}}`)
                     }
                     // 初始化 图标
