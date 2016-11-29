@@ -155,24 +155,24 @@ var engine = {
             "url": "https://www.zybuluo.com/iwangyang/note/460072?="
         }, 15, 16, 17, 18, 19, {
             "id": 20,
-            "name": "鸠摩搜书",
-            "color": "#7b5e40",
-            "url": "https://www.jiumodiary.com/?="
-        }, {
-            "id": 21,
             "name": "有道词典",
             "color": "#e31333",
             "icon": "youdao",
             "url": "http://m.youdao.com/dict?q="
         }, {
+            "id": 21,
+            "name": "电子书",
+            "color": "#101010",
+            "url": "https://www.jiumodiary.com/?="
+        }, {
             "id": 22,
-            "name": "网易公开课",
+            "name": "公开课",
             "color": "#206740",
             "wap": "http://m.open.163.com/?=",
             "url": "http://c.open.163.com/search/search.htm?query="
         }, {
             "id": 23,
-            "name": "世界图书馆",
+            "name": "世图",
             "color": "#00618e",
             "url": "http://mx.wdl.org/zh/search/?q="
         }, 24, 25, 26, 27, 28, 29, {
@@ -469,18 +469,6 @@ var __init__ = function() {
     var init = function() {
         var i = 0
         for (i of engine.All) {
-            // 综合
-            if (i.id > 0 && i.id < 6) {
-                if (i.icon !== undefined) {
-                    // 初始化 颜色
-                    $('style').append(`.icon-${i.icon}{color:${i.color}}`)
-                    // 初始化 图标
-                    var temp = `<engine data-id=${i.id} title="${i.name}"> <i class="fa-logo iconfont icon-${i.icon}"></i> </engine>`
-                } else {
-                    var temp = `<engine data-id=${i.id}><span style="color:${i.color}" class='engine-font'>${i.name}</span></engine>`
-                }
-                $('.engine-often').append(temp)
-            }
             // 迷你
             if (i.id > 0 && i.id < 6) {
                 if (i.icon !== undefined) {
@@ -526,17 +514,6 @@ var __init__ = function() {
     $('.search-button').on('click', function() {
             so.search()
         })
-    // 引擎按钮
-    $('.engine-often').on('click', 'engine', function(event) {
-        var id = Number(event.target.parentElement.dataset.id)
-        if (!id && id !== 0) {
-            id = Number(event.target.dataset.id)
-        }
-        var input = $('.search-input')[0]
-        var e = engine.All[id]
-        engine.Logo(input, e)
-        $('.top').click()
-    })
     // 迷你图标 + ToDo
     $('.search-list-button').on('click', function() {
         if ($('.fa-mini').css('display') === 'none') {
@@ -646,13 +623,16 @@ var __init__ = function() {
             if (e.id !== undefined) {
                 if (e.icon !== undefined) {
                     // 初始化 颜色
-                    $('style').append(`.icon-${e.icon}{color:${e.color}}`)
+                    if (!$('style').text().includes(`${e.icon}`)) {
+                        $('style').append(`.icon-${e.icon}{color:${e.color}}`)
+                    }
                     // 初始化 图标
                     var temp = `<engine data-id=${e.id} title="${e.name}"> <i class="fa-logo iconfont icon-${e.icon}"></i> </engine>`
+                    $('.engine-show').append(temp)
                 } else {
                     var temp = `<engine data-id=${e.id}><span style="color:${e.color}" class='engine-font'>${e.name}</span></engine>`
+                    $('.engine-show').append(temp)
                 }
-                $('.engine-show').append(temp)
             }
             id++
         }
@@ -667,5 +647,6 @@ var __init__ = function() {
         engine.Logo(input, e)
         $('.top').click()
     })
+    $('tag')[0].click()
 }
 __init__()

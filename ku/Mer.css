@@ -25,7 +25,7 @@
         vertical-align: -15%;
     }
     .fa-logo {
-        font-size: 3.5em;
+        font-size: 4.5em;
         color: #E6E7EC;
     }
     .fa-logo-da {
@@ -51,7 +51,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-    
+
 /* 导航 */
     .top {
         display: none;
@@ -191,9 +191,9 @@
         vertical-align: bottom;
         /*尝试解决 ipad 偏移问题*/
         display: inline-block;
-        width:  4.2em;
-        height: 4.2em;
-        line-height: 4.2em;
+        width:  5em;
+        height: 5em;
+        line-height: 5em;
         margin:  0.5em;
         border: 2px solid transparent;
         border-radius: 50%;
@@ -207,11 +207,11 @@
         width: 95%;
         margin: 4em auto 0;
     }
-    .engine-often {
-        border-bottom: 1px solid #D5D7DF;
-    }
     .engine-tag {
         font-size: 0;
+    }
+    .engine-font {
+        font-size: 1.2em;
     }
 
 /* 标签 */
