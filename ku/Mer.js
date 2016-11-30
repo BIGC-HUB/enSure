@@ -390,7 +390,8 @@ var so = {
         }
     },
     hide: function() {
-        setTimeout("$('.search-li').hide();$('.search-list').css('border-color','transparent')", 100)
+        $('.search-list').removeAttr('style')
+        setTimeout("$('.search-li').hide()", 100)
     },
     show: function() {
         $('.search-list').css('border-color', '#037DD8')
@@ -460,12 +461,11 @@ var __init__ = function() {
     // 迷你图标 + ToDo
     $('.search-list-button').on('click', function() {
         if ($('.fa-mini').css('display') === 'none') {
-            $('.fa-mini').fadeIn(618)
-            $('.so-note').fadeIn(618)
-            $('.search-list').css('border-color', 'rgba(0, 0, 0, 0.25)')
+            $('.fa-mini').fadeIn(382)
+            setTimeout("$('.so-note').fadeIn();$('.search-list').css('border-color', '#C0C0C0')", 100)
         } else {
-            $('.so-note').fadeOut(618)
-            $('.fa-mini').fadeOut(618)
+            $('.so-note').fadeOut(382)
+            $('.fa-mini').fadeOut(382)
             $('.search-list').removeAttr('style')
         }
     })
@@ -594,3 +594,5 @@ var __init__ = function() {
     $('tag')[0].click()
 }
 __init__()
+
+log('想招纳我来工作？请发送Offer到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
