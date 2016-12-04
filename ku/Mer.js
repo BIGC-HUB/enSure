@@ -303,7 +303,7 @@ var engine = {
         name: '新闻'
     },{
         id: 5,
-        name: '购物'
+        name: '网购'
     },{
         id: 6,
         name: '旅行'
@@ -391,7 +391,7 @@ var so = {
     },
     hide: function() {
         $('.search-list').removeAttr('style')
-        setTimeout("$('.search-li').hide()", 100)
+        $('.search-li').hide()
     },
     show: function() {
         $('.search-list').css('border-color', '#037DD8')
@@ -462,7 +462,8 @@ var __init__ = function() {
     $('.search-list-button').on('click', function() {
         if ($('.fa-mini').css('display') === 'none') {
             $('.fa-mini').fadeIn(382)
-            setTimeout("$('.so-note').fadeIn();$('.search-list').css('border-color', '#C0C0C0')", 100)
+            $('.so-note').fadeIn(382)
+            $('.search-list').css('border-color','#C0C0C0')
         } else {
             $('.so-note').fadeOut(382)
             $('.fa-mini').fadeOut(382)
@@ -528,7 +529,7 @@ var __init__ = function() {
         var hover = true
         so.addClass(hover)
     })
-    $('.search-list').on('click', '.search-li', function(event) {
+    $('.search-list').on('mousedown', '.search-li', function(event) {
         var value = $(event.target).text()
         so.search(value)
     })
@@ -574,7 +575,7 @@ var __init__ = function() {
                     var temp = `<engine data-id=${e.id} title="${e.name}"> <i class="fa-logo iconfont icon-${e.icon}"></i> </engine>`
                     $('.engine-show').append(temp)
                 } else {
-                    var temp = `<engine data-id=${e.id}><span style="color:${e.color}" class='engine-font'>${e.name}</span></engine>`
+                    var temp = `<engine data-id=${e.id} title="${e.name}"><span style="color:${e.color}" class='engine-font'>${e.name}</span></engine>`
                     $('.engine-show').append(temp)
                 }
             }
@@ -595,4 +596,4 @@ var __init__ = function() {
 }
 __init__()
 
-log('想招纳我来工作？请发送Offer到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
+log('想加入我？发送邮件至 iwangyang@vip.qq.com\nʅ（´◔౪◔）ʃ')

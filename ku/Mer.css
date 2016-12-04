@@ -63,6 +63,7 @@
         z-index: 1;
         border-bottom: 1px solid #E6E7EC;
         cursor: pointer;
+        background: #FFF;
     }
     .top-center {
         position: relative;
@@ -208,6 +209,9 @@
     }
     .engine-tag {
         font-size: 0;
+    }
+    .engine-show {
+        border-top: 1px solid #D5D7DF;
         border-bottom: 1px solid #D5D7DF;
     }
     .engine-font {
