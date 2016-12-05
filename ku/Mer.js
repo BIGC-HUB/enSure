@@ -288,32 +288,32 @@ var engine = {
     },
     Tag: [{
         id: 0,
-        name: '综合',
-    },{
+        name: '综合'
+    }, {
         id: 1,
-        name: '编程',
-    },{
+        name: '编程'
+    }, {
         id: 2,
         name: '认知'
-    },{
+    }, {
         id: 3,
         name: '图片'
-    },{
+    }, {
         id: 4,
         name: '新闻'
-    },{
+    }, {
         id: 5,
         name: '网购'
-    },{
+    }, {
         id: 6,
         name: '旅行'
-    },{
+    }, {
         id: 7,
         name: '地图'
-    },{
+    }, {
         id: 8,
         name: '音乐'
-    },{
+    }, {
         id: 9,
         name: '电影'
     }],
@@ -357,8 +357,7 @@ var so = {
             var url = e.url + value
         }
         if (value !== '') {
-            window.open(url)
-            // window.location.href = url
+            window.open(url) // window.location.href = url
         } else {
             $('.search-input').focus()
         }
@@ -413,9 +412,49 @@ var so = {
     note: engine.Read('note'),
     logo: '',
 }
+var star = {
+    All: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, {
+            "id": 10,
+            "name": "JavaScript",
+            "color": "#037DD8",
+            "url": "https://www.zybuluo.com/iwangyang/note/519509"
+        }, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+    Label: [{
+        id: 0,
+        name: '综合'
+    }, {
+        id: 1,
+        name: '编程'
+    }, {
+        id: 2,
+        name: '认知'
+    }, {
+        id: 3,
+        name: '图片'
+    }, {
+        id: 4,
+        name: '新闻'
+    }, {
+        id: 5,
+        name: '网购'
+    }, {
+        id: 6,
+        name: '旅行'
+    }, {
+        id: 7,
+        name: '地图'
+    }, {
+        id: 8,
+        name: '音乐'
+    }, {
+        id: 9,
+        name: '电影'
+    }],
+}
 var __init__ = function() {
     var init = function() {
         var i = 0
+        // 引擎
         for (i of engine.All) {
             // 迷你
             if (i.id > 0 && i.id < 6) {
@@ -437,6 +476,10 @@ var __init__ = function() {
         for (i of engine.Tag) {
             $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
         }
+        // 书签
+        for (i of star.Label) {
+            $('.star-label').append(`<label data-id=${i.id}>${i.name}</label>`)
+        }
         // 记事本
         for (var i = 0; i < so.note.length; i++) {
             $('.search-list').append(`<input class="so-note" data-id="${i}" type="text" placeholder="" maxlength="100" style="display: none;">`)
@@ -450,7 +493,9 @@ var __init__ = function() {
     // 导航按钮
     $('logo').on('click', function(event) {
         if ($('logo i:eq(0)').hasClass('icon-brightestStar')) {
-            log(123)
+            $('.top').fadeIn(618)
+            $('.search').slideUp(618)
+            setTimeout("$('.star').slideDown(618)", 618)
         } else {
             $('.top').fadeIn(618)
             $('.search').slideUp(618)
@@ -461,6 +506,7 @@ var __init__ = function() {
         so.moreHide()
         $('.top').fadeOut(382)
         $('.engine').slideUp(382)
+        $('.star').slideUp(382)
         setTimeout("$('.search').slideDown(382)", 382)
     })
     // 搜索按钮
@@ -473,7 +519,7 @@ var __init__ = function() {
             $('logo').html(so.logo)
         } else {
             so.logo =  $('logo').html()
-            $('logo').html('<i class="fa-logo-da iconfont icon-brightestStar"></i>')
+            $('logo').html('<i title="书签" class="fa-logo-da iconfont icon-brightestStar"></i>')
         }
         if ($('.fa-mini').css('display') === 'none') {
             $('.fa-mini').show()
@@ -572,7 +618,7 @@ var __init__ = function() {
             $('.search-li').show()
         }
     })
-    // 标签
+    // 引擎
     $('.engine-tag').on('click', 'tag', function(event) {
         $('.engine-show').empty()
         var id = Number(event.target.dataset.id + '0')
@@ -608,6 +654,49 @@ var __init__ = function() {
         $('.top').click()
     })
     $('tag')[0].click()
+    // 书签
+    $('.star-label').on('click', 'label', function(event) {
+        $('.star-show').empty()
+        var id = Number(event.target.dataset.id + '0')
+        var end   = id + 10
+        while (id < end) {
+            var e = star.All[id]
+            if (e.id !== undefined) {
+                if (e.icon !== undefined) {
+                    // 初始化 颜色
+                    var style = document.querySelector( "style" ).innerHTML
+                    if (style.indexOf(`.icon-${e.icon}{color`) === -1) {
+                        $('style').append(`.icon-${e.icon}{color:${e.color}}`)
+                    }
+                    // 初始化 图标
+                    var temp = `<bookmark data-id=${e.id} title="${e.name}"> <i class="fa-logo iconfont icon-${e.icon}"></i> </bookmark>`
+                    $('.star-show').append(temp)
+                } else {
+                    var temp = `<bookmark data-id=${e.id} title="${e.name}"><span style="color:${e.color}" class='engine-font'>${e.name}</span></bookmark>`
+                    $('.star-show').append(temp)
+                }
+            }
+            id++
+        }
+    })
+    $('.star-show').on('click', 'bookmark', function(event) {
+        var id = Number(event.target.parentElement.dataset.id)
+        if (!id && id !== 0) {
+            id = Number(event.target.dataset.id)
+        }
+        var e = star.All[id]
+        if (screen.width < 768) {
+            if (e.wap === undefined) {
+                var url = e.url
+            } else {
+                var url = e.wap
+            }
+        } else {
+            var url = e.url
+        }
+        window.open(url)
+    })
+    $('label')[0].click()
 }
 __init__()
 
