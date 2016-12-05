@@ -94,7 +94,7 @@ var engine = {
             "url": "http://m.youdao.com/dict?q="
         }, {
             "id": 21,
-            "name": "网易公开课",
+            "name": "公开课",
             "color": "#206740",
             "wap": "http://m.open.163.com/?=",
             "url": "http://c.open.163.com/search/search.htm?query="
@@ -416,7 +416,10 @@ var star = {
             "color": "#FFD000",
             "wap": "http://m.qdaily.com",
             "url": "http://www.qdaily.com"
-        }, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+        }, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, {
+            "id": 100,
+            "url": ""
+        }],
     Label: [{
         id: 0,
         name: '综合'
@@ -425,7 +428,7 @@ var star = {
         name: '编程'
     }, {
         id: 2,
-        name: '认知'
+        name: '知识'
     }, {
         id: 3,
         name: '图片'
@@ -657,6 +660,7 @@ var __init__ = function() {
             }
             id++
         }
+        $('.star-show').append(`<bookmark data-id="0"> <i class="fa-logo iconfont icon-dahai"></i> </bookmark>`)
     })
     $('.star-show').on('click', 'bookmark', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
@@ -675,6 +679,7 @@ var __init__ = function() {
         }
         window.open(url)
     })
+    $('label')[1].click()
 }
 __init__()
 

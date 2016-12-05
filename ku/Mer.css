@@ -188,7 +188,7 @@
         display: inline-block;
         height: 5em;
         line-height: 5em;
-        margin:  0.5em 1.2em;
+        margin:  0.5em;
         border: 2px solid transparent;
         cursor: pointer;
     }
@@ -227,7 +227,12 @@
     @media (min-width: 768px) {
         bookmark, engine {
             height: 8em;
+            width: 8em;
             line-height: 8em;
+            border-radius: 50%;
+        }
+        bookmark:hover, engine:hover {
+            background: #F5F6F9;
         }
         .star, .engine {
             width: 85%;
