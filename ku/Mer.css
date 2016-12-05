@@ -10,7 +10,7 @@
         margin: 0 auto;
         text-align: center;
     }
-    .search-li, engine, logo, tag, label {
+    .search-li, engine, bookmark, logo, tag, label {
         /* 禁止 换行 */
         white-space: nowrap;
         /* 隐藏 超出部分 */
@@ -185,18 +185,12 @@
 /* 引擎 */
     bookmark, engine {
         vertical-align: bottom;
-        /*尝试解决 ipad 偏移问题*/
         display: inline-block;
-        width:  5em;
         height: 5em;
         line-height: 5em;
-        margin:  0.5em;
+        margin:  0.5em 1.2em;
         border: 2px solid transparent;
-        border-radius: 50%;
         cursor: pointer;
-    }
-    bookmark:hover, engine:hover {
-        background: #F5F6F9;
     }
     .star, .engine {
         display: none;
@@ -206,8 +200,10 @@
     .star-label, .engine-tag {
         font-size: 0;
     }
-    .star-show, .engine-show {
+    .engine-show {
         border-top: 1px solid #D5D7DF;
+    }
+    .star-show {
         border-bottom: 1px solid #D5D7DF;
     }
     .engine-font {
@@ -230,7 +226,6 @@
     /* 小屏幕（平板，大于等于 768px） */
     @media (min-width: 768px) {
         bookmark, engine {
-            width:  8em;
             height: 8em;
             line-height: 8em;
         }

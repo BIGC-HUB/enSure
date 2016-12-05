@@ -86,17 +86,7 @@ var engine = {
             "name": "阮一峰",
             "color": "#556677",
             "url": "http://cn.bing.com/search?q=site:ruanyifeng.com+"
-        }, {
-            "id": 13,
-            "name": "JavaScript",
-            "color": "#08c",
-            "url": "https://www.zybuluo.com/iwangyang/note/519509?="
-        }, {
-            "id": 14,
-            "name": "Python",
-            "color": "#08c",
-            "url": "https://www.zybuluo.com/iwangyang/note/460072?="
-        }, 15, 16, 17, 18, 19, {
+        }, 13, 14, 15, 16, 17, 18, 19, {
             "id": 20,
             "name": "有道词典",
             "color": "#e31333",
@@ -104,21 +94,16 @@ var engine = {
             "url": "http://m.youdao.com/dict?q="
         }, {
             "id": 21,
-            "name": "电子书",
-            "color": "#101010",
-            "url": "https://www.jiumodiary.com/?="
-        }, {
-            "id": 22,
-            "name": "公开课",
+            "name": "网易公开课",
             "color": "#206740",
             "wap": "http://m.open.163.com/?=",
             "url": "http://c.open.163.com/search/search.htm?query="
         }, {
-            "id": 23,
+            "id": 22,
             "name": "世图",
             "color": "#00618e",
             "url": "http://mx.wdl.org/zh/search/?q="
-        }, 24, 25, 26, 27, 28, 29, {
+        }, 23, 24, 25, 26, 27, 28, 29, {
             "id": 30,
             "name": "花瓣",
             "color": "#DF4751",
@@ -143,23 +128,11 @@ var engine = {
             "url": "http://www.soogif.com/search/"
         }, 34, 35, 36, 37, 38, 39, {
             "id": 40,
-            "name": "澎湃新闻",
-            "color": "#000000",
-            "wap": "http://m.thepaper.cn/search.jsp?k=",
-            "url": "http://www.thepaper.cn/searchResult.jsp?inpsearch="
-        }, {
-            "id": 41,
             "name": "新浪微博",
             "color": "#E73137",
             "icon": "sina",
             "url": "http://s.weibo.com/weibo/"
-        }, {
-            "id": 42,
-            "name": "好奇心日报",
-            "color": "#FFD000",
-            "wap": "http://m.qdaily.com/mobile/searches?key=",
-            "url": "http://www.qdaily.com/searches?key="
-        }, 43, 44, 45, 46, 47, 48, 49, {
+        }, 41, 42, 43, 44, 45, 46, 47, 48, 49, {
             "id": 50,
             "name": "淘宝",
             "color": "#ed4403",
@@ -281,7 +254,7 @@ var engine = {
     },
     Read: function(key) {
         if (localStorage.getItem(key) === null) {
-            return ['记事本','']
+            return ["记事本", "", "", "", "", "", "", "", ""]
         } else {
             return JSON.parse(localStorage.getItem(key))
         }
@@ -359,7 +332,10 @@ var so = {
         if (value !== '') {
             window.open(url) // window.location.href = url
         } else {
-            $('.search-input').focus()
+            if ($('logo i:eq(0)').hasClass('icon-brightestStar') === false) {
+                so.logo =  $('logo').html()
+                $('logo').html('<i title="书签" class="fa-logo-da iconfont icon-brightestStar"></i>')
+            }
         }
     },
     addClass: function(hover) {
@@ -416,9 +392,31 @@ var star = {
     All: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, {
             "id": 10,
             "name": "JavaScript",
-            "color": "#037DD8",
+            "color": "#08c",
             "url": "https://www.zybuluo.com/iwangyang/note/519509"
-        }, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+        }, {
+            "id": 11,
+            "name": "Python",
+            "color": "#08c",
+            "url": "https://www.zybuluo.com/iwangyang/note/460072"
+        }, 12, 13, 14, 15, 16, 17, 18, 19, {
+            "id": 20,
+            "name": "电子书",
+            "color": "#101010",
+            "url": "https://www.jiumodiary.com"
+        }, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, {
+            "id": 40,
+            "name": "澎湃新闻",
+            "color": "#000",
+            "wap": "http://m.thepaper.cn",
+            "url": "http://www.thepaper.cn"
+        }, {
+            "id": 41,
+            "name": "好奇心日报",
+            "color": "#FFD000",
+            "wap": "http://m.qdaily.com",
+            "url": "http://www.qdaily.com"
+        }, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
     Label: [{
         id: 0,
         name: '综合'
@@ -511,16 +509,10 @@ var __init__ = function() {
     })
     // 搜索按钮
     $('.search-button').on('click', function() {
-            so.search()
-        })
+        so.search()
+    })
     // 迷你图标 + ToDo
     $('.search-list-button').on('click', function() {
-        if ($('logo i:eq(0)').hasClass('icon-brightestStar')) {
-            $('logo').html(so.logo)
-        } else {
-            so.logo =  $('logo').html()
-            $('logo').html('<i title="书签" class="fa-logo-da iconfont icon-brightestStar"></i>')
-        }
         if ($('.fa-mini').css('display') === 'none') {
             $('.fa-mini').show()
             $('.so-note').show()
@@ -553,25 +545,12 @@ var __init__ = function() {
     })
     // ToDo
     $('.search-list').on('keyup', '.so-note', function(event) {
+        var id = Number(event.target.dataset.id)
         if (event.keyCode === 13) {
-            var id = so.note.length
-            $('.search-list').append(`<input class="so-note" data-id="${id}" type="text" placeholder="" maxlength="100">`)
-            so.note.push('')
-            $($('.so-note')[id]).focus()
+            $($('.so-note')[id+1]).focus()
         } else if (event.keyCode === 8 && event.target.value === '') {
-            var i = Number(event.target.dataset.id)
-            if (i < 2) {
-                event.target.value = ''
-            } else if (i !== so.note.length) {
-                event.target.remove()
-                $($('.so-note')[i-1]).focus()
-                so.note.splice(i, 1)
-                localStorage.setItem("note",JSON.stringify(so.note))
-                $('.so-note').each( function(index, e) {
-                    if (e.dataset.id > i) {
-                        e.dataset.id = Number(e.dataset.id) - 1
-                    }
-                })
+            if (id > 1) {
+                $($('.so-note')[id-1]).focus()
             }
         }
     })
@@ -669,10 +648,10 @@ var __init__ = function() {
                         $('style').append(`.icon-${e.icon}{color:${e.color}}`)
                     }
                     // 初始化 图标
-                    var temp = `<bookmark data-id=${e.id} title="${e.name}"> <i class="fa-logo iconfont icon-${e.icon}"></i> </bookmark>`
+                    var temp = `<bookmark data-id=${e.id} title="${e.name}\n${e.url}"> <i class="fa-logo iconfont icon-${e.icon}"></i> </bookmark>`
                     $('.star-show').append(temp)
                 } else {
-                    var temp = `<bookmark data-id=${e.id} title="${e.name}"><span style="color:${e.color}" class='engine-font'>${e.name}</span></bookmark>`
+                    var temp = `<bookmark data-id=${e.id} title="${e.name}\n${e.url}"><span style="color:${e.color}" class='engine-font'>${e.name}</span></bookmark>`
                     $('.star-show').append(temp)
                 }
             }
@@ -696,7 +675,6 @@ var __init__ = function() {
         }
         window.open(url)
     })
-    $('label')[0].click()
 }
 __init__()
 
