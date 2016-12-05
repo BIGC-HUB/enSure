@@ -44,12 +44,8 @@
         border-radius: 4px;
         cursor: pointer;
     }
-    .icon-dahai {
-        background-image: -moz-linear-gradient(top, #2A569F, #5A9AD3);
-        background-image: -webkit-linear-gradient(top, #2A569F, #5A9AD3);
-        background-image: linear-gradient(top, #2A569F, #5A9AD3);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .icon-brightestStar {
+        color: #FFCE54;
     }
 
 /* 导航 */
@@ -109,7 +105,7 @@
         border: 1px solid rgba(0, 0, 0, 0.4);
     }
     .search-input:focus {
-        border: 1px solid #037dd8;
+        border: 1px solid #037DD8;
     }
     .search-button {
         vertical-align: bottom;
@@ -119,13 +115,13 @@
         height: 33.333333px;
         line-height: 33.333333px;
         padding: 8px;
-        border: 1px solid #037dd8;
+        border: 1px solid #037DD8;
         border-top-left-radius: 0;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
         border-bottom-left-radius: 0;
         outline: 0;
-        background: #037dd8;
+        background: #037DD8;
         color: white;
         cursor: pointer;
     }
@@ -152,7 +148,7 @@
         border-bottom-left-radius: 2px;
     }
     .search-li-hover {
-        background: #037dd8;
+        background: #037DD8;
         color: #fff;
     }
     .search-list-button {
@@ -160,14 +156,14 @@
         display: inline-block;
         font-size: 18px;
         width: 79px;
-        padding: 8px;
+        padding: 11px 8px;
         color: transparent;
         outline: 0;
         border: 1px solid transparent;
         cursor: pointer;
     }
     .search-list-button:hover {
-        color: #037dd8 !important;
+        color: #037DD8 !important;
     }
     /* 笔记 */
     .so-note {
@@ -228,7 +224,7 @@
         cursor: pointer;
     }
     tag:hover {
-        color: #037dd8;
+        color: #037DD8;
     }
 /* 媒体查询 */
     /* 小屏幕（平板，大于等于 768px） */

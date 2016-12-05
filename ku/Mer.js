@@ -34,7 +34,7 @@ var engine = {
     All: [{
             "id": 0,
             "name": "",
-            "color": "#E6E7EC",
+            "color": "#037DD8",
             "icon": "dahai",
             "wap": "https://wap.sogou.com/web/searchList.jsp?keyword=",
             "url": "http://www.sogou.com/web?ie={inputEncoding}&query="
@@ -404,10 +404,14 @@ var so = {
         $('.fa-mini').hide()
         $('.search-list-button').css('color', 'transparent')
         $('.search-list').removeAttr('style')
+        if ($('logo i:eq(0)').hasClass('icon-brightestStar')) {
+            $('logo').html(so.logo)
+        }
     },
     sug: [],
     now: -1,
     note: engine.Read('note'),
+    logo: '',
 }
 var __init__ = function() {
     var init = function() {
@@ -433,6 +437,7 @@ var __init__ = function() {
         for (i of engine.Tag) {
             $('.engine-tag').append(`<tag data-id=${i.id}>${i.name}</tag>`)
         }
+        // 记事本
         for (var i = 0; i < so.note.length; i++) {
             $('.search-list').append(`<input class="so-note" data-id="${i}" type="text" placeholder="" maxlength="100" style="display: none;">`)
             $('.so-note')[i].value = so.note[i]
@@ -443,10 +448,14 @@ var __init__ = function() {
     }
     init()
     // 导航按钮
-    $('logo').on('click', function() {
-        $('.top').fadeIn(618)
-        $('.search').slideUp(618)
-        setTimeout("$('.engine').slideDown(618)", 618)
+    $('logo').on('click', function(event) {
+        if ($('logo i:eq(0)').hasClass('icon-brightestStar')) {
+            log(123)
+        } else {
+            $('.top').fadeIn(618)
+            $('.search').slideUp(618)
+            setTimeout("$('.engine').slideDown(618)", 618)
+        }
     })
     $('.top').on('click', function() {
         so.moreHide()
@@ -460,13 +469,19 @@ var __init__ = function() {
         })
     // 迷你图标 + ToDo
     $('.search-list-button').on('click', function() {
+        if ($('logo i:eq(0)').hasClass('icon-brightestStar')) {
+            $('logo').html(so.logo)
+        } else {
+            so.logo =  $('logo').html()
+            $('logo').html('<i class="fa-logo-da iconfont icon-brightestStar"></i>')
+        }
         if ($('.fa-mini').css('display') === 'none') {
-            $('.fa-mini').fadeIn(382)
-            $('.so-note').fadeIn(382)
+            $('.fa-mini').show()
+            $('.so-note').show()
             $('.search-list').css('border-color','#C0C0C0')
         } else {
-            $('.so-note').fadeOut(382)
-            $('.fa-mini').fadeOut(382)
+            $('.so-note').hide()
+            $('.fa-mini').hide()
             $('.search-list').removeAttr('style')
         }
     })
