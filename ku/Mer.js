@@ -254,7 +254,7 @@ var engine = {
     },
     Read: function(key) {
         if (localStorage.getItem(key) === null) {
-            return ["记事本", "", "", "", "", "", "", "", ""]
+            return ["记事本", ""]
         } else {
             return JSON.parse(localStorage.getItem(key))
         }
@@ -548,12 +548,30 @@ var __init__ = function() {
     })
     // ToDo
     $('.search-list').on('keyup', '.so-note', function(event) {
-        var id = Number(event.target.dataset.id)
+        var i = Number(event.target.dataset.id)
         if (event.keyCode === 13) {
-            $($('.so-note')[id+1]).focus()
+            var id = so.note.length
+            var next = i + 1
+            if (next === id && id < 20) {
+                $('.search-list').append(`<input class="so-note" data-id="${id}" type="text" placeholder="" maxlength="100">`)
+                so.note.push('')
+                $($('.so-note')[id]).focus()
+            } else {
+                $($('.so-note')[next]).focus()
+            }
         } else if (event.keyCode === 8 && event.target.value === '') {
-            if (id > 1) {
-                $($('.so-note')[id-1]).focus()
+            if (i < 2) {
+                event.target.value = ''
+            } else if (i !== so.note.length) {
+                event.target.remove()
+                $($('.so-note')[i-1]).focus()
+                so.note.splice(i, 1)
+                localStorage.setItem("note",JSON.stringify(so.note))
+                $('.so-note').each( function(index, e) {
+                    if (e.dataset.id > i) {
+                        e.dataset.id = Number(e.dataset.id) - 1
+                    }
+                })
             }
         }
     })
@@ -660,7 +678,7 @@ var __init__ = function() {
             }
             id++
         }
-        $('.star-show').append(`<bookmark data-id="0"> <i class="fa-logo iconfont icon-dahai"></i> </bookmark>`)
+        $('.star-show').append(`<bookmark data-id="100"><i class="fa-logo iconfont icon-dahai"></i></bookmark>`)
     })
     $('.star-show').on('click', 'bookmark', function(event) {
         var id = Number(event.target.parentElement.dataset.id)
