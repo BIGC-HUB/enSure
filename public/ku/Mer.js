@@ -3,6 +3,13 @@ var log = function() {
         console.log.apply(console, arguments)
     }
     //定义自己的log很重要 enSure增强进化版 穿衣服
+// 格式化 String
+String.prototype.to = function(){
+    var args = arguments
+    return this.replace(/\$\{(\d+)\}/g,function(s,i){
+        return args[i]
+    })
+}
 var ensure = function(def, result, message) {
     if (JSON.stringify(def) !== JSON.stringify(result)) {
         log('异常————————————>', message)

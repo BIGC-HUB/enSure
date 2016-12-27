@@ -1,7 +1,3 @@
-
-
-
-
 //express_demo.js 文件
 var express = require('express');
 var app = express();
@@ -45,7 +41,7 @@ app.get('/data/all', function(req, res) {
     sendFile(path, res)
 })
 // 读取 数据
-app.post('/data/save', function (req, res) {
+app.post('/data/save', function(req, res) {
     var data = JSON.stringify(req.body)
     var fs = require("fs");
     fs.writeFile('data', data, function (err) {
@@ -57,6 +53,11 @@ app.post('/data/save', function (req, res) {
    })
 })
 // 写入 数据
+app.post('/data/change', function(req, res) {
+    console.log(req.body);
+    res.send(req.body)
+})
+// 处理 数据
 
 var server = app.listen(8081, function() {
     var host = server.address().address
